@@ -3,13 +3,18 @@ project:
   output-dir: docs
 
 website:
+  repo-url: https://github.com/inqs909/ttw
   title: "TTW"
+  site-url: www.inqs.info/ttw
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+
+execute:
+  freeze: auto
 
 editor: source
 

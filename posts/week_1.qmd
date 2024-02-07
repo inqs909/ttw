@@ -6,6 +6,7 @@ description: First week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data 
 format:
   revealjs:
     scrollable: true
+    preview-links: true
     navigation-mode: vertical
     controls-layout: bottom-right
     controls-tutorial: true
@@ -74,6 +75,16 @@ library(tidytuesdayR)
 
 
 - You must load packages every new R Session
+
+## Visualization Resources
+
+[R Graphics Cookbook](https://r-graphics.org/)
+
+[R Graph Gallery](https://r-graph-gallery.com/)
+
+[R Charts](https://r-charts.com/)
+
+[ggplot2](https://ggplot2.tidyverse.org/)
 
 # Tidy Tuesday
 

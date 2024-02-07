@@ -42,6 +42,13 @@
     "text": "Load R Package\n\nlibrary(tidyverse)\nlibrary(plotly)\nlibrary(ggthemes)\nlibrary(esquisse)\nlibrary(tidytuesdayR)\n\n\nYou must load packages every new R Session"
   },
   {
+    "objectID": "posts/week_1.html#visualization-resources",
+    "href": "posts/week_1.html#visualization-resources",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Visualization Resources",
+    "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
+  },
+  {
     "objectID": "posts/week_1.html#tidy-tuesday-1",
     "href": "posts/week_1.html#tidy-tuesday-1",
     "title": "Tidy Tuesday on Wednesday",
