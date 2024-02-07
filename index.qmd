@@ -8,21 +8,38 @@ listing:
 ---
 
 ::: {.callout-note collapse="true" icon="false"}
-### **Introduction to Statistics Book**
+### **Introduction to Statistics Books**
 
-<https://openintro-ims.netlify.app/>
+[Intro to Modern Statistics](https://openintro-ims.netlify.app/)
+
+[Modern Statistics with R](https://www.modernstatisticswithr.com/)
+
+[Big Book of R](https://www.bigbookofr.com/)
+
+[Graphical Data Analysis in R](http://www.gradaanwr.net/)
+
+[Modern Data Visualization](https://rkabacoff.github.io/datavis/)
+
+[Practical Data Science](https://m-clark.github.io/data-processing-and-visualization/)
+
+[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+[ggplot2](https://ggplot2-book.org/)
+
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-### **R Graphics Cookbook**
+### **R Graphics Resources**
 
-<https://r-graphics.org/>
+[R Graphics Cookbook](https://r-graphics.org/)
+
+[R Graph Gallery](https://r-graph-gallery.com/)
+
+[R Charts](https://r-charts.com/)
+
+[ggplot2](https://ggplot2.tidyverse.org/)
+
+
 :::
 
-
-::: {.callout-note collapse="true" icon="false"}
-### **ggplot2**
-
-<https://ggplot2.tidyverse.org/>
-:::
 
