@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Tidy Tuesday on Wednesday",
     "section": "",
-    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
+    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/week_1.html#r-programming",
@@ -95,7 +95,7 @@
     "href": "posts/week_1.html#examples-3",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Examples",
-    "text": "Examples\n\n\nCode\n# devtools::install_github(\"davidsjoberg/ggsankey\")\nlibrary(ggsankey)\nheritage4 &lt;- heritage3 |&gt; make_long(country, year)\npl &lt;- ggplot(heritage4, aes(x = x,                        \n                     next_x = next_x,                                     \n                     node = node,\n                     next_node = next_node,        \n                     fill = factor(node)))\n                     \npl &lt;- pl +geom_sankey(flow.alpha = 0.5,          #This Creates the transparency of your node \n                      node.color = \"black\",     # This is your node color        \n                      show.legend = TRUE)        # This determines if you want your legend to show\n\npl"
+    "text": "Examples\n\n\nCode\n# devtools::install_github(\"davidsjoberg/ggsankey\")\nlibrary(ggsankey)\nheritage4 &lt;- heritage3 |&gt; make_long(country, year)\npl &lt;- ggplot(heritage4, aes(x = x,                        \n                     next_x = next_x,                                     \n                     node = node,\n                     next_node = next_node,        \n                     fill = factor(node)))\n                     \npl &lt;- pl +geom_sankey(flow.alpha = 0.5,          #This Creates the transparency of your node \n                      node.color = \"black\",     # This is your node color        \n                      show.legend = TRUE)        # This determines if you want your legend to show\n\npl &lt;- pl + theme_bw()\n\npl"
   },
   {
     "objectID": "posts/week_1.html#downloading-data-data",

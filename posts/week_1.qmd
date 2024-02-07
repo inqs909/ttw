@@ -22,7 +22,10 @@ knitr:
     echo: true
     eval: false
     comment: "#>" 
-
+draft: false
+categories:
+  - sp2024
+image: img/post1.png
 ---
 
 # Installation
@@ -177,6 +180,8 @@ pl <- ggplot(heritage4, aes(x = x,
 pl <- pl +geom_sankey(flow.alpha = 0.5,          #This Creates the transparency of your node 
                       node.color = "black",     # This is your node color        
                       show.legend = TRUE)        # This determines if you want your legend to show
+
+pl <- pl + theme_bw()
 
 pl
 ```

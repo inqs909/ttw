@@ -4,7 +4,7 @@ listing:
   contents: posts
   sort: "date desc"
   type: default
-  fields: [date, title, description]
+  fields: [date, title, description, image]
 ---
 
 ::: {.callout-note collapse="true" icon="false"}
@@ -24,7 +24,7 @@ listing:
 
 [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
 
-[ggplot2](https://ggplot2-book.org/)
+[ggplot2 Book](https://ggplot2-book.org/)
 
 :::
 

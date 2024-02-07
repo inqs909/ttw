@@ -1,40 +1,27 @@
 ---
-title: "Week 2"
-date: 01-29-24
-description: We will begin our discussion on control flow.
-editor: visual
+title: "TTW"
+subtitle: "www.inqs.info/ttw"
+date: 02-13-24
+description: Second week of Tidy Tuesday on Wednesday at CSUCI!
+format:
+  revealjs:
+    scrollable: true
+    preview-links: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+engine: knitr
+knitr:
+  opts_chunk: 
+    eval: false
+    code-fold: true
+
 draft: true
-editor_options: 
-  chunk_output_type: console
 ---
 
-## Learning Outcomes
-
-### First Lecture
-
--   Indexing
-
--   Comparisons
-
--   If/else Statements
-
--   try()
-
--   for Loops
-
-### Second Lecture
-
--   nested loops
-
--   next
-
--   break
-
--   while Loops
-
-## Resources
-
-| Lecture | Slides                                                         | Videos                                | Files |
-|--------------|-----------------------------|--------------|--------------|
-| 1       | [Slides](https://m408.inqs.info/lectures/2a.html#/title-slide) | [Video](https://youtu.be/bpTlJquO91U) |       |
-| 2       | [Slides](https://m408.inqs.info/lectures/2b.html#/title-slide) | [Video](https://youtu.be/ZUzFCKaztro) |       |
