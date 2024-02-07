@@ -1,0 +1,28 @@
+---
+title: "Tidy Tuesday on Wednesday"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  fields: [date, title, description]
+---
+
+::: {.callout-note collapse="true" icon="false"}
+### **Introduction to Statistics Book**
+
+<https://openintro-ims.netlify.app/>
+:::
+
+::: {.callout-note collapse="true" icon="false"}
+### **R Graphics Cookbook**
+
+<https://r-graphics.org/>
+:::
+
+
+::: {.callout-note collapse="true" icon="false"}
+### **ggplot2**
+
+<https://ggplot2.tidyverse.org/>
+:::
+

@@ -1,0 +1,33 @@
+---
+title: "Week 5"
+date: 02-17-23
+description: We will continue and finish our discussion on data manipulation.
+editor: visual
+draft: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Learning Outcomes
+
+### First Lecture
+
+-   Directories/R Projects
+-   Reading/Writing Data
+-   Merging Data
+-   Creating New Variables
+
+### Second Lecture
+
+-   Splitting Variables
+-   Splitting Rows
+-   Merging Rows
+-   Wide to long
+-   Long to wide
+
+Resources
+
+| Lecture | Slides | Videos | Files |
+|---------|--------|--------|-------|
+| 1       |        |        |       |
+| 2       |        |        |       |

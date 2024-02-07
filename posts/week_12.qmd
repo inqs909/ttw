@@ -1,0 +1,27 @@
+---
+title: "Week 12"
+date: 04-17-23
+description: We will begin our discussion on Classification.
+editor: visual
+draft: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Learning Outcomes
+
+### First Lecture
+
+-   Linear Discriminant Analysis
+-   Quadratic Discriminant Analysis
+
+### Second Lecture
+
+-   Cross-Validation Technique
+
+## Resources
+
+| Lecture | Slides | Videos | Files |
+|---------|--------|--------|-------|
+| 1       |        |        |       |
+| 2       |        |        |       |

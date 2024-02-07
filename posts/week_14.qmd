@@ -1,0 +1,27 @@
+---
+title: "Week 14"
+date: 04-27-23
+description: We will begin our discussion on Tree-Based methods.
+editor: visual
+draft: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Learning Outcomes
+
+### First Lecture
+
+-   Maximum Margin Classifier
+-   Support Vector Classifier
+
+### Second Lecture
+
+-   Support Vector Machine
+
+## Resources
+
+| Lecture | Slides | Videos | Files |
+|---------|--------|--------|-------|
+| 1       |        |        |       |
+| 2       |        |        |       |

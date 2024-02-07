@@ -1,0 +1,26 @@
+---
+title: "Week 9"
+date: 03-24-23
+description: We will begin our discussion on Generalized Linear Models
+editor: visual
+draft: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Learning Outcomes
+
+### First Lecture
+
+-   Generalized Linear Models
+
+### Second Lecture
+
+-   Estimation and Inference Procedures
+
+## Resources
+
+| Lecture | Slides | Videos | Files |
+|---------|--------|--------|-------|
+| 1       |        |        |       |
+| 2       |        |        |       |

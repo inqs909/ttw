@@ -1,0 +1,27 @@
+---
+title: "Week 15"
+date: 05-07-23
+description: We will begin our discussion on Tree-Based methods.
+editor: visual
+draft: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Learning Outcomes
+
+### First Lecture
+
+-   Neural Networks
+
+### Second Lecture
+
+-   Tensorflow
+-   Torch
+
+## Resources
+
+| Lecture | Slides | Videos | Files |
+|---------|--------|--------|-------|
+| 1       |        |        |       |
+| 2       |        |        |       |

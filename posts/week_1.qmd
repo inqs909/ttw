@@ -1,0 +1,281 @@
+---
+title: "Tidy Tuesday on Wednesday"
+subtitle: "www.inqs.info/ttw"
+date: 02-06-24
+description: First week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+engine: knitr
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    comment: "#>" 
+
+---
+
+# Installation
+
+## R Programming
+
+R is a statistical programming package that allows you to conduct different types of analysis.
+
+[R](https://www.r-project.org/)
+
+## RStudio
+
+A piece of software that organizes how you conduct statistical analysis in R.
+
+[RStudio](https://posit.co/downloads/)
+
+## Posit Cloud
+
+A web version of RStudio.
+
+[Posit Cloud](https://posit.cloud/login)
+
+## R Packages
+
+-   Tidyverse
+
+-   plotly
+
+-   ggthemes
+
+-   esquisse
+
+-   tidytuesdayR
+
+
+## Load R Package
+
+```{r}
+#| echo: true
+#| eval: true
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(plotly)
+library(ggthemes)
+library(esquisse)
+library(tidytuesdayR)
+```
+
+
+- You must load packages every new R Session
+
+# Tidy Tuesday
+
+## Tidy Tuesday
+
+Tidy Tuesday is a weekly data vizualization challenge from the [R 4 Data Science Online Community](https://github.com/rfordatascience/tidytuesday).
+
+::: fragment
+The goal is to make learning with real-world data easier.
+:::
+
+::: fragment
+New data sets are released every week to create awesome visuals.
+:::
+
+## Week 6
+
+This week looks at the number of heritage sites in 3 countries from the [Unesco World Heritage Convention](https://whc.unesco.org/en/list).
+
+::: fragment
+
+This is part of the [100 visualizations from 1 data set](https://100.datavizproject.com/).
+
+:::
+
+
+## Loading Data
+
+```{r}
+#| echo: true
+#| eval: true
+
+tuesdata <- tidytuesdayR::tt_load(2024, week = 6)
+heritage <- tuesdata$heritage
+heritage
+```
+
+
+## Examples
+
+```{r}
+#| code-fold: true
+#| eval: true
+heritage2 <- heritage |> 
+  pivot_longer(!country, names_to = "year", values_to = "value")
+ggplot(heritage2, aes(x = year, y = value, color = country)) + 
+  geom_point()
+```
+
+## Examples
+
+```{r}
+#| code-fold: true
+#| eval: true
+ggplot(heritage2, aes(country)) + 
+  geom_bar(aes(weight = value, fill = year))
+
+```
+
+
+## Examples
+
+```{r}
+#| code-fold: true
+#| eval: true
+library(ggpie)
+heritage3 <- heritage2 |> uncount(value)
+ggrosepie(heritage3, group_key = c("country", "year"),
+             count_type = "full", label_info = "all",
+             show_tick=F,donut_frac=NULL)
+
+```
+
+## Examples
+
+```{r}
+#| code-fold: true
+#| eval: true
+
+
+# devtools::install_github("davidsjoberg/ggsankey")
+library(ggsankey)
+heritage4 <- heritage3 |> make_long(country, year)
+pl <- ggplot(heritage4, aes(x = x,                        
+                     next_x = next_x,                                     
+                     node = node,
+                     next_node = next_node,        
+                     fill = factor(node)))
+                     
+pl <- pl +geom_sankey(flow.alpha = 0.5,          #This Creates the transparency of your node 
+                      node.color = "black",     # This is your node color        
+                      show.legend = TRUE)        # This determines if you want your legend to show
+
+pl
+```
+
+
+
+
+# Graphing Examples
+
+## Downloading Data Data
+
+```{r}
+#| echo: true
+#| eval: false
+u <- "https://www.inqs.info/p/plotathon/owenWilsonWows.csv"
+basename(u)
+download.file(u,
+              file.path(getwd(), "data", basename(u)))
+
+```
+
+## Loading Data
+
+```{r}
+#| eval: false
+mds <- read_csv("data/owenWilsonWows.csv")
+```
+
+
+## Base Plot
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie)) 
+```
+
+## Histogram
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie)) +
+  geom_histogram()
+```
+
+## Box Plot
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie)) +
+  geom_boxplot()
+```
+
+## Density Plot
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie)) +
+  geom_density()
+```
+
+## Box Plot By Category
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie, y = era)) +
+  geom_boxplot()
+```
+
+## Density Plot By Category
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie, color = era)) +
+  geom_density()
+```
+
+## Scatter Plot
+
+```{r}
+mds |> ggplot(aes(x = durationInSeconds, 
+                  y = total_wows_in_movie)) +
+  geom_point()
+```
+
+## Scatter Plot by Group
+
+```{r}
+mds |> ggplot(aes(x = durationInSeconds, 
+                  y = total_wows_in_movie, color = era)) +
+  geom_point()
+```
+
+## Add Regression Line
+
+```{r}
+mds |> ggplot(aes(x = durationInSeconds, 
+                  y = total_wows_in_movie)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = F)
+```
+
+## Smooth Line
+
+```{r}
+mds |> ggplot(aes(x = durationInSeconds, 
+                  y = total_wows_in_movie)) +
+  geom_point() +
+  geom_smooth(se = F)
+```
+
+## Regression Lines by Group
+
+```{r}
+mds |> ggplot(aes(x = durationInSeconds, 
+                  y = total_wows_in_movie,
+                  color = era)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = F)
+```
