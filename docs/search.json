@@ -95,7 +95,21 @@
     "href": "posts/week_1.html#examples-3",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Examples",
-    "text": "Examples\n\n\nCode\n# devtools::install_github(\"davidsjoberg/ggsankey\")\nlibrary(ggsankey)\nheritage4 &lt;- heritage3 |&gt; make_long(country, year)\npl &lt;- ggplot(heritage4, aes(x = x,                        \n                     next_x = next_x,                                     \n                     node = node,\n                     next_node = next_node,        \n                     fill = factor(node)))\n                     \npl &lt;- pl +geom_sankey(flow.alpha = 0.5,          #This Creates the transparency of your node \n                      node.color = \"black\",     # This is your node color        \n                      show.legend = TRUE)        # This determines if you want your legend to show\n\npl &lt;- pl + theme_bw()\n\npl"
+    "text": "Examples\n\n\nCode\n# devtools::install_github(\"davidsjoberg/ggsankey\")\nlibrary(ggsankey)\nheritage4 &lt;- heritage3 |&gt; make_long(country, year)\npl &lt;- ggplot(heritage4, aes(x = x,                        \n                     next_x = next_x,                                     \n                     node = node,\n                     next_node = next_node,        \n                     fill = factor(node)))\n                     \npl &lt;- pl + geom_sankey(flow.alpha = 0.5,          #This Creates the transparency of your node \n                      node.color = \"black\",     # This is your node color        \n                      show.legend = TRUE)        # This determines if you want your legend to show\n\npl &lt;- pl + theme_bw()\n\npl"
+  },
+  {
+    "objectID": "posts/week_1.html#examples-4",
+    "href": "posts/week_1.html#examples-4",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Examples",
+    "text": "Examples\n\n\nCode\nlibrary(treemap)\n\ntreemap(heritage2,\n        index=c(\"country\",\"year\"),\n        vSize=\"value\",\n        type=\"index\"\n)"
+  },
+  {
+    "objectID": "posts/week_1.html#examples-5",
+    "href": "posts/week_1.html#examples-5",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Examples",
+    "text": "Examples\n\n\nCode\nlibrary(ggpie)\nlibrary(patchwork)\n\n\np1 &lt;- heritage3 |&gt; filter(year == 2004) |&gt; \n  ggdonut(group_key = \"country\",\n          count_type = \"full\") +\n  ggtitle(\"Year 2004\")\np2 &lt;- heritage3 |&gt; filter(year == 2022) |&gt; \n  ggdonut(group_key = \"country\",\n          count_type = \"full\") +\n  ggtitle(\"Year 2022\")\np1 + p2"
   },
   {
     "objectID": "posts/week_1.html#downloading-data-data",

@@ -177,7 +177,7 @@ pl <- ggplot(heritage4, aes(x = x,
                      next_node = next_node,        
                      fill = factor(node)))
                      
-pl <- pl +geom_sankey(flow.alpha = 0.5,          #This Creates the transparency of your node 
+pl <- pl + geom_sankey(flow.alpha = 0.5,          #This Creates the transparency of your node 
                       node.color = "black",     # This is your node color        
                       show.legend = TRUE)        # This determines if you want your legend to show
 
@@ -185,6 +185,49 @@ pl <- pl + theme_bw()
 
 pl
 ```
+
+
+
+## Examples
+
+```{r}
+#| code-fold: true
+#| eval: true
+
+library(treemap)
+
+treemap(heritage2,
+        index=c("country","year"),
+        vSize="value",
+        type="index"
+) 
+
+```
+
+
+## Examples
+
+```{r}
+#| code-fold: true
+#| eval: true
+
+library(ggpie)
+library(patchwork)
+
+
+p1 <- heritage3 |> filter(year == 2004) |> 
+  ggdonut(group_key = "country",
+          count_type = "full") +
+  ggtitle("Year 2004")
+p2 <- heritage3 |> filter(year == 2022) |> 
+  ggdonut(group_key = "country",
+          count_type = "full") +
+  ggtitle("Year 2022")
+p1 + p2
+
+```
+
+
 
 
 
