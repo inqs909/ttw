@@ -502,22 +502,23 @@
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>heritage2 <span class="ot">&lt;-</span> heritage <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>country, <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="fu">ggplot</span>(heritage2, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> country)) <span class="sc">+</span> </span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="week_1_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<img data-src="week_1_files/figure-revealjs/ex1-1.png" alt="A dot plot showing the number of heritage sites for Denmark, Norway, and Sweden for the years 2004 and 2022. The x-axis contains the year and y-axis contains the number of heritage sites. The plot shows that Sweden had the most sites in 2004 but did not add much since then. Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three. Norway added a few sites since 2004." width="960" class="r-stretch"></section>
 <section id="examples-1" class="slide level2">
 <h2>Examples</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(heritage2, <span class="fu">aes</span>(country)) <span class="sc">+</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">weight =</span> value, <span class="at">fill =</span> year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">weight =</span> value, <span class="at">fill =</span> year)) <span class="sc">+</span> </span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="week_1_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<img data-src="week_1_files/figure-revealjs/ex2-1.png" alt="Demonstrates a stacked barplot of the number of heritage sites for Denmark, Norway, and Sweden for the years 2004 and 2022. The countries are on the x-axis going left to right as Denmark, Norway, and Sweden. The y-axis contains the count of the number of heritage sites. Each bar contains two subbars stacked one on top of each other. 2004 represents the top bar and 2022 represents the bottom bar. The plot shows that Sweden had the most sites in 2004 but did not add much since then. Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three. Norway added a few sites since 2004." width="960" class="r-stretch"></section>
 <section id="examples-2" class="slide level2">
 <h2>Examples</h2>
 <div class="cell">
@@ -531,7 +532,7 @@
 </details>
 
 </div>
-<img data-src="week_1_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<img data-src="week_1_files/figure-revealjs/ex3-1.png" alt="Demonstrates a rose pie, a circular plot with each petal represent a category, of the number heritage sites for Denmark, Norway, and Sweden for the years 2004 and 2022. There are 3 petals representing each country. Each petal contains 2 parts, the inner part represent year 2022, and the outer part represents 2004. At the end of the petal, the name of the country represented with the count, and total percentage. The plot shows that Sweden had the most sites in 2004 but did not add much since then. Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three. Norway added a few sites since 2004." width="960" class="r-stretch"></section>
 <section id="examples-3" class="slide level2">
 <h2>Examples</h2>
 <div class="cell">
@@ -556,7 +557,7 @@
 </details>
 
 </div>
-<img data-src="week_1_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<img data-src="week_1_files/figure-revealjs/ex4-1.png" alt="A Sankey plot is displayed to show the relationship between country, year, and heritage sites for Denmark, Sweden, Norway for the years 2004 and 2022. The left component contains the countries with 3 separate bars going from top to bottom with Sweden top, Norway middle, and Denmark bottom. The left bars trasnfer to right bars representing years. There are 2 bars vertically stacked with 2022 on top and 2004 at the bottom. The plot shows that Sweden had the most sites in 2004 but did not add much since then. Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three. Norway added a few sites since 2004." width="960" class="r-stretch"></section>
 <section id="examples-4" class="slide level2">
 <h2>Examples</h2>
 <div class="cell">
@@ -572,7 +573,7 @@
 </details>
 
 </div>
-<img data-src="week_1_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<img data-src="week_1_files/figure-revealjs/ex5-1.png" alt="A tree map is displayed showing the number of heritage sites for Sweden, Denmark, and Norway. Contrary to the name, a partitioned rectangle is displayed with each partition indicating the country. The partitions are further partitioned to display separate sub-partitions indicating the separate years. The plot shows that Sweden had the most sites in 2004 but did not add much since then. Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three. Norway added a few sites since 2004." width="960" class="r-stretch"></section>
 <section id="examples-5" class="slide level2">
 <h2>Examples</h2>
 <div class="cell">
@@ -590,11 +591,12 @@
 <span id="cb11-10"><a href="#cb11-10"></a>  <span class="fu">ggdonut</span>(<span class="at">group_key =</span> <span class="st">"country"</span>,</span>
 <span id="cb11-11"><a href="#cb11-11"></a>          <span class="at">count_type =</span> <span class="st">"full"</span>) <span class="sc">+</span></span>
 <span id="cb11-12"><a href="#cb11-12"></a>  <span class="fu">ggtitle</span>(<span class="st">"Year 2022"</span>)</span>
-<span id="cb11-13"><a href="#cb11-13"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-13"><a href="#cb11-13"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="week_1_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="week_1_files/figure-revealjs/ex6-1.png" alt="Two separte doughnut plots are displayed below to demonstrate the number of heritage sites for Sweden, Denmark, and Norway for the years 2004 and 2022. Dougnut plots are circular pie chars with a hollowed center. The left hand has the 2004 doughnut plot. The right side has the 2022 doughnut plot. Each dougnut plot displays the count for each country and the center contains the total count. The plot shows that Sweden had the most sites in 2004 but did not add much since then. Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three. Norway added a few sites since 2004." width="960" class="r-stretch"></section></section>
 <section>
 <section id="graphing-examples" class="title-slide slide level1 center">
 <h1>Graphing Examples</h1>

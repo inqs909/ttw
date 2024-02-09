@@ -74,14 +74,14 @@
     "href": "posts/week_1.html#examples",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Examples",
-    "text": "Examples\n\n\nCode\nheritage2 &lt;- heritage |&gt; \n  pivot_longer(!country, names_to = \"year\", values_to = \"value\")\nggplot(heritage2, aes(x = year, y = value, color = country)) + \n  geom_point()"
+    "text": "Examples\n\n\nCode\nheritage2 &lt;- heritage |&gt; \n  pivot_longer(!country, names_to = \"year\", values_to = \"value\")\nggplot(heritage2, aes(x = year, y = value, color = country)) + \n  geom_point() + theme_bw()"
   },
   {
     "objectID": "posts/week_1.html#examples-1",
     "href": "posts/week_1.html#examples-1",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Examples",
-    "text": "Examples\n\n\nCode\nggplot(heritage2, aes(country)) + \n  geom_bar(aes(weight = value, fill = year))"
+    "text": "Examples\n\n\nCode\nggplot(heritage2, aes(country)) + \n  geom_bar(aes(weight = value, fill = year)) + \n  theme_bw()"
   },
   {
     "objectID": "posts/week_1.html#examples-2",
@@ -109,7 +109,7 @@
     "href": "posts/week_1.html#examples-5",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Examples",
-    "text": "Examples\n\n\nCode\nlibrary(ggpie)\nlibrary(patchwork)\n\n\np1 &lt;- heritage3 |&gt; filter(year == 2004) |&gt; \n  ggdonut(group_key = \"country\",\n          count_type = \"full\") +\n  ggtitle(\"Year 2004\")\np2 &lt;- heritage3 |&gt; filter(year == 2022) |&gt; \n  ggdonut(group_key = \"country\",\n          count_type = \"full\") +\n  ggtitle(\"Year 2022\")\np1 + p2"
+    "text": "Examples\n\n\nCode\nlibrary(ggpie)\nlibrary(patchwork)\n\n\np1 &lt;- heritage3 |&gt; filter(year == 2004) |&gt; \n  ggdonut(group_key = \"country\",\n          count_type = \"full\") +\n  ggtitle(\"Year 2004\")\np2 &lt;- heritage3 |&gt; filter(year == 2022) |&gt; \n  ggdonut(group_key = \"country\",\n          count_type = \"full\") +\n  ggtitle(\"Year 2022\")\np1 + p2 +\n  plot_layout(guides = 'collect')"
   },
   {
     "objectID": "posts/week_1.html#downloading-data-data",

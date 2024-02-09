@@ -129,21 +129,40 @@ heritage
 ## Examples
 
 ```{r}
+#| label: ex1
 #| code-fold: true
 #| eval: true
+#| fig-alt: |
+#|   A dot plot showing the number of heritage sites for Denmark, Norway, and Sweden for the years 2004 and 2022.
+#|   The x-axis contains the year and y-axis contains the number of heritage sites.
+#|   The plot shows that Sweden had the most sites in 2004 but did not add much since then.
+#|   Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three.
+#|   Norway added a few sites since 2004. 
+
 heritage2 <- heritage |> 
   pivot_longer(!country, names_to = "year", values_to = "value")
 ggplot(heritage2, aes(x = year, y = value, color = country)) + 
-  geom_point()
+  geom_point() + theme_bw()
 ```
 
 ## Examples
 
 ```{r}
+#| label: ex2
 #| code-fold: true
 #| eval: true
+#| fig-alt: |
+#|   Demonstrates a stacked barplot of the number of heritage sites for Denmark, Norway, and Sweden for the years 2004 and 2022.
+#|   The countries are on the x-axis going left to right as Denmark, Norway, and Sweden.
+#|   The y-axis contains the count of the number of heritage sites.
+#|   Each bar contains two subbars stacked one on top of each other. 2004 represents the top bar and 2022 represents the bottom bar.
+#|   The plot shows that Sweden had the most sites in 2004 but did not add much since then.
+#|   Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three.
+#|   Norway added a few sites since 2004. 
+
 ggplot(heritage2, aes(country)) + 
-  geom_bar(aes(weight = value, fill = year))
+  geom_bar(aes(weight = value, fill = year)) + 
+  theme_bw()
 
 ```
 
@@ -151,8 +170,18 @@ ggplot(heritage2, aes(country)) +
 ## Examples
 
 ```{r}
+#| label: ex3
 #| code-fold: true
 #| eval: true
+#| fig-alt: |
+#|   Demonstrates a rose pie, a circular plot with each petal represent a category, of the number heritage sites for Denmark, Norway, and Sweden for the years 2004 and 2022.
+#|   There are 3 petals representing each country.
+#|   Each petal contains 2 parts, the inner part represent year 2022, and the outer part represents 2004.
+#|   At the end of the petal, the name of the country represented with the count, and total percentage.
+#|   The plot shows that Sweden had the most sites in 2004 but did not add much since then.
+#|   Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three.
+#|   Norway added a few sites since 2004. 
+
 library(ggpie)
 heritage3 <- heritage2 |> uncount(value)
 ggrosepie(heritage3, group_key = c("country", "year"),
@@ -164,9 +193,16 @@ ggrosepie(heritage3, group_key = c("country", "year"),
 ## Examples
 
 ```{r}
+#| label: ex4
 #| code-fold: true
 #| eval: true
-
+#| fig-alt: |
+#|   A Sankey plot is displayed to show the relationship between country, year, and heritage sites for Denmark, Sweden, Norway for the years 2004 and 2022.
+#|   The left component contains the countries with 3 separate bars going from top to bottom with Sweden top, Norway middle, and Denmark bottom.
+#|   The left bars trasnfer to right bars representing years. There are 2 bars vertically stacked with 2022 on top and 2004 at the bottom.
+#|   The plot shows that Sweden had the most sites in 2004 but did not add much since then.
+#|   Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three.
+#|   Norway added a few sites since 2004. 
 
 # devtools::install_github("davidsjoberg/ggsankey")
 library(ggsankey)
@@ -191,8 +227,16 @@ pl
 ## Examples
 
 ```{r}
+#| label: ex5
 #| code-fold: true
 #| eval: true
+#| fig-alt: |
+#|  A tree map is displayed showing the number of heritage sites for Sweden, Denmark, and Norway. 
+#|  Contrary to the name, a partitioned rectangle is displayed with each partition indicating the country.
+#|  The partitions are further partitioned to display separate sub-partitions indicating the separate years. 
+#|  The plot shows that Sweden had the most sites in 2004 but did not add much since then.
+#|  Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three.
+#|  Norway added a few sites since 2004. 
 
 library(treemap)
 
@@ -208,8 +252,17 @@ treemap(heritage2,
 ## Examples
 
 ```{r}
+#| label: ex6
 #| code-fold: true
 #| eval: true
+#| fig-alt: |
+#|  Two separte doughnut plots are displayed below to demonstrate the number of heritage sites for Sweden, Denmark, and Norway for the years 2004 and 2022.
+#|  Dougnut plots are circular pie chars with a hollowed center.
+#|  The left hand has the 2004 doughnut plot. The right side has the 2022 doughnut plot.
+#|  Each dougnut plot displays the count for each country and the center contains the total count.
+#|  The plot shows that Sweden had the most sites in 2004 but did not add much since then.
+#|  Denmark had the lowest number of sites in 2004, but showed the greatest increase of all three.
+#|  Norway added a few sites since 2004. 
 
 library(ggpie)
 library(patchwork)
@@ -223,7 +276,9 @@ p2 <- heritage3 |> filter(year == 2022) |>
   ggdonut(group_key = "country",
           count_type = "full") +
   ggtitle("Year 2022")
-p1 + p2
+p1 + p2 +
+  plot_layout(guides = 'collect')
+
 
 ```
 
