@@ -2,7 +2,7 @@
 title: "Tidy Tuesday on Wednesday"
 subtitle: "www.inqs.info/ttw"
 date: 02-14-24
-description: Second week of Tidy Tuesday on Wednesday at CSUCI!
+description: Second week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Valentines day sales.
 format:
   revealjs:
     scrollable: true
@@ -22,7 +22,7 @@ knitr:
     echo: true
     eval: false
     comment: "#>" 
-draft: true
+draft: false
 categories:
   - sp2024
 image: img/post2.png

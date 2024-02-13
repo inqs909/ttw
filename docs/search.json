@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Tidy Tuesday on Wednesday",
     "section": "",
-    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
+    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nSecond week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Valentines day sales.\n\n\n\n\n\nFeb 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/week_1.html#r-programming",
@@ -198,6 +198,174 @@
   {
     "objectID": "posts/week_1.html#regression-lines-by-group",
     "href": "posts/week_1.html#regression-lines-by-group",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Regression Lines by Group",
+    "text": "Regression Lines by Group\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie,\n                  color = era)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
+  },
+  {
+    "objectID": "posts/week_2.html#tidy-tuesday-1",
+    "href": "posts/week_2.html#tidy-tuesday-1",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Tidy Tuesday",
+    "text": "Tidy Tuesday\nTidy Tuesday is a weekly data vizualization challenge from the R 4 Data Science Online Community."
+  },
+  {
+    "objectID": "posts/week_2.html#week-7",
+    "href": "posts/week_2.html#week-7",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Week 7",
+    "text": "Week 7\nThis week looks at the number of heritage sites in 3 countries from the Unesco World Heritage Convention.\n\nThis is part of the 100 visualizations from 1 data set."
+  },
+  {
+    "objectID": "posts/week_2.html#loading-data",
+    "href": "posts/week_2.html#loading-data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Loading Data",
+    "text": "Loading Data\n\ntuesdata &lt;- tidytuesdayR::tt_load(2024, week = 7)\n\n#&gt; \n#&gt;  Downloading file 1 of 3: `historical_spending.csv`\n#&gt;  Downloading file 2 of 3: `gifts_age.csv`\n#&gt;  Downloading file 3 of 3: `gifts_gender.csv`\n\nhistorical &lt;- tuesdata$historical_spending"
+  },
+  {
+    "objectID": "posts/week_2.html#historical-gifts",
+    "href": "posts/week_2.html#historical-gifts",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Historical Gifts",
+    "text": "Historical Gifts\n\nhistorical |&gt; DT::datatable(options = list(pageLength = 5, dom = \"pt\"))"
+  },
+  {
+    "objectID": "posts/week_2.html#examples",
+    "href": "posts/week_2.html#examples",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Examples",
+    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nhistorical_long &lt;- historical |&gt; \n    pivot_longer(cols = `PercentCelebrating`:`GiftCards`,\n                 names_to  = \"Variable\", values_to = \"Value\") \n\nheartdf = tibble(\n  t = seq(0, 2*pi, pi/60),\n  x = (16*sin(t)^3)/3 + 2016,\n  y = 13*cos(t) - 5*cos(2*t) - 2*cos(3*t) - cos(4*t) +30\n)\n\n\np1 &lt;- historical_long |&gt; \n  filter(!Variable %in% c(\"PercentCelebrating\", \"PerPerson\", \"GreetingCards\", \"GiftCards\")) |&gt; \n  mutate(Variable = ifelse(Variable == \"EveningOut\", \"Evening Out\", Variable)) |&gt; \n  ggplot(data = _) +\n    geom_polygon(data = heartdf, aes(x, y, group = 1), fill = \"red\", alpha = 0.2) +\n    geom_line(aes(x = Year, y =  Value, color = Variable)) +\n    theme_bw() +\n    ylab(\"Average Percent Spending\") +\n    xlab(\"Year\") +\n    theme(legend.title=element_blank()) +\n    scale_x_continuous(breaks = c(2010, 2014, 2018, 2022))\n\np1\n\n\n\nCode\nggsave(p1, filename = \"posts/img/post2.png\", width = 7, height = 5)"
+  },
+  {
+    "objectID": "posts/week_2.html#r-programming",
+    "href": "posts/week_2.html#r-programming",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "R Programming",
+    "text": "R Programming\nR is a statistical programming package that allows you to conduct different types of analysis.\nR"
+  },
+  {
+    "objectID": "posts/week_2.html#rstudio",
+    "href": "posts/week_2.html#rstudio",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "RStudio",
+    "text": "RStudio\nA piece of software that organizes how you conduct statistical analysis in R.\nRStudio"
+  },
+  {
+    "objectID": "posts/week_2.html#posit-cloud",
+    "href": "posts/week_2.html#posit-cloud",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Posit Cloud",
+    "text": "Posit Cloud\nA web version of RStudio.\nPosit Cloud"
+  },
+  {
+    "objectID": "posts/week_2.html#r-packages",
+    "href": "posts/week_2.html#r-packages",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "R Packages",
+    "text": "R Packages\n\nTidyverse\nplotly\nggthemes\nesquisse\ntidytuesdayR"
+  },
+  {
+    "objectID": "posts/week_2.html#load-r-package",
+    "href": "posts/week_2.html#load-r-package",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Load R Package",
+    "text": "Load R Package\n\nlibrary(tidyverse)\nlibrary(plotly)\nlibrary(ggthemes)\nlibrary(esquisse)\nlibrary(tidytuesdayR)\n\n\nYou must load packages every new R Session"
+  },
+  {
+    "objectID": "posts/week_2.html#visualization-resources",
+    "href": "posts/week_2.html#visualization-resources",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Visualization Resources",
+    "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
+  },
+  {
+    "objectID": "posts/week_2.html#downloading-data-data",
+    "href": "posts/week_2.html#downloading-data-data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Downloading Data Data",
+    "text": "Downloading Data Data\n\nu &lt;- \"https://www.inqs.info/p/plotathon/owenWilsonWows.csv\"\nbasename(u)\ndownload.file(u,\n              file.path(getwd(), \"data\", basename(u)))"
+  },
+  {
+    "objectID": "posts/week_2.html#loading-data-1",
+    "href": "posts/week_2.html#loading-data-1",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Loading Data",
+    "text": "Loading Data\n\nmds &lt;- read_csv(\"data/owenWilsonWows.csv\")"
+  },
+  {
+    "objectID": "posts/week_2.html#base-plot",
+    "href": "posts/week_2.html#base-plot",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Base Plot",
+    "text": "Base Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie))"
+  },
+  {
+    "objectID": "posts/week_2.html#histogram",
+    "href": "posts/week_2.html#histogram",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Histogram",
+    "text": "Histogram\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_histogram()"
+  },
+  {
+    "objectID": "posts/week_2.html#box-plot",
+    "href": "posts/week_2.html#box-plot",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Box Plot",
+    "text": "Box Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "posts/week_2.html#density-plot",
+    "href": "posts/week_2.html#density-plot",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Density Plot",
+    "text": "Density Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_density()"
+  },
+  {
+    "objectID": "posts/week_2.html#box-plot-by-category",
+    "href": "posts/week_2.html#box-plot-by-category",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Box Plot By Category",
+    "text": "Box Plot By Category\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie, y = era)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "posts/week_2.html#density-plot-by-category",
+    "href": "posts/week_2.html#density-plot-by-category",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Density Plot By Category",
+    "text": "Density Plot By Category\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie, color = era)) +\n  geom_density()"
+  },
+  {
+    "objectID": "posts/week_2.html#scatter-plot",
+    "href": "posts/week_2.html#scatter-plot",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Scatter Plot",
+    "text": "Scatter Plot\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point()"
+  },
+  {
+    "objectID": "posts/week_2.html#scatter-plot-by-group",
+    "href": "posts/week_2.html#scatter-plot-by-group",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Scatter Plot by Group",
+    "text": "Scatter Plot by Group\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie, color = era)) +\n  geom_point()"
+  },
+  {
+    "objectID": "posts/week_2.html#add-regression-line",
+    "href": "posts/week_2.html#add-regression-line",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Add Regression Line",
+    "text": "Add Regression Line\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
+  },
+  {
+    "objectID": "posts/week_2.html#smooth-line",
+    "href": "posts/week_2.html#smooth-line",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Smooth Line",
+    "text": "Smooth Line\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point() +\n  geom_smooth(se = F)"
+  },
+  {
+    "objectID": "posts/week_2.html#regression-lines-by-group",
+    "href": "posts/week_2.html#regression-lines-by-group",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Regression Lines by Group",
     "text": "Regression Lines by Group\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie,\n                  color = era)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
