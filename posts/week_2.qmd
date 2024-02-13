@@ -62,7 +62,7 @@ historical <- tuesdata$historical_spending
 ```{r}
 #| eval: true
 #| echo: true
-historical |> DT::datatable(options = list(pageLength = 5, dom = "pt"))
+historical |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
 ```
 
 
@@ -107,10 +107,6 @@ p1 <- historical_long |>
 
 p1
     
-ggsave(p1, filename = "posts/img/post2.png", width = 7, height = 5)
-
-
-
 ```
 
 

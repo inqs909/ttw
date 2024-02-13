@@ -228,14 +228,14 @@
     "href": "posts/week_2.html#historical-gifts",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Historical Gifts",
-    "text": "Historical Gifts\n\nhistorical |&gt; DT::datatable(options = list(pageLength = 5, dom = \"pt\"))"
+    "text": "Historical Gifts\n\nhistorical |&gt; DT::datatable(options = list(pageLength = 5, dom = \"tp\"))"
   },
   {
     "objectID": "posts/week_2.html#examples",
     "href": "posts/week_2.html#examples",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Examples",
-    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nhistorical_long &lt;- historical |&gt; \n    pivot_longer(cols = `PercentCelebrating`:`GiftCards`,\n                 names_to  = \"Variable\", values_to = \"Value\") \n\nheartdf = tibble(\n  t = seq(0, 2*pi, pi/60),\n  x = (16*sin(t)^3)/3 + 2016,\n  y = 13*cos(t) - 5*cos(2*t) - 2*cos(3*t) - cos(4*t) +30\n)\n\n\np1 &lt;- historical_long |&gt; \n  filter(!Variable %in% c(\"PercentCelebrating\", \"PerPerson\", \"GreetingCards\", \"GiftCards\")) |&gt; \n  mutate(Variable = ifelse(Variable == \"EveningOut\", \"Evening Out\", Variable)) |&gt; \n  ggplot(data = _) +\n    geom_polygon(data = heartdf, aes(x, y, group = 1), fill = \"red\", alpha = 0.2) +\n    geom_line(aes(x = Year, y =  Value, color = Variable)) +\n    theme_bw() +\n    ylab(\"Average Percent Spending\") +\n    xlab(\"Year\") +\n    theme(legend.title=element_blank()) +\n    scale_x_continuous(breaks = c(2010, 2014, 2018, 2022))\n\np1\n\n\n\nCode\nggsave(p1, filename = \"posts/img/post2.png\", width = 7, height = 5)"
+    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nhistorical_long &lt;- historical |&gt; \n    pivot_longer(cols = `PercentCelebrating`:`GiftCards`,\n                 names_to  = \"Variable\", values_to = \"Value\") \n\nheartdf = tibble(\n  t = seq(0, 2*pi, pi/60),\n  x = (16*sin(t)^3)/3 + 2016,\n  y = 13*cos(t) - 5*cos(2*t) - 2*cos(3*t) - cos(4*t) +30\n)\n\n\np1 &lt;- historical_long |&gt; \n  filter(!Variable %in% c(\"PercentCelebrating\", \"PerPerson\", \"GreetingCards\", \"GiftCards\")) |&gt; \n  mutate(Variable = ifelse(Variable == \"EveningOut\", \"Evening Out\", Variable)) |&gt; \n  ggplot(data = _) +\n    geom_polygon(data = heartdf, aes(x, y, group = 1), fill = \"red\", alpha = 0.2) +\n    geom_line(aes(x = Year, y =  Value, color = Variable)) +\n    theme_bw() +\n    ylab(\"Average Percent Spending\") +\n    xlab(\"Year\") +\n    theme(legend.title=element_blank()) +\n    scale_x_continuous(breaks = c(2010, 2014, 2018, 2022))\n\np1"
   },
   {
     "objectID": "posts/week_2.html#r-programming",
