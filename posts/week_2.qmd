@@ -1,7 +1,7 @@
 ---
 title: "Tidy Tuesday on Wednesday"
 subtitle: "www.inqs.info/ttw"
-date: 02-13-24
+date: 02-14-24
 description: Second week of Tidy Tuesday on Wednesday at CSUCI!
 format:
   revealjs:
@@ -25,7 +25,9 @@ knitr:
 draft: true
 categories:
   - sp2024
-image: img/post1.png
+image: img/post2.png
+execute: 
+  cache: true
 ---
 
 # Tidy Tuesday
@@ -34,15 +36,7 @@ image: img/post1.png
 
 Tidy Tuesday is a weekly data vizualization challenge from the [R 4 Data Science Online Community](https://github.com/rfordatascience/tidytuesday).
 
-::: fragment
-The goal is to make learning with real-world data easier.
-:::
-
-::: fragment
-New data sets are released every week to create awesome visuals.
-:::
-
-## Week 6
+## Week 7
 
 This week looks at the number of heritage sites in 3 countries from the [Unesco World Heritage Convention](https://whc.unesco.org/en/list).
 
@@ -59,112 +53,63 @@ This is part of the [100 visualizations from 1 data set](https://100.datavizproj
 #| echo: true
 #| eval: true
 
-tuesdata <- tidytuesdayR::tt_load(2024, week = 6)
-heritage <- tuesdata$heritage
-heritage
+tuesdata <- tidytuesdayR::tt_load(2024, week = 7)
+historical <- tuesdata$historical_spending
+```
+
+## Historical Gifts
+
+```{r}
+#| eval: true
+#| echo: true
+historical |> DT::datatable(options = list(pageLength = 5, dom = "pt"))
 ```
 
 
 ## Examples
 
 ```{r}
+#| label: ex1
 #| code-fold: true
 #| eval: true
+#| fig-alt: |
+#|    A line plot demonstrating the average percent on spending for different categories
+#|    items by year for Valentine's Day. There is a transparent heart shape in
+#|    the background. The categories are candy, clothing, evening out, flowers, 
+#|    and jewelry. The plot shows an overall increase for all items, except in 2021
+#|    where there was a noticeable dip. It picked up the following Year.
+#|    The plot shows that Jewelry and Evening Outs had the highest percentage, 
+#|    while Candy, Flowers, and Clothing were the lowest.
+
 library(tidyverse)
+historical_long <- historical |> 
+    pivot_longer(cols = `PercentCelebrating`:`GiftCards`,
+                 names_to  = "Variable", values_to = "Value") 
 
-heritage2 <- heritage |> 
-  pivot_longer(!country, names_to = "year", values_to = "value")
-ggplot(heritage2, aes(x = year, y = value, color = country)) + 
-  geom_point()
-```
-
-## Examples
-
-```{r}
-#| code-fold: true
-#| eval: true
-ggplot(heritage2, aes(country)) + 
-  geom_bar(aes(weight = value, fill = year))
-
-```
+heartdf = tibble(
+  t = seq(0, 2*pi, pi/60),
+  x = (16*sin(t)^3)/3 + 2016,
+  y = 13*cos(t) - 5*cos(2*t) - 2*cos(3*t) - cos(4*t) +30
+)
 
 
-## Examples
+p1 <- historical_long |> 
+  filter(!Variable %in% c("PercentCelebrating", "PerPerson", "GreetingCards", "GiftCards")) |> 
+  mutate(Variable = ifelse(Variable == "EveningOut", "Evening Out", Variable)) |> 
+  ggplot(data = _) +
+    geom_polygon(data = heartdf, aes(x, y, group = 1), fill = "red", alpha = 0.2) +
+    geom_line(aes(x = Year, y =  Value, color = Variable)) +
+    theme_bw() +
+    ylab("Average Percent Spending") +
+    xlab("Year") +
+    theme(legend.title=element_blank()) +
+    scale_x_continuous(breaks = c(2010, 2014, 2018, 2022))
 
-```{r}
-#| code-fold: true
-#| eval: true
-library(ggpie)
-heritage3 <- heritage2 |> uncount(value)
-ggrosepie(heritage3, group_key = c("country", "year"),
-             count_type = "full", label_info = "all",
-             show_tick=F,donut_frac=NULL)
-
-```
-
-## Examples
-
-```{r}
-#| code-fold: true
-#| eval: true
+p1
+    
+ggsave(p1, filename = "posts/img/post2.png", width = 7, height = 5)
 
 
-# devtools::install_github("davidsjoberg/ggsankey")
-library(ggsankey)
-heritage4 <- heritage3 |> make_long(country, year)
-pl <- ggplot(heritage4, aes(x = x,                        
-                     next_x = next_x,                                     
-                     node = node,
-                     next_node = next_node,        
-                     fill = factor(node)))
-                     
-pl <- pl + geom_sankey(flow.alpha = 0.5,          #This Creates the transparency of your node 
-                      node.color = "black",     # This is your node color        
-                      show.legend = TRUE)        # This determines if you want your legend to show
-
-pl <- pl + theme_bw()
-
-pl
-```
-
-
-
-## Examples
-
-```{r}
-#| code-fold: true
-#| eval: true
-
-library(treemap)
-
-treemap(heritage2,
-        index=c("country","year"),
-        vSize="value",
-        type="index"
-) 
-
-```
-
-
-## Examples
-
-```{r}
-#| code-fold: true
-#| eval: true
-
-library(ggpie)
-library(patchwork)
-
-
-p1 <- heritage3 |> filter(year == 2004) |> 
-  ggdonut(group_key = "country",
-          count_type = "full") +
-  ggtitle("Year 2004")
-p2 <- heritage3 |> filter(year == 2022) |> 
-  ggdonut(group_key = "country",
-          count_type = "full") +
-  ggtitle("Year 2022")
-p1 + p2
 
 ```
 

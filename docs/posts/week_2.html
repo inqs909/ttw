@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.506">
 
-  <meta name="dcterms.date" content="2024-02-13">
+  <meta name="dcterms.date" content="2024-02-14">
   <title>TTW - Tidy Tuesday on Wednesday</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -388,6 +388,15 @@
       margin-right: 0; 
     }
   </style>
+  <script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+  <script src="../site_libs/datatables-binding-0.31/datatables.js"></script>
+  <script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="../site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="../site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+  <script src="../site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+  <link href="../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+  <script src="../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -400,7 +409,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2024-02-13</p>
+  <p class="date">2024-02-14</p>
 </section>
 <section>
 <section id="tidy-tuesday" class="title-slide slide level1 center">
@@ -410,15 +419,9 @@
 <section id="tidy-tuesday-1" class="slide level2">
 <h2>Tidy Tuesday</h2>
 <p>Tidy Tuesday is a weekly data vizualization challenge from the <a href="https://github.com/rfordatascience/tidytuesday">R 4 Data Science Online Community</a>.</p>
-<div class="fragment">
-<p>The goal is to make learning with real-world data easier.</p>
-</div>
-<div class="fragment">
-<p>New data sets are released every week to create awesome visuals.</p>
-</div>
 </section>
-<section id="week-6" class="slide level2">
-<h2>Week 6</h2>
+<section id="week-7" class="slide level2">
+<h2>Week 7</h2>
 <p>This week looks at the number of heritage sites in 3 countries from the <a href="https://whc.unesco.org/en/list">Unesco World Heritage Convention</a>.</p>
 <div class="fragment">
 <p>This is part of the <a href="https://100.datavizproject.com/">100 visualizations from 1 data set</a>.</p>
@@ -427,20 +430,23 @@
 <section id="loading-data" class="slide level2">
 <h2>Loading Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>tuesdata <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="dv">2024</span>, <span class="at">week =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>tuesdata <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="dv">2024</span>, <span class="at">week =</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; 
-#&gt;  Downloading file 1 of 1: `heritage.csv`</code></pre>
+#&gt;  Downloading file 1 of 3: `historical_spending.csv`
+#&gt;  Downloading file 2 of 3: `gifts_age.csv`
+#&gt;  Downloading file 3 of 3: `gifts_gender.csv`</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>heritage <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>heritage</span>
-<span id="cb3-2"><a href="#cb3-2"></a>heritage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 3 × 3
-#&gt;   country `2004` `2022`
-#&gt;   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1 Norway       5      8
-#&gt; 2 Denmark      4     10
-#&gt; 3 Sweden      13     15</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>historical <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>historical_spending</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="historical-gifts" class="slide level2">
+<h2>Historical Gifts</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>historical <span class="sc">|&gt;</span> DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">dom =</span> <span class="st">"pt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-208933e6e7d752ea2ee4" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-208933e6e7d752ea2ee4">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13"],[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022],[60,58,59,60,54,55,55,54,55,51,55,52,53],[103,116.21,126.03,130.97,133.91,142.31,146.84,136.57,143.56,161.96,196.31,164.76,175.41],[8.6,10.75,10.85,11.64,10.8,12.7,13.11,12.68,13.12,14.12,17.3,15.32,15.9],[12.33,12.62,13.49,13.48,15,15.72,14.78,14.63,14.75,15.07,16.49,15.42,16.71],[21.52,26.18,29.6,30.94,30.58,36.3,33.11,32.32,34.1,30.34,41.65,30.71,45.75],[5.91,8.09,6.93,8.32,7.97,7.87,8.52,7.36,6.55,7.31,9.01,8.48,7.47],[23.76,24.86,25.66,27.93,27.48,27.27,33.46,28.46,26.96,27.72,30.78,21.39,31.35],[10.93,12,10.42,11.46,13.37,14.72,15.05,13.91,14.04,16.08,20.67,20.05,21.46],[8.42,11.21,8.43,10.23,9,11.05,12.52,10.23,11.04,10.31,14.21,15.67,17.22]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>PercentCelebrating<\/th>\n      <th>PerPerson<\/th>\n      <th>Candy<\/th>\n      <th>Flowers<\/th>\n      <th>Jewelry<\/th>\n      <th>GreetingCards<\/th>\n      <th>EveningOut<\/th>\n      <th>Clothing<\/th>\n      <th>GiftCards<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"dom":"pt","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Year","targets":1},{"name":"PercentCelebrating","targets":2},{"name":"PerPerson","targets":3},{"name":"Candy","targets":4},{"name":"Flowers","targets":5},{"name":"Jewelry","targets":6},{"name":"GreetingCards","targets":7},{"name":"EveningOut","targets":8},{"name":"Clothing","targets":9},{"name":"GiftCards","targets":10}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -450,103 +456,38 @@
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>heritage2 <span class="ot">&lt;-</span> heritage <span class="sc">|&gt;</span> </span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>country, <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">ggplot</span>(heritage2, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> country)) <span class="sc">+</span> </span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a>historical_long <span class="ot">&lt;-</span> historical <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">PercentCelebrating</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">GiftCards</span><span class="st">`</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>                 <span class="at">names_to  =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"Value"</span>) </span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a>heartdf <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="at">t =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, pi<span class="sc">/</span><span class="dv">60</span>),</span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="at">x =</span> (<span class="dv">16</span><span class="sc">*</span><span class="fu">sin</span>(t)<span class="sc">^</span><span class="dv">3</span>)<span class="sc">/</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">2016</span>,</span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="at">y =</span> <span class="dv">13</span><span class="sc">*</span><span class="fu">cos</span>(t) <span class="sc">-</span> <span class="dv">5</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>t) <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">3</span><span class="sc">*</span>t) <span class="sc">-</span> <span class="fu">cos</span>(<span class="dv">4</span><span class="sc">*</span>t) <span class="sc">+</span><span class="dv">30</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>)</span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a>p1 <span class="ot">&lt;-</span> historical_long <span class="sc">|&gt;</span> </span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Variable <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PercentCelebrating"</span>, <span class="st">"PerPerson"</span>, <span class="st">"GreetingCards"</span>, <span class="st">"GiftCards"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-15"><a href="#cb5-15"></a>  <span class="fu">mutate</span>(<span class="at">Variable =</span> <span class="fu">ifelse</span>(Variable <span class="sc">==</span> <span class="st">"EveningOut"</span>, <span class="st">"Evening Out"</span>, Variable)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-16"><a href="#cb5-16"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> _) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> heartdf, <span class="fu">aes</span>(x, y, <span class="at">group =</span> <span class="dv">1</span>), <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span>  Value, <span class="at">color =</span> Variable)) <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>    <span class="fu">ylab</span>(<span class="st">"Average Percent Spending"</span>) <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>    <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>    <span class="fu">theme</span>(<span class="at">legend.title=</span><span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2010</span>, <span class="dv">2014</span>, <span class="dv">2018</span>, <span class="dv">2022</span>))</span>
+<span id="cb5-24"><a href="#cb5-24"></a></span>
+<span id="cb5-25"><a href="#cb5-25"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
-</div>
-<img data-src="week_2_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
-<section id="examples-1" class="slide level2">
-<h2>Examples</h2>
-<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(heritage2, <span class="fu">aes</span>(country)) <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">weight =</span> value, <span class="at">fill =</span> year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggsave</span>(p1, <span class="at">filename =</span> <span class="st">"posts/img/post2.png"</span>, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-
 </div>
-<img data-src="week_2_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
-<section id="examples-2" class="slide level2">
-<h2>Examples</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(ggpie)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>heritage3 <span class="ot">&lt;-</span> heritage2 <span class="sc">|&gt;</span> <span class="fu">uncount</span>(value)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">ggrosepie</span>(heritage3, <span class="at">group_key =</span> <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"year"</span>),</span>
-<span id="cb7-4"><a href="#cb7-4"></a>             <span class="at">count_type =</span> <span class="st">"full"</span>, <span class="at">label_info =</span> <span class="st">"all"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5"></a>             <span class="at">show_tick=</span>F,<span class="at">donut_frac=</span><span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="week_2_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section id="examples-3" class="slide level2">
-<h2>Examples</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># devtools::install_github("davidsjoberg/ggsankey")</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">library</span>(ggsankey)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>heritage4 <span class="ot">&lt;-</span> heritage3 <span class="sc">|&gt;</span> <span class="fu">make_long</span>(country, year)</span>
-<span id="cb8-4"><a href="#cb8-4"></a>pl <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(heritage4, <span class="fu">aes</span>(<span class="at">x =</span> x,                        </span>
-<span id="cb8-5"><a href="#cb8-5"></a>                     <span class="at">next_x =</span> next_x,                                     </span>
-<span id="cb8-6"><a href="#cb8-6"></a>                     <span class="at">node =</span> node,</span>
-<span id="cb8-7"><a href="#cb8-7"></a>                     <span class="at">next_node =</span> next_node,        </span>
-<span id="cb8-8"><a href="#cb8-8"></a>                     <span class="at">fill =</span> <span class="fu">factor</span>(node)))</span>
-<span id="cb8-9"><a href="#cb8-9"></a>                     </span>
-<span id="cb8-10"><a href="#cb8-10"></a>pl <span class="ot">&lt;-</span> pl <span class="sc">+</span> <span class="fu">geom_sankey</span>(<span class="at">flow.alpha =</span> <span class="fl">0.5</span>,          <span class="co">#This Creates the transparency of your node </span></span>
-<span id="cb8-11"><a href="#cb8-11"></a>                      <span class="at">node.color =</span> <span class="st">"black"</span>,     <span class="co"># This is your node color        </span></span>
-<span id="cb8-12"><a href="#cb8-12"></a>                      <span class="at">show.legend =</span> <span class="cn">TRUE</span>)        <span class="co"># This determines if you want your legend to show</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a></span>
-<span id="cb8-14"><a href="#cb8-14"></a>pl <span class="ot">&lt;-</span> pl <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
-<span id="cb8-15"><a href="#cb8-15"></a></span>
-<span id="cb8-16"><a href="#cb8-16"></a>pl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="week_2_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section id="examples-4" class="slide level2">
-<h2>Examples</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(treemap)</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">treemap</span>(heritage2,</span>
-<span id="cb9-4"><a href="#cb9-4"></a>        <span class="at">index=</span><span class="fu">c</span>(<span class="st">"country"</span>,<span class="st">"year"</span>),</span>
-<span id="cb9-5"><a href="#cb9-5"></a>        <span class="at">vSize=</span><span class="st">"value"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6"></a>        <span class="at">type=</span><span class="st">"index"</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="week_2_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section id="examples-5" class="slide level2">
-<h2>Examples</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(ggpie)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a>p1 <span class="ot">&lt;-</span> heritage3 <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2004</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">ggdonut</span>(<span class="at">group_key =</span> <span class="st">"country"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7"></a>          <span class="at">count_type =</span> <span class="st">"full"</span>) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>  <span class="fu">ggtitle</span>(<span class="st">"Year 2004"</span>)</span>
-<span id="cb10-9"><a href="#cb10-9"></a>p2 <span class="ot">&lt;-</span> heritage3 <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb10-10"><a href="#cb10-10"></a>  <span class="fu">ggdonut</span>(<span class="at">group_key =</span> <span class="st">"country"</span>,</span>
-<span id="cb10-11"><a href="#cb10-11"></a>          <span class="at">count_type =</span> <span class="st">"full"</span>) <span class="sc">+</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a>  <span class="fu">ggtitle</span>(<span class="st">"Year 2022"</span>)</span>
-<span id="cb10-13"><a href="#cb10-13"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="week_2_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="week_2_files/figure-revealjs/ex1-1.png" alt="A line plot demonstrating the average percent on spending for different categories items by year for Valentine's Day. There is a transparent heart shape in the background. The categories are candy, clothing, evening out, flowers, and jewelry. The plot shows an overall increase for all items, except in 2021 where there was a noticeable dip. It picked up the following Year. The plot shows that Jewelry and Evening Outs had the highest percentage, while Candy, Flowers, and Clothing were the lowest." width="960" class="r-stretch"></section></section>
 <section>
 <section id="installation" class="title-slide slide level1 center">
 <h1>Installation</h1>
@@ -580,11 +521,11 @@
 <section id="load-r-package" class="slide level2">
 <h2>Load R Package</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">library</span>(esquisse)</span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="fu">library</span>(tidytuesdayR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">library</span>(esquisse)</span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">library</span>(tidytuesdayR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>You must load packages every new R Session</li>
@@ -605,101 +546,101 @@
 <section id="downloading-data-data" class="slide level2">
 <h2>Downloading Data Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>u <span class="ot">&lt;-</span> <span class="st">"https://www.inqs.info/p/plotathon/owenWilsonWows.csv"</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">basename</span>(u)</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">download.file</span>(u,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>              <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="st">"data"</span>, <span class="fu">basename</span>(u)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>u <span class="ot">&lt;-</span> <span class="st">"https://www.inqs.info/p/plotathon/owenWilsonWows.csv"</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">basename</span>(u)</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">download.file</span>(u,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>              <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="st">"data"</span>, <span class="fu">basename</span>(u)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="loading-data-1" class="slide level2">
 <h2>Loading Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>mds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/owenWilsonWows.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>mds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/owenWilsonWows.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="base-plot" class="slide level2">
 <h2>Base Plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="histogram" class="slide level2">
 <h2>Histogram</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie)) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="box-plot" class="slide level2">
 <h2>Box Plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie)) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="density-plot" class="slide level2">
 <h2>Density Plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="box-plot-by-category" class="slide level2">
 <h2>Box Plot By Category</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie, <span class="at">y =</span> era)) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie, <span class="at">y =</span> era)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="density-plot-by-category" class="slide level2">
 <h2>Density Plot By Category</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie, <span class="at">color =</span> era)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_wows_in_movie, <span class="at">color =</span> era)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="scatter-plot" class="slide level2">
 <h2>Scatter Plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> durationInSeconds, </span>
-<span id="cb20-2"><a href="#cb20-2"></a>                  <span class="at">y =</span> total_wows_in_movie)) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> durationInSeconds, </span>
+<span id="cb16-2"><a href="#cb16-2"></a>                  <span class="at">y =</span> total_wows_in_movie)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="scatter-plot-by-group" class="slide level2">
 <h2>Scatter Plot by Group</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> durationInSeconds, </span>
-<span id="cb21-2"><a href="#cb21-2"></a>                  <span class="at">y =</span> total_wows_in_movie, <span class="at">color =</span> era)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> durationInSeconds, </span>
+<span id="cb17-2"><a href="#cb17-2"></a>                  <span class="at">y =</span> total_wows_in_movie, <span class="at">color =</span> era)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="add-regression-line" class="slide level2">
 <h2>Add Regression Line</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> durationInSeconds, </span>
-<span id="cb22-2"><a href="#cb22-2"></a>                  <span class="at">y =</span> total_wows_in_movie)) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> durationInSeconds, </span>
+<span id="cb18-2"><a href="#cb18-2"></a>                  <span class="at">y =</span> total_wows_in_movie)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="smooth-line" class="slide level2">
 <h2>Smooth Line</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> durationInSeconds, </span>
-<span id="cb23-2"><a href="#cb23-2"></a>                  <span class="at">y =</span> total_wows_in_movie)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> durationInSeconds, </span>
+<span id="cb19-2"><a href="#cb19-2"></a>                  <span class="at">y =</span> total_wows_in_movie)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="regression-lines-by-group" class="slide level2">
 <h2>Regression Lines by Group</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> durationInSeconds, </span>
-<span id="cb24-2"><a href="#cb24-2"></a>                  <span class="at">y =</span> total_wows_in_movie,</span>
-<span id="cb24-3"><a href="#cb24-3"></a>                  <span class="at">color =</span> era)) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>mds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> durationInSeconds, </span>
+<span id="cb20-2"><a href="#cb20-2"></a>                  <span class="at">y =</span> total_wows_in_movie,</span>
+<span id="cb20-3"><a href="#cb20-3"></a>                  <span class="at">color =</span> era)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <div class="footer footer-default">
