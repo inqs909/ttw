@@ -34,17 +34,16 @@ execute:
 
 ## Tidy Tuesday
 
-Tidy Tuesday is a weekly data vizualization challenge from the [R 4 Data Science Online Community](https://github.com/rfordatascience/tidytuesday).
+Tidy Tuesday is a weekly data visualization challenge from the [R 4 Data Science Online Community](https://github.com/rfordatascience/tidytuesday).
 
 ## Week 7
 
-This week looks at the number of heritage sites in 3 countries from the [Unesco World Heritage Convention](https://whc.unesco.org/en/list).
+This week looks at the consumer prices for Valentine's Day.
 
 ::: fragment
-
-This is part of the [100 visualizations from 1 data set](https://100.datavizproject.com/).
-
+More information about the data can be found on [GitHub](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-13/readme.md) and [Kaggle](https://www.kaggle.com/datasets/infinator/happy-valentines-day-2022).
 :::
+
 
 
 ## Loading Data
@@ -61,7 +60,7 @@ historical <- tuesdata$historical_spending
 
 ```{r}
 #| eval: true
-#| echo: true
+#| echo: false
 historical |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
 ```
 
@@ -73,10 +72,11 @@ historical |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
 #| code-fold: true
 #| eval: true
 #| fig-alt: |
-#|    A line plot demonstrating the average percent on spending for different categories
-#|    items by year for Valentine's Day. There is a transparent heart shape in
-#|    the background. The categories are candy, clothing, evening out, flowers, 
-#|    and jewelry. The plot shows an overall increase for all items, except in 2021
+#|    A line plot demonstrating the average percent on spending for different
+#|    categories items by year for Valentine's Day. There is a transparent 
+#|    heart shape in the background. The categories are candy, clothing, evening
+#|    out, flowers, and jewelry. 
+#|    The plot shows an overall increase for all items, except in 2021
 #|    where there was a noticeable dip. It picked up the following Year.
 #|    The plot shows that Jewelry and Evening Outs had the highest percentage, 
 #|    while Candy, Flowers, and Clothing were the lowest.
@@ -84,7 +84,12 @@ historical |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
 library(tidyverse)
 historical_long <- historical |> 
     pivot_longer(cols = `PercentCelebrating`:`GiftCards`,
-                 names_to  = "Variable", values_to = "Value") 
+                 names_to  = "Variable", values_to = "Value") |> 
+    mutate(Variable = case_when(Variable == "EveningOut" ~ "Evening Out",
+                                Variable == "GreetingCards" ~ "Greeting Cards",
+                                Variable == "GiftCards" ~ "Gift Cards", 
+                                .default = Variable)) 
+
 
 heartdf = tibble(
   t = seq(0, 2*pi, pi/60),
@@ -100,16 +105,50 @@ p1 <- historical_long |>
     geom_polygon(data = heartdf, aes(x, y, group = 1), fill = "red", alpha = 0.2) +
     geom_line(aes(x = Year, y =  Value, color = Variable)) +
     theme_bw() +
-    ylab("Average Percent Spending") +
+    ylab("Average Amount Spending") +
     xlab("Year") +
     theme(legend.title=element_blank()) +
     scale_x_continuous(breaks = c(2010, 2014, 2018, 2022))
 
 p1
-    
+
 ```
 
+## Example
 
+
+```{r}
+#| label: ex2
+#| code-fold: true
+#| eval: true
+#| fig-alt: |
+#|    The plot shows an overall increase for all items, except in 2021
+#|    where there was a noticeable dip. It picked up the following Year.
+#|    The plot shows that Jewelry and Evening Outs had the highest percentage, 
+#|    while Candy, Flowers, and Clothing were the lowest.
+
+library(ggbump)
+
+historical_long |> 
+  filter(!Variable %in% c("PercentCelebrating", "PerPerson", 
+                          "Greeting Cards", "Gift Cards")) |> 
+  group_by(Year) |>
+  arrange(desc(Value)) |> 
+  mutate(Rank = row_number()) |> 
+  ungroup() |> 
+  ggplot(data = _) +
+    geom_bump(aes(x=Year, y=Rank, color = Variable),  linewidth = 1.5) +
+    geom_point(aes(x=Year, y=Rank, color = Variable), shape="\u2764", size = 12) +
+    theme_bw() +
+    ylab("Ranked Spending") +
+    xlab("Year") +
+    scale_y_continuous(trans = "reverse", breaks = 1:5)+
+    scale_x_continuous(breaks = c(2010, 2014, 2018, 2022)) + 
+    theme_bw() +
+    theme(legend.position = "bottom",
+          legend.title = element_blank())
+
+```
 
 
 # Installation

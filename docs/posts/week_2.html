@@ -418,13 +418,13 @@
 </section>
 <section id="tidy-tuesday-1" class="slide level2">
 <h2>Tidy Tuesday</h2>
-<p>Tidy Tuesday is a weekly data vizualization challenge from the <a href="https://github.com/rfordatascience/tidytuesday">R 4 Data Science Online Community</a>.</p>
+<p>Tidy Tuesday is a weekly data visualization challenge from the <a href="https://github.com/rfordatascience/tidytuesday">R 4 Data Science Online Community</a>.</p>
 </section>
 <section id="week-7" class="slide level2">
 <h2>Week 7</h2>
-<p>This week looks at the number of heritage sites in 3 countries from the <a href="https://whc.unesco.org/en/list">Unesco World Heritage Convention</a>.</p>
+<p>This week looks at the consumer prices for Valentine’s Day.</p>
 <div class="fragment">
-<p>This is part of the <a href="https://100.datavizproject.com/">100 visualizations from 1 data set</a>.</p>
+<p>More information about the data can be found on <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-13/readme.md">GitHub</a> and <a href="https://www.kaggle.com/datasets/infinator/happy-valentines-day-2022">Kaggle</a>.</p>
 </div>
 </section>
 <section id="loading-data" class="slide level2">
@@ -443,10 +443,9 @@
 <section id="historical-gifts" class="slide level2">
 <h2>Historical Gifts</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>historical <span class="sc">|&gt;</span> DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">dom =</span> <span class="st">"tp"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-fea6ad58f69b560eb1a0" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-fea6ad58f69b560eb1a0">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13"],[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022],[60,58,59,60,54,55,55,54,55,51,55,52,53],[103,116.21,126.03,130.97,133.91,142.31,146.84,136.57,143.56,161.96,196.31,164.76,175.41],[8.6,10.75,10.85,11.64,10.8,12.7,13.11,12.68,13.12,14.12,17.3,15.32,15.9],[12.33,12.62,13.49,13.48,15,15.72,14.78,14.63,14.75,15.07,16.49,15.42,16.71],[21.52,26.18,29.6,30.94,30.58,36.3,33.11,32.32,34.1,30.34,41.65,30.71,45.75],[5.91,8.09,6.93,8.32,7.97,7.87,8.52,7.36,6.55,7.31,9.01,8.48,7.47],[23.76,24.86,25.66,27.93,27.48,27.27,33.46,28.46,26.96,27.72,30.78,21.39,31.35],[10.93,12,10.42,11.46,13.37,14.72,15.05,13.91,14.04,16.08,20.67,20.05,21.46],[8.42,11.21,8.43,10.23,9,11.05,12.52,10.23,11.04,10.31,14.21,15.67,17.22]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>PercentCelebrating<\/th>\n      <th>PerPerson<\/th>\n      <th>Candy<\/th>\n      <th>Flowers<\/th>\n      <th>Jewelry<\/th>\n      <th>GreetingCards<\/th>\n      <th>EveningOut<\/th>\n      <th>Clothing<\/th>\n      <th>GiftCards<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"dom":"tp","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Year","targets":1},{"name":"PercentCelebrating","targets":2},{"name":"PerPerson","targets":3},{"name":"Candy","targets":4},{"name":"Flowers","targets":5},{"name":"Jewelry","targets":6},{"name":"GreetingCards","targets":7},{"name":"EveningOut","targets":8},{"name":"Clothing","targets":9},{"name":"GiftCards","targets":10}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-1397c80ce6eefebba195" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1397c80ce6eefebba195">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13"],[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022],[60,58,59,60,54,55,55,54,55,51,55,52,53],[103,116.21,126.03,130.97,133.91,142.31,146.84,136.57,143.56,161.96,196.31,164.76,175.41],[8.6,10.75,10.85,11.64,10.8,12.7,13.11,12.68,13.12,14.12,17.3,15.32,15.9],[12.33,12.62,13.49,13.48,15,15.72,14.78,14.63,14.75,15.07,16.49,15.42,16.71],[21.52,26.18,29.6,30.94,30.58,36.3,33.11,32.32,34.1,30.34,41.65,30.71,45.75],[5.91,8.09,6.93,8.32,7.97,7.87,8.52,7.36,6.55,7.31,9.01,8.48,7.47],[23.76,24.86,25.66,27.93,27.48,27.27,33.46,28.46,26.96,27.72,30.78,21.39,31.35],[10.93,12,10.42,11.46,13.37,14.72,15.05,13.91,14.04,16.08,20.67,20.05,21.46],[8.42,11.21,8.43,10.23,9,11.05,12.52,10.23,11.04,10.31,14.21,15.67,17.22]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>PercentCelebrating<\/th>\n      <th>PerPerson<\/th>\n      <th>Candy<\/th>\n      <th>Flowers<\/th>\n      <th>Jewelry<\/th>\n      <th>GreetingCards<\/th>\n      <th>EveningOut<\/th>\n      <th>Clothing<\/th>\n      <th>GiftCards<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"dom":"tp","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Year","targets":1},{"name":"PercentCelebrating","targets":2},{"name":"PerPerson","targets":3},{"name":"Candy","targets":4},{"name":"Flowers","targets":5},{"name":"Jewelry","targets":6},{"name":"GreetingCards","targets":7},{"name":"EveningOut","targets":8},{"name":"Clothing","targets":9},{"name":"GiftCards","targets":10}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -455,35 +454,69 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>historical_long <span class="ot">&lt;-</span> historical <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">PercentCelebrating</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">GiftCards</span><span class="st">`</span>,</span>
-<span id="cb5-4"><a href="#cb5-4"></a>                 <span class="at">names_to  =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"Value"</span>) </span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a>heartdf <span class="ot">=</span> <span class="fu">tibble</span>(</span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="at">t =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, pi<span class="sc">/</span><span class="dv">60</span>),</span>
-<span id="cb5-8"><a href="#cb5-8"></a>  <span class="at">x =</span> (<span class="dv">16</span><span class="sc">*</span><span class="fu">sin</span>(t)<span class="sc">^</span><span class="dv">3</span>)<span class="sc">/</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">2016</span>,</span>
-<span id="cb5-9"><a href="#cb5-9"></a>  <span class="at">y =</span> <span class="dv">13</span><span class="sc">*</span><span class="fu">cos</span>(t) <span class="sc">-</span> <span class="dv">5</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>t) <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">3</span><span class="sc">*</span>t) <span class="sc">-</span> <span class="fu">cos</span>(<span class="dv">4</span><span class="sc">*</span>t) <span class="sc">+</span><span class="dv">30</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>)</span>
-<span id="cb5-11"><a href="#cb5-11"></a></span>
-<span id="cb5-12"><a href="#cb5-12"></a></span>
-<span id="cb5-13"><a href="#cb5-13"></a>p1 <span class="ot">&lt;-</span> historical_long <span class="sc">|&gt;</span> </span>
-<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Variable <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PercentCelebrating"</span>, <span class="st">"PerPerson"</span>, <span class="st">"GreetingCards"</span>, <span class="st">"GiftCards"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb5-15"><a href="#cb5-15"></a>  <span class="fu">mutate</span>(<span class="at">Variable =</span> <span class="fu">ifelse</span>(Variable <span class="sc">==</span> <span class="st">"EveningOut"</span>, <span class="st">"Evening Out"</span>, Variable)) <span class="sc">|&gt;</span> </span>
-<span id="cb5-16"><a href="#cb5-16"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> _) <span class="sc">+</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> heartdf, <span class="fu">aes</span>(x, y, <span class="at">group =</span> <span class="dv">1</span>), <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span>  Value, <span class="at">color =</span> Variable)) <span class="sc">+</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a>    <span class="fu">ylab</span>(<span class="st">"Average Percent Spending"</span>) <span class="sc">+</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a>    <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a>    <span class="fu">theme</span>(<span class="at">legend.title=</span><span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2010</span>, <span class="dv">2014</span>, <span class="dv">2018</span>, <span class="dv">2022</span>))</span>
-<span id="cb5-24"><a href="#cb5-24"></a></span>
-<span id="cb5-25"><a href="#cb5-25"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>historical_long <span class="ot">&lt;-</span> historical <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">PercentCelebrating</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">GiftCards</span><span class="st">`</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>                 <span class="at">names_to  =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"Value"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="fu">mutate</span>(<span class="at">Variable =</span> <span class="fu">case_when</span>(Variable <span class="sc">==</span> <span class="st">"EveningOut"</span> <span class="sc">~</span> <span class="st">"Evening Out"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>                                Variable <span class="sc">==</span> <span class="st">"GreetingCards"</span> <span class="sc">~</span> <span class="st">"Greeting Cards"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>                                Variable <span class="sc">==</span> <span class="st">"GiftCards"</span> <span class="sc">~</span> <span class="st">"Gift Cards"</span>, </span>
+<span id="cb4-8"><a href="#cb4-8"></a>                                <span class="at">.default =</span> Variable)) </span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a>heartdf <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="at">t =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, pi<span class="sc">/</span><span class="dv">60</span>),</span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="at">x =</span> (<span class="dv">16</span><span class="sc">*</span><span class="fu">sin</span>(t)<span class="sc">^</span><span class="dv">3</span>)<span class="sc">/</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">2016</span>,</span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="at">y =</span> <span class="dv">13</span><span class="sc">*</span><span class="fu">cos</span>(t) <span class="sc">-</span> <span class="dv">5</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>t) <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">3</span><span class="sc">*</span>t) <span class="sc">-</span> <span class="fu">cos</span>(<span class="dv">4</span><span class="sc">*</span>t) <span class="sc">+</span><span class="dv">30</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>)</span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a></span>
+<span id="cb4-18"><a href="#cb4-18"></a>p1 <span class="ot">&lt;-</span> historical_long <span class="sc">|&gt;</span> </span>
+<span id="cb4-19"><a href="#cb4-19"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Variable <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PercentCelebrating"</span>, <span class="st">"PerPerson"</span>, <span class="st">"GreetingCards"</span>, <span class="st">"GiftCards"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-20"><a href="#cb4-20"></a>  <span class="fu">mutate</span>(<span class="at">Variable =</span> <span class="fu">ifelse</span>(Variable <span class="sc">==</span> <span class="st">"EveningOut"</span>, <span class="st">"Evening Out"</span>, Variable)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-21"><a href="#cb4-21"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> _) <span class="sc">+</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> heartdf, <span class="fu">aes</span>(x, y, <span class="at">group =</span> <span class="dv">1</span>), <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span>  Value, <span class="at">color =</span> Variable)) <span class="sc">+</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>    <span class="fu">ylab</span>(<span class="st">"Average Amount Spending"</span>) <span class="sc">+</span></span>
+<span id="cb4-26"><a href="#cb4-26"></a>    <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a>    <span class="fu">theme</span>(<span class="at">legend.title=</span><span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2010</span>, <span class="dv">2014</span>, <span class="dv">2018</span>, <span class="dv">2022</span>))</span>
+<span id="cb4-29"><a href="#cb4-29"></a></span>
+<span id="cb4-30"><a href="#cb4-30"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="week_2_files/figure-revealjs/ex1-1.png" alt="A line plot demonstrating the average percent on spending for different categories items by year for Valentine's Day. There is a transparent heart shape in the background. The categories are candy, clothing, evening out, flowers, and jewelry. The plot shows an overall increase for all items, except in 2021 where there was a noticeable dip. It picked up the following Year. The plot shows that Jewelry and Evening Outs had the highest percentage, while Candy, Flowers, and Clothing were the lowest." width="960" class="r-stretch"></section></section>
+<img data-src="week_2_files/figure-revealjs/ex1-1.png" alt="A line plot demonstrating the average percent on spending for different categories items by year for Valentine's Day. There is a transparent heart shape in the background. The categories are candy, clothing, evening out, flowers, and jewelry. The plot shows an overall increase for all items, except in 2021 where there was a noticeable dip. It picked up the following Year. The plot shows that Jewelry and Evening Outs had the highest percentage, while Candy, Flowers, and Clothing were the lowest." width="960" class="r-stretch"></section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(ggbump)</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>historical_long <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Variable <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PercentCelebrating"</span>, <span class="st">"PerPerson"</span>, </span>
+<span id="cb5-5"><a href="#cb5-5"></a>                          <span class="st">"Greeting Cards"</span>, <span class="st">"Gift Cards"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">group_by</span>(Year) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Value)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">mutate</span>(<span class="at">Rank =</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> _) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="fu">geom_bump</span>(<span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y=</span>Rank, <span class="at">color =</span> Variable),  <span class="at">linewidth =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y=</span>Rank, <span class="at">color =</span> Variable), <span class="at">shape=</span><span class="st">"\u2764"</span>, <span class="at">size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>    <span class="fu">ylab</span>(<span class="st">"Ranked Spending"</span>) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"reverse"</span>, <span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2010</span>, <span class="dv">2014</span>, <span class="dv">2018</span>, <span class="dv">2022</span>)) <span class="sc">+</span> </span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="week_2_files/figure-revealjs/ex2-1.png" alt="The plot shows an overall increase for all items, except in 2021 where there was a noticeable dip. It picked up the following Year. The plot shows that Jewelry and Evening Outs had the highest percentage, while Candy, Flowers, and Clothing were the lowest." width="960" class="r-stretch"></section></section>
 <section>
 <section id="installation" class="title-slide slide level1 center">
 <h1>Installation</h1>

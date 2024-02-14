@@ -207,14 +207,14 @@
     "href": "posts/week_2.html#tidy-tuesday-1",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Tidy Tuesday",
-    "text": "Tidy Tuesday\nTidy Tuesday is a weekly data vizualization challenge from the R 4 Data Science Online Community."
+    "text": "Tidy Tuesday\nTidy Tuesday is a weekly data visualization challenge from the R 4 Data Science Online Community."
   },
   {
     "objectID": "posts/week_2.html#week-7",
     "href": "posts/week_2.html#week-7",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Week 7",
-    "text": "Week 7\nThis week looks at the number of heritage sites in 3 countries from the Unesco World Heritage Convention.\n\nThis is part of the 100 visualizations from 1 data set."
+    "text": "Week 7\nThis week looks at the consumer prices for Valentine’s Day.\n\nMore information about the data can be found on GitHub and Kaggle."
   },
   {
     "objectID": "posts/week_2.html#loading-data",
@@ -228,14 +228,21 @@
     "href": "posts/week_2.html#historical-gifts",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Historical Gifts",
-    "text": "Historical Gifts\n\nhistorical |&gt; DT::datatable(options = list(pageLength = 5, dom = \"tp\"))"
+    "text": "Historical Gifts"
   },
   {
     "objectID": "posts/week_2.html#examples",
     "href": "posts/week_2.html#examples",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Examples",
-    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nhistorical_long &lt;- historical |&gt; \n    pivot_longer(cols = `PercentCelebrating`:`GiftCards`,\n                 names_to  = \"Variable\", values_to = \"Value\") \n\nheartdf = tibble(\n  t = seq(0, 2*pi, pi/60),\n  x = (16*sin(t)^3)/3 + 2016,\n  y = 13*cos(t) - 5*cos(2*t) - 2*cos(3*t) - cos(4*t) +30\n)\n\n\np1 &lt;- historical_long |&gt; \n  filter(!Variable %in% c(\"PercentCelebrating\", \"PerPerson\", \"GreetingCards\", \"GiftCards\")) |&gt; \n  mutate(Variable = ifelse(Variable == \"EveningOut\", \"Evening Out\", Variable)) |&gt; \n  ggplot(data = _) +\n    geom_polygon(data = heartdf, aes(x, y, group = 1), fill = \"red\", alpha = 0.2) +\n    geom_line(aes(x = Year, y =  Value, color = Variable)) +\n    theme_bw() +\n    ylab(\"Average Percent Spending\") +\n    xlab(\"Year\") +\n    theme(legend.title=element_blank()) +\n    scale_x_continuous(breaks = c(2010, 2014, 2018, 2022))\n\np1"
+    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nhistorical_long &lt;- historical |&gt; \n    pivot_longer(cols = `PercentCelebrating`:`GiftCards`,\n                 names_to  = \"Variable\", values_to = \"Value\") |&gt; \n    mutate(Variable = case_when(Variable == \"EveningOut\" ~ \"Evening Out\",\n                                Variable == \"GreetingCards\" ~ \"Greeting Cards\",\n                                Variable == \"GiftCards\" ~ \"Gift Cards\", \n                                .default = Variable)) \n\n\nheartdf = tibble(\n  t = seq(0, 2*pi, pi/60),\n  x = (16*sin(t)^3)/3 + 2016,\n  y = 13*cos(t) - 5*cos(2*t) - 2*cos(3*t) - cos(4*t) +30\n)\n\n\np1 &lt;- historical_long |&gt; \n  filter(!Variable %in% c(\"PercentCelebrating\", \"PerPerson\", \"GreetingCards\", \"GiftCards\")) |&gt; \n  mutate(Variable = ifelse(Variable == \"EveningOut\", \"Evening Out\", Variable)) |&gt; \n  ggplot(data = _) +\n    geom_polygon(data = heartdf, aes(x, y, group = 1), fill = \"red\", alpha = 0.2) +\n    geom_line(aes(x = Year, y =  Value, color = Variable)) +\n    theme_bw() +\n    ylab(\"Average Amount Spending\") +\n    xlab(\"Year\") +\n    theme(legend.title=element_blank()) +\n    scale_x_continuous(breaks = c(2010, 2014, 2018, 2022))\n\np1"
+  },
+  {
+    "objectID": "posts/week_2.html#example",
+    "href": "posts/week_2.html#example",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nlibrary(ggbump)\n\nhistorical_long |&gt; \n  filter(!Variable %in% c(\"PercentCelebrating\", \"PerPerson\", \n                          \"Greeting Cards\", \"Gift Cards\")) |&gt; \n  group_by(Year) |&gt;\n  arrange(desc(Value)) |&gt; \n  mutate(Rank = row_number()) |&gt; \n  ungroup() |&gt; \n  ggplot(data = _) +\n    geom_bump(aes(x=Year, y=Rank, color = Variable),  linewidth = 1.5) +\n    geom_point(aes(x=Year, y=Rank, color = Variable), shape=\"\\u2764\", size = 12) +\n    theme_bw() +\n    ylab(\"Ranked Spending\") +\n    xlab(\"Year\") +\n    scale_y_continuous(trans = \"reverse\", breaks = 1:5)+\n    scale_x_continuous(breaks = c(2010, 2014, 2018, 2022)) + \n    theme_bw() +\n    theme(legend.position = \"bottom\",\n          legend.title = element_blank())"
   },
   {
     "objectID": "posts/week_2.html#r-programming",
