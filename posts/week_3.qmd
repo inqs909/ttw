@@ -1,28 +1,300 @@
 ---
-title: "Week 3"
-date: 02-05-24
-description: We will continue our discussion with control flow and begin our discussion on Functional Programming Analysis.
-editor: visual
-draft: true
-editor_options: 
-  chunk_output_type: console
+title: "Tidy Tuesday on Wednesday"
+subtitle: "www.inqs.info/ttw"
+date: 02-21-24
+description: Third week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.
+format:
+  revealjs:
+    scrollable: true
+    preview-links: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+engine: knitr
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    comment: "#>" 
+draft: false
+categories:
+  - sp2024
+image: img/post2.png
+execute: 
+  cache: true
 ---
 
-## Learning Outcomes
+# Tidy Tuesday
 
-### First Lecture
+## Tidy Tuesday
 
--   while Loops
+Tidy Tuesday is a weekly data visualization challenge from the [R 4 Data Science Online Community](https://github.com/rfordatascience/tidytuesday).
 
-### Second Lecture
+## Week 8
 
--   R Built-in-functions
+The R Consortium ISC has been awarding grants since 2016. This week's data is an exploration of past grant recipients.
 
--   User-built functions
+Are there any keywords that stand out in the titles or summaries of awarded grants? Have the funded amounts changed over time?
 
-## Resources
 
-| Lecture | Slides                                                         | Videos                                | Files |
-|---------------|---------------------------|----------------|---------------|
-| 1       | [Slides](https://m408.inqs.info/lectures/3a.html#/title-slide) | [Video](https://youtu.be/BcJezRy1vzg) |       |
-| 2       |                                                                |                                       |       |
+::: fragment
+More information about the data can be found on [GitHub](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-20/readme.md) and [Blog Post](https://www.r-consortium.org/blog/2024/02/08/r-consortium-infrastructure-steering-committee-isc-grant-program-accepting-proposals-starting-march-1st).
+:::
+
+::: fragment
+A csv file of the data is [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-20/isc_grants.csv).
+:::
+
+::: fragment
+More on text mining [here](https://www.tidytextmining.com/topicmodeling).
+:::
+
+
+## Loading Data
+
+```{r}
+#| echo: true
+#| eval: true
+
+tuesdata <- tidytuesdayR::tt_load(2024, week = 8)
+isc <- tuesdata$isc_grants
+```
+
+## ISC Data
+
+```{r}
+#| eval: true
+#| echo: false
+isc |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
+```
+
+
+## Examples
+
+```{r}
+#| label: ex1
+#| code-fold: true
+#| eval: true
+#| fig-alt: |
+#|    A line plot demonstrating the average percent on spending for different
+#|    categories items by year for Valentine's Day. There is a transparent 
+#|    heart shape in the background. The categories are candy, clothing, evening
+#|    out, flowers, and jewelry. 
+#|    The plot shows an overall increase for all items, except in 2021
+#|    where there was a noticeable dip. It picked up the following Year.
+#|    The plot shows that Jewelry and Evening Outs had the highest percentage, 
+#|    while Candy, Flowers, and Clothing were the lowest.
+
+library(tidyverse)
+library(tidytext)
+library(ggwordcloud)
+
+isc_title <- isc |> 
+  unnest_tokens(word, title) |> 
+  anti_join(stop_words)
+
+
+isc_title_top <- isc_title |>
+  group_by(group) |> 
+  count(word, sort = TRUE) |> filter(n > 1)
+
+isc_title_top |> ggplot(aes(label = word, size = n)) +
+  geom_text_wordcloud() +
+  scale_size_area(max_size = 10) +
+  facet_wrap(~group, labeller =  labeller(group=c('1' = "Fall", '2' = "Spring"))) +
+  theme_bw()
+
+```
+
+## Example
+
+
+```{r}
+#| label: ex2
+#| code-fold: true
+#| eval: true
+#| fig-alt: |
+#|    The plot shows an overall increase for all items, except in 2021
+#|    where there was a noticeable dip. It picked up the following Year.
+#|    The plot shows that Jewelry and Evening Outs had the highest percentage, 
+#|    while Candy, Flowers, and Clothing were the lowest.
+
+
+```
+
+
+# Installation
+
+## R Programming
+
+R is a statistical programming package that allows you to conduct different types of analysis.
+
+[R](https://www.r-project.org/)
+
+## RStudio
+
+A piece of software that organizes how you conduct statistical analysis in R.
+
+[RStudio](https://posit.co/downloads/)
+
+## Posit Cloud
+
+A web version of RStudio.
+
+[Posit Cloud](https://posit.cloud/login)
+
+## R Packages
+
+-   Tidyverse
+
+-   plotly
+
+-   ggthemes
+
+-   esquisse
+
+-   tidytuesdayR
+
+
+## Load R Package
+
+```{r}
+#| echo: true
+#| eval: true
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(plotly)
+library(ggthemes)
+library(esquisse)
+library(tidytuesdayR)
+```
+
+
+- You must load packages every new R Session
+
+## Visualization Resources
+
+[R Graphics Cookbook](https://r-graphics.org/)
+
+[R Graph Gallery](https://r-graph-gallery.com/)
+
+[R Charts](https://r-charts.com/)
+
+[ggplot2](https://ggplot2.tidyverse.org/)
+
+
+
+# Graphing Examples
+
+## Downloading Data Data
+
+```{r}
+#| echo: true
+#| eval: false
+u <- "https://www.inqs.info/p/plotathon/owenWilsonWows.csv"
+basename(u)
+download.file(u,
+              file.path(getwd(), "data", basename(u)))
+
+```
+
+## Loading Data
+
+```{r}
+#| eval: false
+mds <- read_csv("data/owenWilsonWows.csv")
+```
+
+
+## Base Plot
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie)) 
+```
+
+## Histogram
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie)) +
+  geom_histogram()
+```
+
+## Box Plot
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie)) +
+  geom_boxplot()
+```
+
+## Density Plot
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie)) +
+  geom_density()
+```
+
+## Box Plot By Category
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie, y = era)) +
+  geom_boxplot()
+```
+
+## Density Plot By Category
+
+```{r}
+mds |> ggplot(aes(x = total_wows_in_movie, color = era)) +
+  geom_density()
+```
+
+## Scatter Plot
+
+```{r}
+mds |> ggplot(aes(x = durationInSeconds, 
+                  y = total_wows_in_movie)) +
+  geom_point()
+```
+
+## Scatter Plot by Group
+
+```{r}
+mds |> ggplot(aes(x = durationInSeconds, 
+                  y = total_wows_in_movie, color = era)) +
+  geom_point()
+```
+
+## Add Regression Line
+
+```{r}
+mds |> ggplot(aes(x = durationInSeconds, 
+                  y = total_wows_in_movie)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = F)
+```
+
+## Smooth Line
+
+```{r}
+mds |> ggplot(aes(x = durationInSeconds, 
+                  y = total_wows_in_movie)) +
+  geom_point() +
+  geom_smooth(se = F)
+```
+
+## Regression Lines by Group
+
+```{r}
+mds |> ggplot(aes(x = durationInSeconds, 
+                  y = total_wows_in_movie,
+                  color = era)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = F)
+```

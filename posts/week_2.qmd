@@ -138,7 +138,7 @@ historical_long |>
   ungroup() |> 
   ggplot(data = _) +
     geom_bump(aes(x=Year, y=Rank, color = Variable),  linewidth = 1.5) +
-    geom_point(aes(x=Year, y=Rank, color = Variable), shape="\u2764", size = 12) +
+    geom_point(aes(x=Year, y=Rank, color = Variable), shape="\u2665", size = 12) +
     theme_bw() +
     ylab("Ranked Spending") +
     xlab("Year") +
