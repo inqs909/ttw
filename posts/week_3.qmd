@@ -6,7 +6,6 @@ description: Third week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R C
 format:
   revealjs:
     scrollable: true
-    preview-links: true
     navigation-mode: vertical
     controls-layout: bottom-right
     controls-tutorial: true
@@ -82,14 +81,11 @@ isc |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
 #| code-fold: true
 #| eval: true
 #| fig-alt: |
-#|    A line plot demonstrating the average percent on spending for different
-#|    categories items by year for Valentine's Day. There is a transparent 
-#|    heart shape in the background. The categories are candy, clothing, evening
-#|    out, flowers, and jewelry. 
-#|    The plot shows an overall increase for all items, except in 2021
-#|    where there was a noticeable dip. It picked up the following Year.
-#|    The plot shows that Jewelry and Evening Outs had the highest percentage, 
-#|    while Candy, Flowers, and Clothing were the lowest.
+#|    The plot shows two separate word clouds demonstrating the words that most 
+#|    common words in project titles in both Fall and Spring funding sessions. 
+#|    The most common word in both Fall and Spring was data. Other common words 
+#|    in Fall are dbi, api, and development. The most common word in Spring are 
+#|    package, interactive and infrastructure.
 
 library(tidyverse)
 library(tidytext)
@@ -98,7 +94,6 @@ library(ggwordcloud)
 isc_title <- isc |> 
   unnest_tokens(word, title) |> 
   anti_join(stop_words)
-
 
 isc_title_top <- isc_title |>
   group_by(group) |> 
@@ -121,9 +116,13 @@ isc_title_top |> ggplot(aes(label = word, size = n)) +
 #| eval: true
 #| fig-alt: |
 #|    The plot shows an overall increase for all items, except in 2021
-#|    where there was a noticeable dip. It picked up the following Year.
-#|    The plot shows that Jewelry and Evening Outs had the highest percentage, 
-#|    while Candy, Flowers, and Clothing were the lowest.
+
+library(ggthemes)
+isc |> ggplot(aes(x=as.factor(year), y = funded)) + 
+  geom_boxplot() +
+  geom_jitter(shape = 4) +
+  xlab("Year") + ylab("Funded Amount") + ggtitle("") +
+  theme_wsj()
 
 
 ```

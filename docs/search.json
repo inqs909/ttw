@@ -410,14 +410,14 @@
     "href": "posts/week_3.html#examples",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Examples",
-    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, title) |&gt; \n  anti_join(stop_words)\n\n\nisc_title_top &lt;- isc_title |&gt;\n  group_by(group) |&gt; \n  count(word, sort = TRUE) |&gt; filter(n &gt; 1)\n\nisc_title_top |&gt; ggplot(aes(label = word, size = n)) +\n  geom_text_wordcloud() +\n  scale_size_area(max_size = 10) +\n  facet_wrap(~group, labeller =  labeller(group=c('1' = \"Fall\", '2' = \"Spring\"))) +\n  theme_bw()"
+    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, title) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  group_by(group) |&gt; \n  count(word, sort = TRUE) |&gt; filter(n &gt; 1)\n\nisc_title_top |&gt; ggplot(aes(label = word, size = n)) +\n  geom_text_wordcloud() +\n  scale_size_area(max_size = 10) +\n  facet_wrap(~group, labeller =  labeller(group=c('1' = \"Fall\", '2' = \"Spring\"))) +\n  theme_bw()"
   },
   {
     "objectID": "posts/week_3.html#example",
     "href": "posts/week_3.html#example",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Example",
-    "text": "Example"
+    "text": "Example\n\n\nCode\nlibrary(ggthemes)\nisc |&gt; ggplot(aes(x=as.factor(year), y = funded)) + \n  geom_boxplot() +\n  geom_jitter(shape = 4) +\n  xlab(\"Year\") + ylab(\"Funded Amount\") + ggtitle(\"\") +\n  theme_wsj()"
   },
   {
     "objectID": "posts/week_3.html#r-programming",
