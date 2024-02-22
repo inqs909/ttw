@@ -85,7 +85,6 @@ isc |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
 #|    package, interactive and infrastructure.
 
 library(tidyverse)
-library(tidytext)
 library(ggwordcloud)
 
 isc_title <- isc |> 
@@ -143,7 +142,6 @@ isc |> ggplot(aes(x=as.factor(year), y = funded)) +
 
 
 library(tidyverse)
-library(tidytext)
 library(ggwordcloud)
 
 isc_title <- isc |> 
@@ -186,28 +184,36 @@ A web version of RStudio.
 
 ## R Packages
 
--   Tidyverse
+```{r}
+#| echo: false
+#| eval: false
 
--   plotly
+install.packages("tidyverse")
+install.packages("plotly")
+install.packages("ggwordcloud")
+install.packages("ggthemes")
+install.packages("ggpie")
+install.packages("ggbump")
+install.packages("tidytext")
+install.packages("remotes")
+install.packages("esquisse")
+install.packages("tidytuesdayR")
+remotes::install_github("MatthewBJane/ThemePark")
 
--   ggthemes
+```
 
--   esquisse
 
--   tidytuesdayR
 
-## Load R Package
+## Load Minimum R Package
 
 ```{r}
+
 #| echo: true
 #| eval: true
 #| message: false
 #| warning: false
 
 library(tidyverse)
-library(plotly)
-library(ggthemes)
-library(esquisse)
 library(tidytuesdayR)
 ```
 

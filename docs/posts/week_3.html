@@ -460,22 +460,21 @@
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">library</span>(ggwordcloud)</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a>isc_title <span class="ot">&lt;-</span> isc <span class="sc">|&gt;</span> </span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">unnest_tokens</span>(word, title) <span class="sc">|&gt;</span> </span>
-<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">anti_join</span>(stop_words)</span>
-<span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a>isc_title_top <span class="ot">&lt;-</span> isc_title <span class="sc">|&gt;</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span> </span>
-<span id="cb4-11"><a href="#cb4-11"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a>isc_title_top <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">label =</span> word, <span class="at">size =</span> n)) <span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>  <span class="fu">geom_text_wordcloud</span>() <span class="sc">+</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>group, <span class="at">labeller =</span>  <span class="fu">labeller</span>(<span class="at">group=</span><span class="fu">c</span>(<span class="st">'1'</span> <span class="ot">=</span> <span class="st">"Fall"</span>, <span class="st">'2'</span> <span class="ot">=</span> <span class="st">"Spring"</span>))) <span class="sc">+</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(ggwordcloud)</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>isc_title <span class="ot">&lt;-</span> isc <span class="sc">|&gt;</span> </span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">unnest_tokens</span>(word, title) <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">anti_join</span>(stop_words)</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>isc_title_top <span class="ot">&lt;-</span> isc_title <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span> </span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a></span>
+<span id="cb4-12"><a href="#cb4-12"></a>isc_title_top <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">label =</span> word, <span class="at">size =</span> n)) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="fu">geom_text_wordcloud</span>() <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>group, <span class="at">labeller =</span>  <span class="fu">labeller</span>(<span class="at">group=</span><span class="fu">c</span>(<span class="st">'1'</span> <span class="ot">=</span> <span class="st">"Fall"</span>, <span class="st">'2'</span> <span class="ot">=</span> <span class="st">"Spring"</span>))) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -506,24 +505,23 @@
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">library</span>(ggwordcloud)</span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a>isc_title <span class="ot">&lt;-</span> isc <span class="sc">|&gt;</span> </span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">unnest_tokens</span>(word, summary) <span class="sc">|&gt;</span> </span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">anti_join</span>(stop_words)</span>
-<span id="cb6-8"><a href="#cb6-8"></a></span>
-<span id="cb6-9"><a href="#cb6-9"></a>isc_title_top <span class="ot">&lt;-</span> isc_title <span class="sc">|&gt;</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">5</span>)</span>
-<span id="cb6-11"><a href="#cb6-11"></a></span>
-<span id="cb6-12"><a href="#cb6-12"></a>isc_title_top <span class="sc">|&gt;</span>  </span>
-<span id="cb6-13"><a href="#cb6-13"></a>  <span class="fu">mutate</span>(<span class="at">angle =</span> <span class="dv">45</span> <span class="sc">*</span> <span class="fu">sample</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">n</span>(), <span class="co"># 157:159 Creating Angles for data</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>                             <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb6-15"><a href="#cb6-15"></a>                             <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>))) <span class="sc">|&gt;</span> </span>
-<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">label =</span> word, <span class="at">size =</span> n, <span class="at">angle =</span> angle)) <span class="sc">+</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>  <span class="fu">geom_text_wordcloud_area</span>(<span class="at">shape =</span> <span class="st">"star"</span>) <span class="sc">+</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">library</span>(ggwordcloud)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>isc_title <span class="ot">&lt;-</span> isc <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">unnest_tokens</span>(word, summary) <span class="sc">|&gt;</span> </span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">anti_join</span>(stop_words)</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a>isc_title_top <span class="ot">&lt;-</span> isc_title <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">5</span>)</span>
+<span id="cb6-10"><a href="#cb6-10"></a></span>
+<span id="cb6-11"><a href="#cb6-11"></a>isc_title_top <span class="sc">|&gt;</span>  </span>
+<span id="cb6-12"><a href="#cb6-12"></a>  <span class="fu">mutate</span>(<span class="at">angle =</span> <span class="dv">45</span> <span class="sc">*</span> <span class="fu">sample</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">n</span>(), <span class="co"># 157:159 Creating Angles for data</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>                             <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb6-14"><a href="#cb6-14"></a>                             <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb6-15"><a href="#cb6-15"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">label =</span> word, <span class="at">size =</span> n, <span class="at">angle =</span> angle)) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">geom_text_wordcloud_area</span>(<span class="at">shape =</span> <span class="st">"star"</span>) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -550,22 +548,17 @@
 </section>
 <section id="r-packages" class="slide level2">
 <h2>R Packages</h2>
-<ul>
-<li><p>Tidyverse</p></li>
-<li><p>plotly</p></li>
-<li><p>ggthemes</p></li>
-<li><p>esquisse</p></li>
-<li><p>tidytuesdayR</p></li>
-</ul>
 </section>
-<section id="load-r-package" class="slide level2">
-<h2>Load R Package</h2>
+<section id="load-minimum-r-package" class="slide level2">
+<h2>Load Minimum R Package</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">library</span>(esquisse)</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">library</span>(tidytuesdayR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#| eval: true</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#| message: false</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="fu">library</span>(tidytuesdayR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>You must load packages every new R Session</li>

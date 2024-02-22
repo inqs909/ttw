@@ -263,14 +263,14 @@
     "href": "posts/week_2.html#r-packages",
     "title": "Tidy Tuesday on Wednesday",
     "section": "R Packages",
-    "text": "R Packages\n\nTidyverse\nplotly\nggthemes\nesquisse\ntidytuesdayR"
+    "text": "R Packages"
   },
   {
-    "objectID": "posts/week_2.html#load-r-package",
-    "href": "posts/week_2.html#load-r-package",
+    "objectID": "posts/week_2.html#load-minimum-r-package",
+    "href": "posts/week_2.html#load-minimum-r-package",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Load R Package",
-    "text": "Load R Package\n\nlibrary(tidyverse)\nlibrary(plotly)\nlibrary(ggthemes)\nlibrary(esquisse)\nlibrary(tidytuesdayR)\n\n\nYou must load packages every new R Session"
+    "section": "Load Minimum R Package",
+    "text": "Load Minimum R Package\n\nlibrary(tidyverse)\nlibrary(tidytuesdayR)\n\n\nYou must load packages every new R Session"
   },
   {
     "objectID": "posts/week_2.html#visualization-resources",
@@ -396,7 +396,7 @@
     "href": "posts/week_3.html#examples",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Examples",
-    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, title) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  group_by(group) |&gt; \n  count(word, sort = TRUE) |&gt; filter(n &gt; 1)\n\nisc_title_top |&gt; ggplot(aes(label = word, size = n)) +\n  geom_text_wordcloud() +\n  scale_size_area(max_size = 10) +\n  facet_wrap(~group, labeller =  labeller(group=c('1' = \"Fall\", '2' = \"Spring\"))) +\n  theme_bw()"
+    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, title) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  group_by(group) |&gt; \n  count(word, sort = TRUE) |&gt; filter(n &gt; 1)\n\nisc_title_top |&gt; ggplot(aes(label = word, size = n)) +\n  geom_text_wordcloud() +\n  scale_size_area(max_size = 10) +\n  facet_wrap(~group, labeller =  labeller(group=c('1' = \"Fall\", '2' = \"Spring\"))) +\n  theme_bw()"
   },
   {
     "objectID": "posts/week_3.html#example",
@@ -417,7 +417,7 @@
     "href": "posts/week_3.html#example-1",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Example",
-    "text": "Example\n\n\nCode\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, summary) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  count(word, sort = TRUE) |&gt; filter(n &gt; 5)\n\nisc_title_top |&gt;  \n  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data\n                             replace = TRUE, \n                             prob = c(1, 1, 4, 1, 1))) |&gt; \n  ggplot(aes(label = word, size = n, angle = angle)) +\n  geom_text_wordcloud_area(shape = \"star\") +\n  scale_size_area(max_size = 20) +\n  theme_bw()"
+    "text": "Example\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, summary) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  count(word, sort = TRUE) |&gt; filter(n &gt; 5)\n\nisc_title_top |&gt;  \n  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data\n                             replace = TRUE, \n                             prob = c(1, 1, 4, 1, 1))) |&gt; \n  ggplot(aes(label = word, size = n, angle = angle)) +\n  geom_text_wordcloud_area(shape = \"star\") +\n  scale_size_area(max_size = 20) +\n  theme_bw()"
   },
   {
     "objectID": "posts/week_3.html#r-programming",
@@ -445,14 +445,14 @@
     "href": "posts/week_3.html#r-packages",
     "title": "Tidy Tuesday on Wednesday",
     "section": "R Packages",
-    "text": "R Packages\n\nTidyverse\nplotly\nggthemes\nesquisse\ntidytuesdayR"
+    "text": "R Packages"
   },
   {
-    "objectID": "posts/week_3.html#load-r-package",
-    "href": "posts/week_3.html#load-r-package",
+    "objectID": "posts/week_3.html#load-minimum-r-package",
+    "href": "posts/week_3.html#load-minimum-r-package",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Load R Package",
-    "text": "Load R Package\n\nlibrary(tidyverse)\nlibrary(plotly)\nlibrary(ggthemes)\nlibrary(esquisse)\nlibrary(tidytuesdayR)\n\n\nYou must load packages every new R Session"
+    "section": "Load Minimum R Package",
+    "text": "Load Minimum R Package\n\n#| echo: true\n#| eval: true\n#| message: false\n#| warning: false\n\nlibrary(tidyverse)\nlibrary(tidytuesdayR)\n\n\nYou must load packages every new R Session"
   },
   {
     "objectID": "posts/week_3.html#visualization-resources",

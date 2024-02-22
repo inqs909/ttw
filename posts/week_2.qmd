@@ -173,18 +173,25 @@ A web version of RStudio.
 
 ## R Packages
 
--   Tidyverse
+```{r}
+#| echo: false
+#| eval: false
 
--   plotly
+install.packages("tidyverse")
+install.packages("plotly")
+install.packages("ggthemes")
+install.packages("ggpie")
+install.packages("ggbump")
+install.packages("tidytext")
+install.packages("remotes")
+install.packages("esquisse")
+install.packages("tidytuesdayR")
+remotes::install_github("MatthewBJane/ThemePark")
 
--   ggthemes
-
--   esquisse
-
--   tidytuesdayR
+```
 
 
-## Load R Package
+## Load Minimum R Package
 
 ```{r}
 #| echo: true
@@ -193,10 +200,8 @@ A web version of RStudio.
 #| warning: false
 
 library(tidyverse)
-library(plotly)
-library(ggthemes)
-library(esquisse)
 library(tidytuesdayR)
+
 ```
 
 
