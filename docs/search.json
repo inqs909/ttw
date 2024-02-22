@@ -112,95 +112,88 @@
     "text": "Examples\n\n\nCode\nlibrary(ggpie)\nlibrary(patchwork)\n\n\np1 &lt;- heritage3 |&gt; filter(year == 2004) |&gt; \n  ggdonut(group_key = \"country\",\n          count_type = \"full\") +\n  ggtitle(\"Year 2004\")\np2 &lt;- heritage3 |&gt; filter(year == 2022) |&gt; \n  ggdonut(group_key = \"country\",\n          count_type = \"full\") +\n  ggtitle(\"Year 2022\")\np1 + p2 +\n  plot_layout(guides = 'collect')"
   },
   {
-    "objectID": "posts/week_1.html#downloading-data-data",
-    "href": "posts/week_1.html#downloading-data-data",
+    "objectID": "posts/week_1.html#ggplot2",
+    "href": "posts/week_1.html#ggplot2",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Downloading Data Data",
-    "text": "Downloading Data Data\n\nu &lt;- \"https://www.inqs.info/p/plotathon/owenWilsonWows.csv\"\nbasename(u)\ndownload.file(u,\n              file.path(getwd(), \"data\", basename(u)))"
-  },
-  {
-    "objectID": "posts/week_1.html#loading-data-1",
-    "href": "posts/week_1.html#loading-data-1",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Loading Data",
-    "text": "Loading Data\n\nmds &lt;- read_csv(\"data/owenWilsonWows.csv\")"
+    "section": "ggplot2",
+    "text": "ggplot2\nggplot2 is an R package used to create plots. The main idea is to use a data frame and a set of aesthetics (variables in the data frame) to create a base plot. Then, ggplot2 will layer geometries (plots) to the base plot to create a data visualization.\nAll new changes to the plot are layered on with the + symbol."
   },
   {
     "objectID": "posts/week_1.html#base-plot",
     "href": "posts/week_1.html#base-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Base Plot",
-    "text": "Base Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie))"
+    "text": "Base Plot\n\nmtcars |&gt; ggplot(aes(x = mpg))"
   },
   {
     "objectID": "posts/week_1.html#histogram",
     "href": "posts/week_1.html#histogram",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Histogram",
-    "text": "Histogram\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_histogram()"
+    "text": "Histogram\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_histogram()"
   },
   {
     "objectID": "posts/week_1.html#box-plot",
     "href": "posts/week_1.html#box-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Box Plot",
-    "text": "Box Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_boxplot()"
+    "text": "Box Plot\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_boxplot()"
   },
   {
     "objectID": "posts/week_1.html#density-plot",
     "href": "posts/week_1.html#density-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Density Plot",
-    "text": "Density Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_density()"
+    "text": "Density Plot\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_density()"
   },
   {
     "objectID": "posts/week_1.html#box-plot-by-category",
     "href": "posts/week_1.html#box-plot-by-category",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Box Plot By Category",
-    "text": "Box Plot By Category\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie, y = era)) +\n  geom_boxplot()"
+    "text": "Box Plot By Category\n\nmtcars |&gt; ggplot(aes(x = mpg, y = as.factor(cyl))) +\n  geom_boxplot()"
   },
   {
     "objectID": "posts/week_1.html#density-plot-by-category",
     "href": "posts/week_1.html#density-plot-by-category",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Density Plot By Category",
-    "text": "Density Plot By Category\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie, color = era)) +\n  geom_density()"
+    "text": "Density Plot By Category\n\nmtcars |&gt; ggplot(aes(x = mpg, color = as.factor(cyl))) +\n  geom_density()"
   },
   {
     "objectID": "posts/week_1.html#scatter-plot",
     "href": "posts/week_1.html#scatter-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Scatter Plot",
-    "text": "Scatter Plot\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point()"
+    "text": "Scatter Plot\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point()"
   },
   {
     "objectID": "posts/week_1.html#scatter-plot-by-group",
     "href": "posts/week_1.html#scatter-plot-by-group",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Scatter Plot by Group",
-    "text": "Scatter Plot by Group\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie, color = era)) +\n  geom_point()"
+    "text": "Scatter Plot by Group\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg, color = as.factor(cyl))) +\n  geom_point()"
   },
   {
     "objectID": "posts/week_1.html#add-regression-line",
     "href": "posts/week_1.html#add-regression-line",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Add Regression Line",
-    "text": "Add Regression Line\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
+    "text": "Add Regression Line\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
   },
   {
     "objectID": "posts/week_1.html#smooth-line",
     "href": "posts/week_1.html#smooth-line",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Smooth Line",
-    "text": "Smooth Line\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point() +\n  geom_smooth(se = F)"
+    "text": "Smooth Line\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_smooth(se = F)"
   },
   {
     "objectID": "posts/week_1.html#regression-lines-by-group",
     "href": "posts/week_1.html#regression-lines-by-group",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Regression Lines by Group",
-    "text": "Regression Lines by Group\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie,\n                  color = era)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
+    "text": "Regression Lines by Group\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg,\n                  color = as.factor(cyl))) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
   },
   {
     "objectID": "posts/week_2.html#tidy-tuesday-1",
@@ -287,95 +280,88 @@
     "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
   },
   {
-    "objectID": "posts/week_2.html#downloading-data-data",
-    "href": "posts/week_2.html#downloading-data-data",
+    "objectID": "posts/week_2.html#ggplot2",
+    "href": "posts/week_2.html#ggplot2",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Downloading Data Data",
-    "text": "Downloading Data Data\n\nu &lt;- \"https://www.inqs.info/p/plotathon/owenWilsonWows.csv\"\nbasename(u)\ndownload.file(u,\n              file.path(getwd(), \"data\", basename(u)))"
-  },
-  {
-    "objectID": "posts/week_2.html#loading-data-1",
-    "href": "posts/week_2.html#loading-data-1",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Loading Data",
-    "text": "Loading Data\n\nmds &lt;- read_csv(\"data/owenWilsonWows.csv\")"
+    "section": "ggplot2",
+    "text": "ggplot2\nggplot2 is an R package used to create plots. The main idea is to use a data frame and a set of aesthetics (variables in the data frame) to create a base plot. Then, ggplot2 will layer geometries (plots) to the base plot to create a data visualization.\nAll new changes to the plot are layered on with the + symbol."
   },
   {
     "objectID": "posts/week_2.html#base-plot",
     "href": "posts/week_2.html#base-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Base Plot",
-    "text": "Base Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie))"
+    "text": "Base Plot\n\nmtcars |&gt; ggplot(aes(x = mpg))"
   },
   {
     "objectID": "posts/week_2.html#histogram",
     "href": "posts/week_2.html#histogram",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Histogram",
-    "text": "Histogram\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_histogram()"
+    "text": "Histogram\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_histogram()"
   },
   {
     "objectID": "posts/week_2.html#box-plot",
     "href": "posts/week_2.html#box-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Box Plot",
-    "text": "Box Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_boxplot()"
+    "text": "Box Plot\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_boxplot()"
   },
   {
     "objectID": "posts/week_2.html#density-plot",
     "href": "posts/week_2.html#density-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Density Plot",
-    "text": "Density Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_density()"
+    "text": "Density Plot\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_density()"
   },
   {
     "objectID": "posts/week_2.html#box-plot-by-category",
     "href": "posts/week_2.html#box-plot-by-category",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Box Plot By Category",
-    "text": "Box Plot By Category\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie, y = era)) +\n  geom_boxplot()"
+    "text": "Box Plot By Category\n\nmtcars |&gt; ggplot(aes(x = mpg, y = as.factor(cyl))) +\n  geom_boxplot()"
   },
   {
     "objectID": "posts/week_2.html#density-plot-by-category",
     "href": "posts/week_2.html#density-plot-by-category",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Density Plot By Category",
-    "text": "Density Plot By Category\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie, color = era)) +\n  geom_density()"
+    "text": "Density Plot By Category\n\nmtcars |&gt; ggplot(aes(x = mpg, color = as.factor(cyl))) +\n  geom_density()"
   },
   {
     "objectID": "posts/week_2.html#scatter-plot",
     "href": "posts/week_2.html#scatter-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Scatter Plot",
-    "text": "Scatter Plot\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point()"
+    "text": "Scatter Plot\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point()"
   },
   {
     "objectID": "posts/week_2.html#scatter-plot-by-group",
     "href": "posts/week_2.html#scatter-plot-by-group",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Scatter Plot by Group",
-    "text": "Scatter Plot by Group\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie, color = era)) +\n  geom_point()"
+    "text": "Scatter Plot by Group\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg, color = as.factor(cyl))) +\n  geom_point()"
   },
   {
     "objectID": "posts/week_2.html#add-regression-line",
     "href": "posts/week_2.html#add-regression-line",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Add Regression Line",
-    "text": "Add Regression Line\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
+    "text": "Add Regression Line\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
   },
   {
     "objectID": "posts/week_2.html#smooth-line",
     "href": "posts/week_2.html#smooth-line",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Smooth Line",
-    "text": "Smooth Line\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point() +\n  geom_smooth(se = F)"
+    "text": "Smooth Line\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_smooth(se = F)"
   },
   {
     "objectID": "posts/week_2.html#regression-lines-by-group",
     "href": "posts/week_2.html#regression-lines-by-group",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Regression Lines by Group",
-    "text": "Regression Lines by Group\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie,\n                  color = era)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
+    "text": "Regression Lines by Group\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg,\n                  color = as.factor(cyl))) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
   },
   {
     "objectID": "posts/week_3.html#tidy-tuesday-1",
@@ -431,7 +417,7 @@
     "href": "posts/week_3.html#example-1",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Example",
-    "text": "Example\n\n\nCode\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(ggwordcloud)\nlibrary(camcorder)\n\n\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, summary) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  count(word, sort = TRUE) |&gt; filter(n &gt; 5)\n\nisc_title_top |&gt;  \n  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data\n                             replace = TRUE, \n                             prob = c(1, 1, 4, 1, 1))) |&gt; \n  ggplot(aes(label = word, size = n, angle = angle)) +\n  geom_text_wordcloud_area(shape = \"star\") +\n  scale_size_area(max_size = 30) +\n  theme_bw()"
+    "text": "Example\n\n\nCode\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, summary) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  count(word, sort = TRUE) |&gt; filter(n &gt; 5)\n\nisc_title_top |&gt;  \n  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data\n                             replace = TRUE, \n                             prob = c(1, 1, 4, 1, 1))) |&gt; \n  ggplot(aes(label = word, size = n, angle = angle)) +\n  geom_text_wordcloud_area(shape = \"star\") +\n  scale_size_area(max_size = 20) +\n  theme_bw()"
   },
   {
     "objectID": "posts/week_3.html#r-programming",
@@ -476,94 +462,87 @@
     "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
   },
   {
-    "objectID": "posts/week_3.html#downloading-data-data",
-    "href": "posts/week_3.html#downloading-data-data",
+    "objectID": "posts/week_3.html#ggplot2",
+    "href": "posts/week_3.html#ggplot2",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Downloading Data Data",
-    "text": "Downloading Data Data\n\nu &lt;- \"https://www.inqs.info/p/plotathon/owenWilsonWows.csv\"\nbasename(u)\ndownload.file(u,\n              file.path(getwd(), \"data\", basename(u)))"
-  },
-  {
-    "objectID": "posts/week_3.html#loading-data-1",
-    "href": "posts/week_3.html#loading-data-1",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Loading Data",
-    "text": "Loading Data\n\nmds &lt;- read_csv(\"data/owenWilsonWows.csv\")"
+    "section": "ggplot2",
+    "text": "ggplot2\nggplot2 is an R package used to create plots. The main idea is to use a data frame and a set of aesthetics (variables in the data frame) to create a base plot. Then, ggplot2 will layer geometries (plots) to the base plot to create a data visualization.\nAll new changes to the plot are layered on with the + symbol."
   },
   {
     "objectID": "posts/week_3.html#base-plot",
     "href": "posts/week_3.html#base-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Base Plot",
-    "text": "Base Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie))"
+    "text": "Base Plot\n\nmtcars |&gt; ggplot(aes(x = mpg))"
   },
   {
     "objectID": "posts/week_3.html#histogram",
     "href": "posts/week_3.html#histogram",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Histogram",
-    "text": "Histogram\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_histogram()"
+    "text": "Histogram\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_histogram()"
   },
   {
     "objectID": "posts/week_3.html#box-plot",
     "href": "posts/week_3.html#box-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Box Plot",
-    "text": "Box Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_boxplot()"
+    "text": "Box Plot\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_boxplot()"
   },
   {
     "objectID": "posts/week_3.html#density-plot",
     "href": "posts/week_3.html#density-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Density Plot",
-    "text": "Density Plot\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie)) +\n  geom_density()"
+    "text": "Density Plot\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_density()"
   },
   {
     "objectID": "posts/week_3.html#box-plot-by-category",
     "href": "posts/week_3.html#box-plot-by-category",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Box Plot By Category",
-    "text": "Box Plot By Category\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie, y = era)) +\n  geom_boxplot()"
+    "text": "Box Plot By Category\n\nmtcars |&gt; ggplot(aes(x = mpg, y = as.factor(cyl))) +\n  geom_boxplot()"
   },
   {
     "objectID": "posts/week_3.html#density-plot-by-category",
     "href": "posts/week_3.html#density-plot-by-category",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Density Plot By Category",
-    "text": "Density Plot By Category\n\nmds |&gt; ggplot(aes(x = total_wows_in_movie, color = era)) +\n  geom_density()"
+    "text": "Density Plot By Category\n\nmtcars |&gt; ggplot(aes(x = mpg, color = as.factor(cyl))) +\n  geom_density()"
   },
   {
     "objectID": "posts/week_3.html#scatter-plot",
     "href": "posts/week_3.html#scatter-plot",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Scatter Plot",
-    "text": "Scatter Plot\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point()"
+    "text": "Scatter Plot\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point()"
   },
   {
     "objectID": "posts/week_3.html#scatter-plot-by-group",
     "href": "posts/week_3.html#scatter-plot-by-group",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Scatter Plot by Group",
-    "text": "Scatter Plot by Group\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie, color = era)) +\n  geom_point()"
+    "text": "Scatter Plot by Group\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg, color = as.factor(cyl))) +\n  geom_point()"
   },
   {
     "objectID": "posts/week_3.html#add-regression-line",
     "href": "posts/week_3.html#add-regression-line",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Add Regression Line",
-    "text": "Add Regression Line\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
+    "text": "Add Regression Line\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
   },
   {
     "objectID": "posts/week_3.html#smooth-line",
     "href": "posts/week_3.html#smooth-line",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Smooth Line",
-    "text": "Smooth Line\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie)) +\n  geom_point() +\n  geom_smooth(se = F)"
+    "text": "Smooth Line\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_smooth(se = F)"
   },
   {
     "objectID": "posts/week_3.html#regression-lines-by-group",
     "href": "posts/week_3.html#regression-lines-by-group",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Regression Lines by Group",
-    "text": "Regression Lines by Group\n\nmds |&gt; ggplot(aes(x = durationInSeconds, \n                  y = total_wows_in_movie,\n                  color = era)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
+    "text": "Regression Lines by Group\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg,\n                  color = as.factor(cyl))) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
   }
 ]
