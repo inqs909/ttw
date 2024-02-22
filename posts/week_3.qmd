@@ -123,10 +123,10 @@ isc_title_top |> ggplot(aes(label = word, size = n)) +
 library(ggthemes)
 isc |> ggplot(aes(x=as.factor(year), y = funded)) + 
   geom_boxplot() +
-  geom_jitter(shape="\u0024", size = 14) +
+  geom_jitter(shape="\u0024", size = 6) +
   xlab("Year") + ylab("Funded Amount") +
   theme_wsj() +
-  theme(axis.text = element_text(size = 18))
+  theme(axis.text = element_text(size = 16))
 ```
 
 ## Worked Plot
