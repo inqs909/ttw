@@ -126,7 +126,7 @@ isc |> ggplot(aes(x=as.factor(year), y = funded)) +
   geom_jitter(shape="\u0024", size = 14) +
   xlab("Year") + ylab("Funded Amount") +
   theme_wsj() +
-  theme(axis.text = element_text(size = 36))
+  theme(axis.text = element_text(size = 18))
 ```
 
 ## Worked Plot

@@ -417,7 +417,7 @@
     "href": "posts/week_3.html#example",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Example",
-    "text": "Example\n\n\nCode\nlibrary(ggthemes)\nisc |&gt; ggplot(aes(x=as.factor(year), y = funded)) + \n  geom_boxplot() +\n  geom_jitter(shape=\"\\u0024\", size = 14) +\n  xlab(\"Year\") + ylab(\"Funded Amount\") +\n  theme_wsj() +\n  theme(axis.text = element_text(size = 36))"
+    "text": "Example\n\n\nCode\nlibrary(ggthemes)\nisc |&gt; ggplot(aes(x=as.factor(year), y = funded)) + \n  geom_boxplot() +\n  geom_jitter(shape=\"\\u0024\", size = 14) +\n  xlab(\"Year\") + ylab(\"Funded Amount\") +\n  theme_wsj() +\n  theme(axis.text = element_text(size = 18))"
   },
   {
     "objectID": "posts/week_3.html#worked-plot",
