@@ -417,7 +417,21 @@
     "href": "posts/week_3.html#example",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Example",
-    "text": "Example\n\n\nCode\nlibrary(ggthemes)\nisc |&gt; ggplot(aes(x=as.factor(year), y = funded)) + \n  geom_boxplot() +\n  geom_jitter(shape = 4) +\n  xlab(\"Year\") + ylab(\"Funded Amount\") + ggtitle(\"\") +\n  theme_wsj()"
+    "text": "Example\n\n\nCode\nlibrary(ggthemes)\nisc |&gt; ggplot(aes(x=as.factor(year), y = funded)) + \n  geom_boxplot() +\n  geom_jitter(shape=\"\\u0024\", size = 14) +\n  xlab(\"Year\") + ylab(\"Funded Amount\") +\n  theme_wsj() +\n  theme(axis.text = element_text(size = 36))"
+  },
+  {
+    "objectID": "posts/week_3.html#worked-plot",
+    "href": "posts/week_3.html#worked-plot",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Worked Plot",
+    "text": "Worked Plot"
+  },
+  {
+    "objectID": "posts/week_3.html#example-1",
+    "href": "posts/week_3.html#example-1",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(ggwordcloud)\nlibrary(camcorder)\n\n\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, summary) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  count(word, sort = TRUE) |&gt; filter(n &gt; 5)\n\nisc_title_top |&gt;  \n  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data\n                             replace = TRUE, \n                             prob = c(1, 1, 4, 1, 1))) |&gt; \n  ggplot(aes(label = word, size = n, angle = angle)) +\n  geom_text_wordcloud_area(shape = \"star\") +\n  scale_size_area(max_size = 30) +\n  theme_bw()"
   },
   {
     "objectID": "posts/week_3.html#r-programming",

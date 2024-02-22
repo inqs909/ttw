@@ -109,23 +109,68 @@ isc_title_top |> ggplot(aes(label = word, size = n)) +
 
 ## Example
 
-
 ```{r}
 #| label: ex2
 #| code-fold: true
 #| eval: true
 #| fig-alt: |
-#|    The plot shows an overall increase for all items, except in 2021
+#|    The plot shows the distribution of amount funded by year. Additionally, 
+#|    there are points overlayed on the boxplots to indicate how many grants 
+#|    have been funded by that year. 2018 had several grants funded with one 
+#|    being $60,000. There is also a large variability in 2018 and 2020. 
+#|    All other years have smaller variability.
 
 library(ggthemes)
 isc |> ggplot(aes(x=as.factor(year), y = funded)) + 
   geom_boxplot() +
-  geom_jitter(shape = 4) +
-  xlab("Year") + ylab("Funded Amount") + ggtitle("") +
-  theme_wsj()
+  geom_jitter(shape="\u0024", size = 14) +
+  xlab("Year") + ylab("Funded Amount") +
+  theme_wsj() +
+  theme(axis.text = element_text(size = 36))
+```
 
+## Worked Plot
+
+![](img/post31.gif)
+
+## Example
+
+```{r}
+#| label: ex3
+#| code-fold: true
+#| eval: true
+#| fig-alt: |
+#|    The plot shows the distribution of amount funded by year. Additionally, 
+#|    there are points overlayed on the boxplots to indicate how many grants 
+#|    have been funded by that year. 2018 had several grants funded with one 
+#|    being $60,000. There is also a large variability in 2018 and 2020. 
+#|    All other years have smaller variability.
+
+library(tidyverse)
+library(tidytext)
+library(ggwordcloud)
+library(camcorder)
+
+
+
+isc_title <- isc |> 
+  unnest_tokens(word, summary) |> 
+  anti_join(stop_words)
+
+isc_title_top <- isc_title |>
+  count(word, sort = TRUE) |> filter(n > 5)
+
+isc_title_top |>  
+  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data
+                             replace = TRUE, 
+                             prob = c(1, 1, 4, 1, 1))) |> 
+  ggplot(aes(label = word, size = n, angle = angle)) +
+  geom_text_wordcloud_area(shape = "star") +
+  scale_size_area(max_size = 30) +
+  theme_bw()
 
 ```
+
 
 
 # Installation
