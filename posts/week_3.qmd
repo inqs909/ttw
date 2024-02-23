@@ -185,7 +185,7 @@ A web version of RStudio.
 ## R Packages
 
 ```{r}
-#| echo: false
+#| echo: true
 #| eval: false
 
 install.packages("tidyverse")

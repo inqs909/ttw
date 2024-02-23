@@ -445,7 +445,7 @@
     "href": "posts/week_3.html#r-packages",
     "title": "Tidy Tuesday on Wednesday",
     "section": "R Packages",
-    "text": "R Packages"
+    "text": "R Packages\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")"
   },
   {
     "objectID": "posts/week_3.html#load-minimum-r-package",
