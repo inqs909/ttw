@@ -1,30 +1,213 @@
 ---
-title: "Week 4"
-date: 02-10-23
-description: We will finish our discussion with functions and begin data manipulation.
-editor: visual
-draft: true
-editor_options: 
-  chunk_output_type: console
+title: "Tidy Tuesday on Wednesday"
+subtitle: "www.inqs.info/ttw"
+date: 02-27-24
+description: Third week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+engine: knitr
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    comment: "#>" 
+draft: false
+categories:
+  - sp2024
+image: week_4/post1.png
+execute: 
+  cache: true
 ---
 
-## Learning Outcomes
+# Tidy Tuesday
 
-### First Lecture
+## Tidy Tuesday
 
--   \*apply family of functions
+Tidy Tuesday is a weekly data visualization challenge from the [R 4 Data Science Online Community](https://github.com/rfordatascience/tidytuesday).
 
-### Second Lecture
+## Week 9
 
--   Anonymous Functions
+The R Consortium ISC has been awarding grants since 2016. This week's data is an exploration of past grant recipients.
 
--   Pipes
+Are there any keywords that stand out in the titles or summaries of awarded grants? Have the funded amounts changed over time?
 
--   Data Manipulation
+::: fragment
+More information about the data can be found on [GitHub](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-20/readme.md) and [Blog Post](https://www.r-consortium.org/blog/2024/02/08/r-consortium-infrastructure-steering-committee-isc-grant-program-accepting-proposals-starting-march-1st).
+:::
 
-## Resources
+::: fragment
+A csv file of the data is [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-20/isc_grants.csv).
+:::
 
-| Lecture | Slides | Videos | Files |
-|---------|--------|--------|-------|
-| 1       |        |        |       |
-| 2       |        |        |       |
+::: fragment
+More on text mining [here](https://www.tidytextmining.com/topicmodeling).
+:::
+
+## Loading Data
+
+```{r}
+#| echo: true
+#| eval: true
+
+tuesdata <- tidytuesdayR::tt_load(2024, week = 8)
+isc <- tuesdata$isc_grants
+```
+
+
+## Data
+
+```{r}
+#| eval: true
+#| echo: false
+isc |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
+```
+
+
+
+## R Softare 
+
+
+[R](https://www.r-project.org/): R is a statistical programming package that allows you to conduct different types of analysis.
+
+
+[RStudio](https://posit.co/downloads/): A piece of software that organizes how you conduct statistical analysis in R.
+
+[Posit Cloud](https://posit.cloud/login): A web version of RStudio.
+
+
+## Recommended R Packages
+
+```{r}
+#| echo: true
+#| eval: false
+
+install.packages("tidyverse")
+install.packages("plotly")
+install.packages("ggwordcloud")
+install.packages("ggthemes")
+install.packages("ggpie")
+install.packages("ggbump")
+install.packages("tidytext")
+install.packages("remotes")
+install.packages("esquisse")
+install.packages("tidytuesdayR")
+remotes::install_github("MatthewBJane/ThemePark")
+
+```
+
+## Visualization Resources
+
+[R Graphics Cookbook](https://r-graphics.org/)
+
+[R Graph Gallery](https://r-graph-gallery.com/)
+
+[R Charts](https://r-charts.com/)
+
+[ggplot2](https://ggplot2.tidyverse.org/)
+
+# Graphing Examples
+
+## ggplot2
+
+`ggplot2` is an R package used to create plots. The main idea is to use a data frame and a set of aesthetics (variables in the data frame) to create a base plot. Then, `ggplot2` will layer geometries (plots) to the base plot to create a data visualization.
+
+All new changes to the plot are layered on with the `+` symbol.
+
+
+
+# Example 1
+
+## Example
+```{r}
+#| label: ex1
+#| code-fold: true
+#| eval: true
+#| fig-alt: |
+#|    The plot shows two separate word clouds demonstrating the words that most 
+#|    common words in project titles in both Fall and Spring funding sessions. 
+#|    The most common word in both Fall and Spring was data. Other common words 
+#|    in Fall are dbi, api, and development. The most common word in Spring are 
+#|    package, interactive and infrastructure.
+
+library(tidyverse)
+library(ggwordcloud)
+library(tidytext)
+
+isc_title <- isc |> 
+  unnest_tokens(word, title) |> 
+  anti_join(stop_words)
+
+isc_title_top <- isc_title |>
+  group_by(group) |> 
+  count(word, sort = TRUE) |> filter(n > 1)
+
+isc_title_top |> ggplot(aes(label = word, size = n)) +
+  geom_text_wordcloud() +
+  scale_size_area(max_size = 10) +
+  facet_wrap(~group, labeller =  labeller(group=c('1' = "Fall", '2' = "Spring"))) +
+  theme_bw()
+
+```
+
+## Example
+
+```{r}
+#| label: ex2
+#| code-fold: true
+#| eval: true
+#| fig-alt: |
+#|    The plot shows the distribution of amount funded by year. Additionally, 
+#|    there are points overlayed on the boxplots to indicate how many grants 
+#|    have been funded by that year. 2018 had several grants funded with one 
+#|    being $60,000. There is also a large variability in 2018 and 2020. 
+#|    All other years have smaller variability.
+
+library(ggthemes)
+isc |> ggplot(aes(x=as.factor(year), y = funded)) + 
+  geom_boxplot() +
+  geom_jitter(shape="\u0024", size = 6) +
+  xlab("Year") + ylab("Funded Amount") +
+  theme_wsj() +
+  theme(axis.text = element_text(size = 16))
+```
+
+## Worked Plot
+
+## Example
+
+```{r}
+#| label: ex3
+#| code-fold: true
+#| eval: true
+#| fig-alt: |
+#|   A star-shaped word cloud displaying the the most common words
+#|   used in the summary of the grants. The most common words are
+#|   data, package, project, users, aims, and cran.
+
+
+library(tidyverse)
+library(ggwordcloud)
+
+isc_title <- isc |> 
+  unnest_tokens(word, summary) |> 
+  anti_join(stop_words)
+
+isc_title_top <- isc_title |>
+  count(word, sort = TRUE) |> filter(n > 5)
+
+isc_title_top |>  
+  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data
+                             replace = TRUE, 
+                             prob = c(1, 1, 4, 1, 1))) |> 
+  ggplot(aes(label = word, size = n, angle = angle)) +
+  geom_text_wordcloud_area(shape = "star") +
+  scale_size_area(max_size = 20) +
+  theme_bw()
+
+```
+
