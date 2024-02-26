@@ -8,6 +8,7 @@ format:
     scrollable: true
     navigation-mode: vertical
     controls-layout: bottom-right
+    preview-links: auto
     controls-tutorial: true
     incremental: false 
     chalkboard:
@@ -164,11 +165,11 @@ isc_title_top |>
 
 ## Tidy Tuesday R Community Examples
 
-[nrennie](https://github.com/nrennie/tidytuesday/tree/main/2024/2024-02-20){preview-link="true"}
+[nrennie](https://github.com/nrennie/tidytuesday/tree/main/2024/2024-02-20)
 
-[mvbloois](https://github.com/mvbloois/tidytuesday){preview-link="true"}
+[mvbloois](https://github.com/mvbloois/tidytuesday)
 
-[GabsPalomo](https://github.com/GabsPalomo/myTidyTuesdayContributions/blob/main/2024_02_20_isc_grants/bubble_plot.R){preview-link="true"}
+[GabsPalomo](https://github.com/GabsPalomo/myTidyTuesdayContributions/blob/main/2024_02_20_isc_grants/bubble_plot.R)
 
 # Installation
 
