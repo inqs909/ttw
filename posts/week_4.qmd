@@ -2,7 +2,7 @@
 title: "Tidy Tuesday on Wednesday"
 subtitle: "www.inqs.info/ttw"
 date: 02-27-24
-description: Third week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.
+description: Fourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the Leap Day Data.
 format:
   revealjs:
     scrollable: true
@@ -32,21 +32,17 @@ Tidy Tuesday is a weekly data visualization challenge from the [R 4 Data Science
 
 ## Week 9
 
-The R Consortium ISC has been awarding grants since 2016. This week's data is an exploration of past grant recipients.
-
-Are there any keywords that stand out in the titles or summaries of awarded grants? Have the funded amounts changed over time?
 
 ::: fragment
-More information about the data can be found on [GitHub](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-20/readme.md) and [Blog Post](https://www.r-consortium.org/blog/2024/02/08/r-consortium-infrastructure-steering-committee-isc-grant-program-accepting-proposals-starting-march-1st).
+More information about the data can be found on [GitHub](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-27/readme.md) and [Blog Post](https://www.r-consortium.org/blog/2024/02/08/r-consortium-infrastructure-steering-committee-isc-grant-program-accepting-proposals-starting-march-1st).
 :::
 
 ::: fragment
-A csv file of the data is [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-20/isc_grants.csv).
+Csv files:
+
+[Events](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-27/events.csv) | [Births](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-27/births.csv) | [Deaths](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-27/deaths.csv) 
 :::
 
-::: fragment
-More on text mining [here](https://www.tidytextmining.com/topicmodeling).
-:::
 
 ## Loading Data
 
@@ -54,8 +50,11 @@ More on text mining [here](https://www.tidytextmining.com/topicmodeling).
 #| echo: true
 #| eval: true
 
-tuesdata <- tidytuesdayR::tt_load(2024, week = 8)
-isc <- tuesdata$isc_grants
+tuesdata <- tidytuesdayR::tt_load(2024, week = 9)
+births <- tuesdata$births
+deaths <- tuesdata$deaths
+events <- tuesdata$events
+
 ```
 
 
@@ -64,10 +63,10 @@ isc <- tuesdata$isc_grants
 ```{r}
 #| eval: true
 #| echo: false
-isc |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
+births |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
+deaths |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
+events |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
 ```
-
-
 
 ## R Softare 
 
@@ -122,7 +121,66 @@ All new changes to the plot are layered on with the `+` symbol.
 
 # Example 1
 
-## Example
+## Cleaning Data
+
+```{r}
+#| label: ex_clean
+#| echo: false
+#| eval: true
+#| fig-align: center
+
+
+library(dtrackr)
+library(tidyverse)
+births <- births |> mutate(type = "Births") 
+deaths <- deaths |> mutate(type = "Deaths")
+
+births |> track(.messages = c("Start with Births and Deaths Data Set",
+                              "A new variable was added to both data sets indicating type.")) |> 
+  bind_rows(deaths) |>
+  comment(.messages = c("Births and Deaths were aggregated to one table.",
+                        "There are currently {.count} observations in the data set.")) |> 
+  filter(!(is.na(year_birth) | is.na(year_death))) |> 
+  comment(.messages = c("Removed any missing years in births or deaths.",
+                        "There are currently {.count} observations in the data set.")) |> 
+  flowchart()
+
+
+```
+
+
+```{r}
+#| echo: true
+#| eval: true
+
+births <- births |> mutate(type = "Births")
+
+
+deaths <- deaths |> mutate(type = "Deaths")
+
+
+df <- births |> bind_rows(deaths) |> 
+    filter(!(is.na(year_birth) | is.na(year_death))) |> 
+    filter(year_birth > 1700) |>
+    # group_by(type) |>
+    slice_sample(prop = 1) |>
+    mutate(id = row_number()) 
+    # ungroup()
+
+```
+
+
+## Cleaned Data
+
+```{r}
+#| echo: false
+#| eval: true
+
+df |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
+```
+
+
+## Plot
 ```{r}
 #| label: ex1
 #| code-fold: true
@@ -135,79 +193,21 @@ All new changes to the plot are layered on with the `+` symbol.
 #|    package, interactive and infrastructure.
 
 library(tidyverse)
-library(ggwordcloud)
-library(tidytext)
-
-isc_title <- isc |> 
-  unnest_tokens(word, title) |> 
-  anti_join(stop_words)
-
-isc_title_top <- isc_title |>
-  group_by(group) |> 
-  count(word, sort = TRUE) |> filter(n > 1)
-
-isc_title_top |> ggplot(aes(label = word, size = n)) +
-  geom_text_wordcloud() +
-  scale_size_area(max_size = 10) +
-  facet_wrap(~group, labeller =  labeller(group=c('1' = "Fall", '2' = "Spring"))) +
-  theme_bw()
-
-```
-
-## Example
-
-```{r}
-#| label: ex2
-#| code-fold: true
-#| eval: true
-#| fig-alt: |
-#|    The plot shows the distribution of amount funded by year. Additionally, 
-#|    there are points overlayed on the boxplots to indicate how many grants 
-#|    have been funded by that year. 2018 had several grants funded with one 
-#|    being $60,000. There is also a large variability in 2018 and 2020. 
-#|    All other years have smaller variability.
-
-library(ggthemes)
-isc |> ggplot(aes(x=as.factor(year), y = funded)) + 
-  geom_boxplot() +
-  geom_jitter(shape="\u0024", size = 6) +
-  xlab("Year") + ylab("Funded Amount") +
-  theme_wsj() +
-  theme(axis.text = element_text(size = 16))
-```
-
-## Worked Plot
-
-## Example
-
-```{r}
-#| label: ex3
-#| code-fold: true
-#| eval: true
-#| fig-alt: |
-#|   A star-shaped word cloud displaying the the most common words
-#|   used in the summary of the grants. The most common words are
-#|   data, package, project, users, aims, and cran.
 
 
-library(tidyverse)
-library(ggwordcloud)
+df |>  
+  ggplot(aes(x=year_birth, xend = year_death, 
+             y = id, yend = id, color = type)) +
+    geom_segment() +
+    xlab("Year") + ylab("") + 
+    theme_bw() +
+    scale_color_discrete(name = "")+
+    theme(axis.text.y = element_blank(),
+          axis.ticks.y = element_blank()) +
+    ggtitle("Life Span for Births and Deaths") +
+    labs(subtitle = "on Leap Day")
 
-isc_title <- isc |> 
-  unnest_tokens(word, summary) |> 
-  anti_join(stop_words)
 
-isc_title_top <- isc_title |>
-  count(word, sort = TRUE) |> filter(n > 5)
-
-isc_title_top |>  
-  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data
-                             replace = TRUE, 
-                             prob = c(1, 1, 4, 1, 1))) |> 
-  ggplot(aes(label = word, size = n, angle = angle)) +
-  geom_text_wordcloud_area(shape = "star") +
-  scale_size_area(max_size = 20) +
-  theme_bw()
 
 ```
 

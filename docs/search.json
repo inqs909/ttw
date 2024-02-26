@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Tidy Tuesday on Wednesday",
     "section": "",
-    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nThird week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.\n\n\n\n\n\nFeb 27, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nThird week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.\n\n\n\n\n\nFeb 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nSecond week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Valentines day sales.\n\n\n\n\n\nFeb 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
+    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the Leap Day Data.\n\n\n\n\n\nFeb 27, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nThird week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.\n\n\n\n\n\nFeb 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nSecond week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Valentines day sales.\n\n\n\n\n\nFeb 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/week_1.html#r-programming",
@@ -207,14 +207,14 @@
     "href": "posts/week_4.html#week-9",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Week 9",
-    "text": "Week 9\nThe R Consortium ISC has been awarding grants since 2016. This week’s data is an exploration of past grant recipients.\nAre there any keywords that stand out in the titles or summaries of awarded grants? Have the funded amounts changed over time?\n\nMore information about the data can be found on GitHub and Blog Post.\n\n\nA csv file of the data is here.\n\n\nMore on text mining here."
+    "text": "Week 9\n\nMore information about the data can be found on GitHub and Blog Post.\n\n\nCsv files:\nEvents | Births | Deaths"
   },
   {
     "objectID": "posts/week_4.html#loading-data",
     "href": "posts/week_4.html#loading-data",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Loading Data",
-    "text": "Loading Data\n\ntuesdata &lt;- tidytuesdayR::tt_load(2024, week = 8)\n\n#&gt; \n#&gt;  Downloading file 1 of 1: `isc_grants.csv`\n\nisc &lt;- tuesdata$isc_grants"
+    "text": "Loading Data\n\ntuesdata &lt;- tidytuesdayR::tt_load(2024, week = 9)\n\n#&gt; \n#&gt;  Downloading file 1 of 3: `events.csv`\n#&gt;  Downloading file 2 of 3: `births.csv`\n#&gt;  Downloading file 3 of 3: `deaths.csv`\n\nbirths &lt;- tuesdata$births\ndeaths &lt;- tuesdata$deaths\nevents &lt;- tuesdata$events"
   },
   {
     "objectID": "posts/week_4.html#data",
@@ -252,32 +252,25 @@
     "text": "ggplot2\nggplot2 is an R package used to create plots. The main idea is to use a data frame and a set of aesthetics (variables in the data frame) to create a base plot. Then, ggplot2 will layer geometries (plots) to the base plot to create a data visualization.\nAll new changes to the plot are layered on with the + symbol."
   },
   {
-    "objectID": "posts/week_4.html#example",
-    "href": "posts/week_4.html#example",
+    "objectID": "posts/week_4.html#cleaning-data",
+    "href": "posts/week_4.html#cleaning-data",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Example",
-    "text": "Example\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggwordcloud)\nlibrary(tidytext)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, title) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  group_by(group) |&gt; \n  count(word, sort = TRUE) |&gt; filter(n &gt; 1)\n\nisc_title_top |&gt; ggplot(aes(label = word, size = n)) +\n  geom_text_wordcloud() +\n  scale_size_area(max_size = 10) +\n  facet_wrap(~group, labeller =  labeller(group=c('1' = \"Fall\", '2' = \"Spring\"))) +\n  theme_bw()"
+    "section": "Cleaning Data",
+    "text": "Cleaning Data\n\n\n\n\n\n\n\n\n%0\n\n\n\n3:s-&gt;5\n\n\n\n\n\n3:e-&gt;4\n\n\n\n\n\n2:s-&gt;3\n\n\n\n\n\n1:s-&gt;2\n\n\n\n\n\n5\n\nRemoved any missing years in births or deaths.\nThere are currently 117 observations in the data set.\n\n\n\n3\n\nBirths and Deaths were aggregated to one table.\nThere are currently 183 observations in the data set.\n\n\n\n4\n\nexcluded 66 items\n\n\n\n2\n\nUnion\n183 in union\n\n\n\n1\n\nStart with Births and Deaths Data Set\nA new variable was added to both data sets indicating type.\n\n\n\n\n\n\n\nbirths &lt;- births |&gt; mutate(type = \"Births\")\n\n\ndeaths &lt;- deaths |&gt; mutate(type = \"Deaths\")\n\n\ndf &lt;- births |&gt; bind_rows(deaths) |&gt; \n    filter(!(is.na(year_birth) | is.na(year_death))) |&gt; \n    filter(year_birth &gt; 1700) |&gt;\n    # group_by(type) |&gt;\n    slice_sample(prop = 1) |&gt;\n    mutate(id = row_number()) \n    # ungroup()"
   },
   {
-    "objectID": "posts/week_4.html#example-2",
-    "href": "posts/week_4.html#example-2",
+    "objectID": "posts/week_4.html#cleaned-data",
+    "href": "posts/week_4.html#cleaned-data",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Example",
-    "text": "Example\n\n\nCode\nlibrary(ggthemes)\nisc |&gt; ggplot(aes(x=as.factor(year), y = funded)) + \n  geom_boxplot() +\n  geom_jitter(shape=\"\\u0024\", size = 6) +\n  xlab(\"Year\") + ylab(\"Funded Amount\") +\n  theme_wsj() +\n  theme(axis.text = element_text(size = 16))"
+    "section": "Cleaned Data",
+    "text": "Cleaned Data"
   },
   {
-    "objectID": "posts/week_4.html#worked-plot",
-    "href": "posts/week_4.html#worked-plot",
+    "objectID": "posts/week_4.html#plot",
+    "href": "posts/week_4.html#plot",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Worked Plot",
-    "text": "Worked Plot"
-  },
-  {
-    "objectID": "posts/week_4.html#example-3",
-    "href": "posts/week_4.html#example-3",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Example",
-    "text": "Example\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, summary) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  count(word, sort = TRUE) |&gt; filter(n &gt; 5)\n\nisc_title_top |&gt;  \n  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data\n                             replace = TRUE, \n                             prob = c(1, 1, 4, 1, 1))) |&gt; \n  ggplot(aes(label = word, size = n, angle = angle)) +\n  geom_text_wordcloud_area(shape = \"star\") +\n  scale_size_area(max_size = 20) +\n  theme_bw()"
+    "section": "Plot",
+    "text": "Plot\n\n\nCode\nlibrary(tidyverse)\n\n\ndf |&gt;  \n  ggplot(aes(x=year_birth, xend = year_death, \n             y = id, yend = id, color = type)) +\n    geom_segment() +\n    xlab(\"Year\") + ylab(\"\") + \n    theme_bw() +\n    scale_color_discrete(name = \"\")+\n    theme(axis.text.y = element_blank(),\n          axis.ticks.y = element_blank()) +\n    ggtitle(\"Life Span for Births and Deaths\") +\n    labs(subtitle = \"on Leap Day\")"
   },
   {
     "objectID": "posts/week_2.html#tidy-tuesday-1",
