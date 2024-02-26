@@ -109,7 +109,6 @@ remotes::install_github("MatthewBJane/ThemePark")
 
 [ggplot2](https://ggplot2.tidyverse.org/)
 
-# Graphing Examples
 
 ## ggplot2
 
@@ -154,18 +153,13 @@ births |> track(.messages = c("Start with Births and Deaths Data Set",
 #| eval: true
 
 births <- births |> mutate(type = "Births")
-
-
 deaths <- deaths |> mutate(type = "Deaths")
-
 
 df <- births |> bind_rows(deaths) |> 
     filter(!(is.na(year_birth) | is.na(year_death))) |> 
     filter(year_birth > 1700) |>
-    # group_by(type) |>
     slice_sample(prop = 1) |>
     mutate(id = row_number()) 
-    # ungroup()
 
 ```
 

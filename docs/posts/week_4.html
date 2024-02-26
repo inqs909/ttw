@@ -488,11 +488,6 @@
 <p><a href="https://r-graph-gallery.com/">R Graph Gallery</a></p>
 <p><a href="https://r-charts.com/">R Charts</a></p>
 <p><a href="https://ggplot2.tidyverse.org/">ggplot2</a></p>
-</section></section>
-<section>
-<section id="graphing-examples" class="title-slide slide level1 center">
-<h1>Graphing Examples</h1>
-
 </section>
 <section id="ggplot2" class="slide level2">
 <h2>ggplot2</h2>
@@ -582,18 +577,13 @@
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>births <span class="ot">&lt;-</span> births <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">type =</span> <span class="st">"Births"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-2"><a href="#cb5-2"></a>deaths <span class="ot">&lt;-</span> deaths <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">type =</span> <span class="st">"Deaths"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a>deaths <span class="ot">&lt;-</span> deaths <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">type =</span> <span class="st">"Deaths"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a>df <span class="ot">&lt;-</span> births <span class="sc">|&gt;</span> <span class="fu">bind_rows</span>(deaths) <span class="sc">|&gt;</span> </span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="fu">filter</span>(<span class="sc">!</span>(<span class="fu">is.na</span>(year_birth) <span class="sc">|</span> <span class="fu">is.na</span>(year_death))) <span class="sc">|&gt;</span> </span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="fu">filter</span>(year_birth <span class="sc">&gt;</span> <span class="dv">1700</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>    <span class="co"># group_by(type) |&gt;</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a>    <span class="fu">slice_sample</span>(<span class="at">prop =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>    <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>()) </span>
-<span id="cb5-13"><a href="#cb5-13"></a>    <span class="co"># ungroup()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4"></a>df <span class="ot">&lt;-</span> births <span class="sc">|&gt;</span> <span class="fu">bind_rows</span>(deaths) <span class="sc">|&gt;</span> </span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="fu">filter</span>(<span class="sc">!</span>(<span class="fu">is.na</span>(year_birth) <span class="sc">|</span> <span class="fu">is.na</span>(year_death))) <span class="sc">|&gt;</span> </span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="fu">filter</span>(year_birth <span class="sc">&gt;</span> <span class="dv">1700</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="fu">slice_sample</span>(<span class="at">prop =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="cleaned-data" class="slide level2">
