@@ -45,6 +45,19 @@ More information about the data can be found on [GitHub](https://github.com/rfor
 :::
 
 
+## Tidy Tuesday Community Examples
+
+[GabsPalomo](https://github.com/GabsPalomo/myTidyTuesdayContributions/tree/main/2024_02_13_valentines_day)
+
+[project_presentations](https://github.com/Aditya-Dahiya/projects_presentations/blob/main/projects/tidy_valentine_day.R)
+
+[curatedmess](https://github.com/curatedmess/TidyTuesday/tree/main/2024/02132024)
+
+[borstell](https://github.com/borstell/tidytuesday/tree/main/2024/2024-02-13)
+
+[nrennie](https://github.com/nrennie/tidytuesday/tree/main/2024/2024-02-13)
+
+[camartinezbu](https://github.com/camartinezbu/tidytuesday/tree/main/2024/2024-week7)
 
 ## Loading Data
 
@@ -218,91 +231,3 @@ library(tidytuesdayR)
 [ggplot2](https://ggplot2.tidyverse.org/)
 
 
-
-# Graphing Examples
-
-## ggplot2
-
-`ggplot2` is an R package used to create plots. The main idea is to use a data frame and a set of aesthetics (variables in the data frame) to create a base plot. Then, `ggplot2` will layer geometries (plots) to the base plot to create a data visualization.
-
-All new changes to the plot are layered on with the `+` symbol.
-
-## Base Plot
-
-```{r}
-mtcars |> ggplot(aes(x = mpg)) 
-```
-
-## Histogram
-
-```{r}
-mtcars |> ggplot(aes(x = mpg)) +
-  geom_histogram()
-```
-
-## Box Plot
-
-```{r}
-mtcars |> ggplot(aes(x = mpg)) +
-  geom_boxplot()
-```
-
-## Density Plot
-
-```{r}
-mtcars |> ggplot(aes(x = mpg)) +
-  geom_density()
-```
-
-## Box Plot By Category
-
-```{r}
-mtcars |> ggplot(aes(x = mpg, y = as.factor(cyl))) +
-  geom_boxplot()
-```
-
-## Density Plot By Category
-
-```{r}
-mtcars |> ggplot(aes(x = mpg, color = as.factor(cyl))) +
-  geom_density()
-```
-
-## Scatter Plot
-
-```{r}
-mtcars |> ggplot(aes(x = wt, y = mpg)) +
-  geom_point()
-```
-
-## Scatter Plot by Group
-
-```{r}
-mtcars |> ggplot(aes(x = wt, y = mpg, color = as.factor(cyl))) +
-  geom_point()
-```
-
-## Add Regression Line
-
-```{r}
-mtcars |> ggplot(aes(x = wt, y = mpg)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = F)
-```
-
-## Smooth Line
-
-```{r}
-mtcars |> ggplot(aes(x = wt, y = mpg)) +
-  geom_point() +
-  geom_smooth(se = F)
-```
-
-## Regression Lines by Group
-
-```{r}
-mtcars |> ggplot(aes(x = wt, y = mpg,
-                  color = as.factor(cyl))) +
-  geom_point() +
-  geom_smooth(method = "lm", se = F)
-```

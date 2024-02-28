@@ -167,9 +167,15 @@ isc_title_top |>
 
 [nrennie](https://github.com/nrennie/tidytuesday/tree/main/2024/2024-02-20)
 
-[mvbloois](https://github.com/mvbloois/tidytuesday)
+[mvbloois](https://github.com/mvbloois/tidytuesday/tree/main/2024/2024-02-20)
 
 [GabsPalomo](https://github.com/GabsPalomo/myTidyTuesdayContributions/blob/main/2024_02_20_isc_grants/bubble_plot.R)
+
+[poncest](https://github.com/poncest/tidytuesday/tree/main/2024/Week_08)
+
+[project_presentations](https://github.com/Aditya-Dahiya/projects_presentations/blob/main/projects%2Ftidy_isc_grants.R)
+
+[camartinezbu](https://github.com/camartinezbu/tidytuesday/tree/main/2024/2024-week6)
 
 # Installation
 

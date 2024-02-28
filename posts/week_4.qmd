@@ -110,13 +110,13 @@ remotes::install_github("MatthewBJane/ThemePark")
 [ggplot2](https://ggplot2.tidyverse.org/)
 
 
-## ggplot2
+## Tidy Tuesday Community Examples
 
-`ggplot2` is an R package used to create plots. The main idea is to use a data frame and a set of aesthetics (variables in the data frame) to create a base plot. Then, `ggplot2` will layer geometries (plots) to the base plot to create a data visualization.
+[poncest](https://github.com/poncest/tidytuesday/tree/main/2024/Week_09)
 
-All new changes to the plot are layered on with the `+` symbol.
+[project_presentations](https://github.com/Aditya-Dahiya/projects_presentations/blob/main/projects/tidy_leap_day.R)
 
-
+[mvbloois](https://github.com/mvbloois/tidytuesday/tree/main/2024/2024-02-27)
 
 # Example 1
 

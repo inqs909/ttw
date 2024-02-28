@@ -245,11 +245,11 @@
     "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
   },
   {
-    "objectID": "posts/week_4.html#ggplot2",
-    "href": "posts/week_4.html#ggplot2",
+    "objectID": "posts/week_4.html#tidy-tuesday-community-examples",
+    "href": "posts/week_4.html#tidy-tuesday-community-examples",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "ggplot2",
-    "text": "ggplot2\nggplot2 is an R package used to create plots. The main idea is to use a data frame and a set of aesthetics (variables in the data frame) to create a base plot. Then, ggplot2 will layer geometries (plots) to the base plot to create a data visualization.\nAll new changes to the plot are layered on with the + symbol."
+    "section": "Tidy Tuesday Community Examples",
+    "text": "Tidy Tuesday Community Examples\nponcest\nproject_presentations\nmvbloois"
   },
   {
     "objectID": "posts/week_4.html#cleaning-data",
@@ -285,6 +285,13 @@
     "title": "Tidy Tuesday on Wednesday",
     "section": "Week 7",
     "text": "Week 7\nThis week looks at the consumer prices for Valentine’s Day.\n\nMore information about the data can be found on GitHub and Kaggle."
+  },
+  {
+    "objectID": "posts/week_2.html#tidy-tuesday-community-examples",
+    "href": "posts/week_2.html#tidy-tuesday-community-examples",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Tidy Tuesday Community Examples",
+    "text": "Tidy Tuesday Community Examples\nGabsPalomo\nproject_presentations\ncuratedmess\nborstell\nnrennie\ncamartinezbu"
   },
   {
     "objectID": "posts/week_2.html#loading-data",
@@ -357,90 +364,6 @@
     "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
   },
   {
-    "objectID": "posts/week_2.html#ggplot2",
-    "href": "posts/week_2.html#ggplot2",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "ggplot2",
-    "text": "ggplot2\nggplot2 is an R package used to create plots. The main idea is to use a data frame and a set of aesthetics (variables in the data frame) to create a base plot. Then, ggplot2 will layer geometries (plots) to the base plot to create a data visualization.\nAll new changes to the plot are layered on with the + symbol."
-  },
-  {
-    "objectID": "posts/week_2.html#base-plot",
-    "href": "posts/week_2.html#base-plot",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Base Plot",
-    "text": "Base Plot\n\nmtcars |&gt; ggplot(aes(x = mpg))"
-  },
-  {
-    "objectID": "posts/week_2.html#histogram",
-    "href": "posts/week_2.html#histogram",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Histogram",
-    "text": "Histogram\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_histogram()"
-  },
-  {
-    "objectID": "posts/week_2.html#box-plot",
-    "href": "posts/week_2.html#box-plot",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Box Plot",
-    "text": "Box Plot\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_boxplot()"
-  },
-  {
-    "objectID": "posts/week_2.html#density-plot",
-    "href": "posts/week_2.html#density-plot",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Density Plot",
-    "text": "Density Plot\n\nmtcars |&gt; ggplot(aes(x = mpg)) +\n  geom_density()"
-  },
-  {
-    "objectID": "posts/week_2.html#box-plot-by-category",
-    "href": "posts/week_2.html#box-plot-by-category",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Box Plot By Category",
-    "text": "Box Plot By Category\n\nmtcars |&gt; ggplot(aes(x = mpg, y = as.factor(cyl))) +\n  geom_boxplot()"
-  },
-  {
-    "objectID": "posts/week_2.html#density-plot-by-category",
-    "href": "posts/week_2.html#density-plot-by-category",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Density Plot By Category",
-    "text": "Density Plot By Category\n\nmtcars |&gt; ggplot(aes(x = mpg, color = as.factor(cyl))) +\n  geom_density()"
-  },
-  {
-    "objectID": "posts/week_2.html#scatter-plot",
-    "href": "posts/week_2.html#scatter-plot",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Scatter Plot",
-    "text": "Scatter Plot\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point()"
-  },
-  {
-    "objectID": "posts/week_2.html#scatter-plot-by-group",
-    "href": "posts/week_2.html#scatter-plot-by-group",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Scatter Plot by Group",
-    "text": "Scatter Plot by Group\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg, color = as.factor(cyl))) +\n  geom_point()"
-  },
-  {
-    "objectID": "posts/week_2.html#add-regression-line",
-    "href": "posts/week_2.html#add-regression-line",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Add Regression Line",
-    "text": "Add Regression Line\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
-  },
-  {
-    "objectID": "posts/week_2.html#smooth-line",
-    "href": "posts/week_2.html#smooth-line",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Smooth Line",
-    "text": "Smooth Line\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_smooth(se = F)"
-  },
-  {
-    "objectID": "posts/week_2.html#regression-lines-by-group",
-    "href": "posts/week_2.html#regression-lines-by-group",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Regression Lines by Group",
-    "text": "Regression Lines by Group\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg,\n                  color = as.factor(cyl))) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
-  },
-  {
     "objectID": "posts/week_3.html#tidy-tuesday-1",
     "href": "posts/week_3.html#tidy-tuesday-1",
     "title": "Tidy Tuesday on Wednesday",
@@ -501,7 +424,7 @@
     "href": "posts/week_3.html#tidy-tuesday-r-community-examples",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Tidy Tuesday R Community Examples",
-    "text": "Tidy Tuesday R Community Examples\nnrennie\nmvbloois\nGabsPalomo"
+    "text": "Tidy Tuesday R Community Examples\nnrennie\nmvbloois\nGabsPalomo\nponcest\nproject_presentations\ncamartinezbu"
   },
   {
     "objectID": "posts/week_3.html#r-programming",
