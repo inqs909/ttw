@@ -174,7 +174,7 @@ df |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
 ```
 
 
-## Plot
+
 ```{r}
 #| label: ex1
 #| code-fold: true
@@ -205,3 +205,226 @@ df |>
 
 ```
 
+```{r}
+#| echo: false
+# pacman::p_load(tidyverse, ggtext, showtext, janitor, skimr, scales, lubridate)
+# pacman::p_load(tidytext, widyr, ggraph, igraph)      
+# tt <- tidytuesdayR::tt_load(x = base::as.double("2024"), 
+#                             week = base::as.double("09")) 
+# 
+# 
+# events <- tt$events |> clean_names() |> glimpse()
+# 
+# tidytuesdayR::readme(tt) 
+# rm(tt)  
+# 
+# 
+# ## 3. EXAMINING THE DATA ----
+# skim(events)
+# 
+# 
+# ## 4. TIDYDATA ----
+# 
+# ### |- Tidy ----
+# 
+# # One event that's missing from Wikipedia's list: 
+# #     R version 1.0 was released on February 29, 2000.
+# 
+# events_df <- rbind(events, list(
+#     # add R version 1.0 
+#     2020, 
+#     'R version 1.0 was released on February 29, 2000')) |> 
+#     # add decade column
+#     mutate(decade = (year %/% 10) * 10) |> 
+#     select(decade, everything())
+# 
+# # how many events per decade
+# # events_df |> 
+# #     group_by(decade, word) |> 
+# #     summarise(count = n()) |> 
+# #     ungroup() |> 
+# #     arrange(desc(count)) 
+# 
+# # stop words
+# data(stop_words)
+# 
+# # word frequencies
+# events_words <- events_df |>
+#     # tokenization
+#     unnest_tokens(output = word, input = event, token = 'words', 
+#                   format = 'text', to_lower = TRUE) |> 
+#     # remove stop words
+#     anti_join(y = stop_words)
+# 
+# 
+# events_words |> count(decade, word, sort = TRUE) 
+# events_words |> count(word, sort = TRUE) 
+# 
+# # count words co-occuring within decades
+# word_pairs <- events_words |> 
+#     widyr::pairwise_count(word, decade, sort = TRUE)
+# 
+# # Pairwise correlation
+# word_cors <- events_words |>
+#     group_by(word) |> 
+#     filter(n() > 1) |>
+#     widyr::pairwise_cor(word, decade, sort = TRUE) 
+# 
+# word_cors|> count(item1, sort = TRUE) 
+#     
+# # pick particular words and find the other words most associated with them 
+# word_cors |>
+#     filter(item1 %in% c("queen", "king", "president", "war")) |>
+#     group_by(item1) |>
+#     slice_max(correlation, n = 6) |>
+#     ungroup() |>
+#     mutate(
+#         item2 = reorder(item2, correlation),
+#         fill_color = ifelse(correlation > 0, "Positive", "Negative")
+#     ) |>
+#     ggplot(aes(item2, correlation, fill = fill_color)) +  # Map fill_color to fill
+#     geom_bar(stat = "identity") +
+#     facet_wrap(~ item1, scales = "free") +
+#     scale_fill_manual(values = c("Positive" = "#3BCEAC", "Negative" = "#540D6E")) +  # Define colors
+#     coord_flip() +
+#     theme_minimal()
+# 
+# 
+# 
+# # 5. VISUALIZATION ---- 
+# 
+# ### |- plot aesthetics ---- 
+# bkg_col      <- colorspace::lighten('#fbf7f0', 0.35) 
+# title_col    <- "gray10"              
+# subtitle_col <- "gray20"   
+# caption_col  <- "gray20"  
+# text_col     <- "gray20" 
+# 
+# col_palette <- MetBrewer::met.brewer("Hokusai1", n = 32)
+# 
+# ### |-  titles and caption ----
+# tt <- str_glue("#TidyTuesday: { 2024 } Week { 09 } &bull; Source: Wikipedia: February 29<br>")  
+# X  <- str_glue("<span style='font-family:fa6-brands'>&#xe61b;</span>")   
+# gh <- str_glue("<span style='font-family:fa6-brands'>&#xf09b;</span>")
+# mn <- str_glue("<span style='font-family:fa6-brands'>&#xf4f6;</span>")
+# 
+# title_text    <- str_glue("Pairwise Correlations in Leap Day Events") 
+# 
+# subtitle_text <- str_glue("Which words are more likely to occur together with other words?\n",
+#                           "Showing correlations > 0.5") 
+# 
+# caption_text  <- str_glue("{tt} Visualization: {X} @sponce1 &bull; {mn} @sponce1(graphic.social) Code: {gh} poncest &bull; Tools: #rstats #ggplot2")
+# 
+# 
+# ### |-  fonts ----
+# # font_add('fa6-brands', 'fonts/6.4.2/Font Awesome 6 Brands-Regular-400.otf') 
+# font_add_google("Nanum Gothic Coding", regular.wt = 700, family = "title")                            
+# font_add_google("Abel", family = "subtitle")   
+# font_add_google("Barlow Condensed", family = "text")  
+# font_add_google("Roboto Condensed", family = "caption")
+# showtext_auto(enable = TRUE)  
+# 
+# 
+# ### |-  final plot ----  
+# set.seed(2024)
+# 
+# # graph object
+# graph <- word_cors  |> 
+#     filter(correlation > .5)  |> 
+#     igraph::graph_from_data_frame() 
+# 
+# # Lets visualize the correlations and clusters of words
+# ggraph(graph, layout = "fr") +
+#     
+#     # Geoms
+#     ggraph::geom_edge_link(aes(edge_alpha = correlation), show.legend = FALSE) +
+#     ggraph::geom_node_point(aes(color = as.factor(name)), size = 5, show.legend = FALSE) +
+#     ggraph::geom_node_text(aes(label = name), size = 3, color = "gray10", 
+#                            repel = TRUE, check_overlap = TRUE ) +
+#     
+#     # Scales
+#     scale_edge_width(range = c(0.5, 3)) +
+#     scale_color_manual(values = col_palette) +
+#     coord_cartesian(clip = "off", expand = TRUE) + 
+#     
+#     # Labs
+#     labs(x        = "",
+#          y        = "",       
+#          title    = title_text,
+#          subtitle = subtitle_text,
+#          caption  = caption_text
+#     ) +
+#     
+#     # Theme
+#     theme_void() +
+#     theme(
+#         
+#         plot.title.position   = "plot",
+#         plot.caption.position = "plot",
+#         legend.position       = 'plot',
+#         
+#         plot.margin           = margin(t = 10, r = 10, b = 10, l = 10),
+#         
+#         plot.background       = element_rect(fill = bkg_col, color = bkg_col),
+#         panel.background      = element_rect(fill = bkg_col, color = bkg_col),
+#         
+#         plot.title            = element_text(
+#             size              = rel(2.1), 
+#             family            = 'title',
+#             face              = 'bold',
+#             color             = title_col,
+#             margin            = margin(t = 5, b = 5)), 
+#            
+#         plot.subtitle         = element_text(
+#             size              = rel(1.3), 
+#             family            = 'subtitle',
+#             color             = title_col,
+#             lineheight        = 1.1, 
+#             margin            = margin(t = 5, b = 10)),  
+#            
+#         plot.caption          = element_markdown(
+#             size              = rel(.65), 
+#             family            = 'caption',
+#             color             = caption_col,
+#             lineheight        = 0.65,
+#             hjust             = 0.5,
+#             halign            = 0.5,
+#             margin            = margin(t = 10, b = 5)),
+#     )
+
+
+
+```
+
+
+## Plot
+
+```{r}
+#| label: ex2
+#| code-fold: true
+#| eval: true
+#| fig-alt: |
+#|    The plot shows two separate word clouds demonstrating the words that most 
+#|    common words in project titles in both Fall and Spring funding sessions. 
+#|    The most common word in both Fall and Spring was data. Other common words 
+#|    in Fall are dbi, api, and development. The most common word in Spring are 
+#|    package, interactive and infrastructure.
+
+library(tidyverse)
+
+
+df |>  
+  ggplot(aes(x=year_birth, xend = year_death, 
+             y = id, yend = id, color = type)) +
+    geom_segment() +
+    xlab("Year") + ylab("") + 
+    theme_bw() +
+    scale_color_discrete(name = "")+
+    theme(axis.text.y = element_blank(),
+          axis.ticks.y = element_blank()) +
+    ggtitle("Life Span for Births and Deaths") +
+    labs(subtitle = "on Leap Day")
+
+
+
+```

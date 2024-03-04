@@ -1,33 +1,390 @@
 ---
-title: "Week 5"
-date: 02-17-23
-description: We will continue and finish our discussion on data manipulation.
-editor: visual
-draft: true
-editor_options: 
-  chunk_output_type: console
+title: "Tidy Tuesday on Wednesday"
+subtitle: "www.inqs.info/ttw"
+date: 03-05-24
+description: Fourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Mr. Trash Wheel!
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+engine: knitr
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    comment: "#>" 
+draft: false
+categories:
+  - sp2024
+image: week_5/post1.png
+execute: 
+  cache: true
 ---
 
-## Learning Outcomes
+# Tidy Tuesday
 
-### First Lecture
+## Special Thanks!
 
--   Directories/R Projects
--   Reading/Writing Data
--   Merging Data
--   Creating New Variables
+A Special Thanks to the workers who counted the trash items by hand!
 
-### Second Lecture
+## Tidy Tuesday
 
--   Splitting Variables
--   Splitting Rows
--   Merging Rows
--   Wide to long
--   Long to wide
+Tidy Tuesday is a weekly data visualization challenge from the [R 4 Data Science Online Community](https://github.com/rfordatascience/tidytuesday).
 
-Resources
+## Mr. Trash Wheel
 
-| Lecture | Slides | Videos | Files |
-|---------|--------|--------|-------|
-| 1       |        |        |       |
-| 2       |        |        |       |
+```{=html}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Zzjw-Pw5jwQ?si=WUBQTifP1TNSxDoJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+## Week 10
+
+::: fragment
+More information about the data can be found on [GitHub](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-03-05/readme.md) and [Website](https://www.mrtrashwheel.com/).
+:::
+
+::: fragment
+CSV files:
+
+[DATA](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-03-05/trashwheel.csv)
+
+:::
+
+## Loading Data
+
+```{r}
+#| echo: true
+#| eval: true
+
+tuesdata <- tidytuesdayR::tt_load(2024, week = 10)
+trash <-tuesdata$trashwheel
+```
+
+## Data
+
+```{r}
+#| eval: true
+#| echo: false
+trash |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
+
+```
+
+## R Softare
+
+[R](https://www.r-project.org/): R is a statistical programming package that allows you to conduct different types of analysis.
+
+[RStudio](https://posit.co/downloads/): A piece of software that organizes how you conduct statistical analysis in R.
+
+[Posit Cloud](https://posit.cloud/login): A web version of RStudio.
+
+## Recommended R Packages
+
+```{r}
+#| echo: true
+#| eval: false
+
+install.packages("tidyverse")
+install.packages("plotly")
+install.packages("ggwordcloud")
+install.packages("ggthemes")
+install.packages("ggpie")
+install.packages("ggbump")
+install.packages("tidytext")
+install.packages("remotes")
+install.packages("esquisse")
+install.packages("tidytuesdayR")
+remotes::install_github("MatthewBJane/ThemePark")
+
+```
+
+## Visualization Resources
+
+[R Graphics Cookbook](https://r-graphics.org/)
+
+[R Graph Gallery](https://r-graph-gallery.com/)
+
+[R Charts](https://r-charts.com/)
+
+[ggplot2](https://ggplot2.tidyverse.org/)
+
+## Tidy Tuesday Community Examples
+
+[poncest](https://github.com/poncest/tidytuesday/tree/main/2024/Week_09)
+
+[project_presentations](https://github.com/Aditya-Dahiya/projects_presentations/blob/main/projects/tidy_leap_day.R)
+
+[mvbloois](https://github.com/mvbloois/tidytuesday/tree/main/2024/2024-02-27)
+
+# Example 1
+
+## Cleaning Data
+
+```{r}
+#| label: ex_clean
+#| echo: false
+#| eval: true
+#| fig-align: center
+
+
+library(dtrackr)
+library(tidyverse)
+
+trash |> track(.messages = c("Start with the trash data set",
+                              "Remove Variable that have high missing values")) |> 
+  select(-SportsBalls, -GlassBottles, -Wrappers, -HomesPowered) |>
+  comment(.messages = c("Remove Gwynnda Trash Wheel due to seveal missing values")) |> 
+  filter(Name != "Gwynnda Trash Wheel") |> 
+  comment(.messages = c("Remove all miising data",
+                        "There are currently {.count} observations in the data set.")) |> 
+  drop_na() |> 
+  comment(.messages = c("Convert the Date character variable to a POSIX with mdy()")) |> 
+  mutate(Date = mdy(Date)) |> 
+  pivot_longer(PlasticBottles:PlasticBags, names_to = "Trash", values_to = "Value") |> 
+  comment(.messages = c("Change the Data from wide to long by the trash variable using pivot_longer()",
+                        "There are now {.count} observations in the data set.")) |> 
+  flowchart()
+
+
+```
+
+```{r}
+#| echo: true
+#| eval: true
+
+df <- trash |> select(-SportsBalls, -GlassBottles, -Wrappers, -HomesPowered) |> 
+  filter(Name != "Gwynnda Trash Wheel") |> drop_na() |> 
+  mutate(Date = mdy(Date)) |> 
+  pivot_longer(PlasticBottles:PlasticBags, names_to = "Trash", values_to = "Value")
+
+```
+
+## Cleaned Data
+
+```{r}
+#| echo: false
+#| eval: true
+
+df |> DT::datatable(options = list(pageLength = 5, dom = "tp"))
+```
+
+## Plot
+
+```{r}
+#| label: ex1
+#| code-fold: true
+#| eval: true
+#| fig-alt: |
+#|    The plot shows two separate word clouds demonstrating the words that most 
+#|    common words in project titles in both Fall and Spring funding sessions. 
+#|    The most common word in both Fall and Spring was data. Other common words 
+#|    in Fall are dbi, api, and development. The most common word in Spring are 
+#|    package, interactive and infrastructure.
+
+library(tidyverse)
+
+
+df |> ggplot(aes(x = Date, y = log(Value), color = Trash)) +
+  geom_line() +
+  facet_wrap(~Name, nrow = 3) +
+  theme_bw() +
+  ylab("Number of Items (log-scale)") +
+  ggtitle("Trash Collection over the Years") +
+  scale_color_discrete(labels = c("Cigarette Butts", "Plastic Bags", "Plastic Bottles", "Polystyrene")) +
+  theme(legend.title = element_blank(),
+        legend.position = "bottom",
+        axis.title.x = element_blank())
+```
+
+```{r}
+#| echo: false
+# pacman::p_load(tidyverse, ggtext, showtext, janitor, skimr, scales, lubridate)
+# pacman::p_load(tidytext, widyr, ggraph, igraph)      
+# tt <- tidytuesdayR::tt_load(x = base::as.double("2024"), 
+#                             week = base::as.double("09")) 
+# 
+# 
+# events <- tt$events |> clean_names() |> glimpse()
+# 
+# tidytuesdayR::readme(tt) 
+# rm(tt)  
+# 
+# 
+# ## 3. EXAMINING THE DATA ----
+# skim(events)
+# 
+# 
+# ## 4. TIDYDATA ----
+# 
+# ### |- Tidy ----
+# 
+# # One event that's missing from Wikipedia's list: 
+# #     R version 1.0 was released on February 29, 2000.
+# 
+# events_df <- rbind(events, list(
+#     # add R version 1.0 
+#     2020, 
+#     'R version 1.0 was released on February 29, 2000')) |> 
+#     # add decade column
+#     mutate(decade = (year %/% 10) * 10) |> 
+#     select(decade, everything())
+# 
+# # how many events per decade
+# # events_df |> 
+# #     group_by(decade, word) |> 
+# #     summarise(count = n()) |> 
+# #     ungroup() |> 
+# #     arrange(desc(count)) 
+# 
+# # stop words
+# data(stop_words)
+# 
+# # word frequencies
+# events_words <- events_df |>
+#     # tokenization
+#     unnest_tokens(output = word, input = event, token = 'words', 
+#                   format = 'text', to_lower = TRUE) |> 
+#     # remove stop words
+#     anti_join(y = stop_words)
+# 
+# 
+# events_words |> count(decade, word, sort = TRUE) 
+# events_words |> count(word, sort = TRUE) 
+# 
+# # count words co-occuring within decades
+# word_pairs <- events_words |> 
+#     widyr::pairwise_count(word, decade, sort = TRUE)
+# 
+# # Pairwise correlation
+# word_cors <- events_words |>
+#     group_by(word) |> 
+#     filter(n() > 1) |>
+#     widyr::pairwise_cor(word, decade, sort = TRUE) 
+# 
+# word_cors|> count(item1, sort = TRUE) 
+#     
+# # pick particular words and find the other words most associated with them 
+# word_cors |>
+#     filter(item1 %in% c("queen", "king", "president", "war")) |>
+#     group_by(item1) |>
+#     slice_max(correlation, n = 6) |>
+#     ungroup() |>
+#     mutate(
+#         item2 = reorder(item2, correlation),
+#         fill_color = ifelse(correlation > 0, "Positive", "Negative")
+#     ) |>
+#     ggplot(aes(item2, correlation, fill = fill_color)) +  # Map fill_color to fill
+#     geom_bar(stat = "identity") +
+#     facet_wrap(~ item1, scales = "free") +
+#     scale_fill_manual(values = c("Positive" = "#3BCEAC", "Negative" = "#540D6E")) +  # Define colors
+#     coord_flip() +
+#     theme_minimal()
+# 
+# 
+# 
+# # 5. VISUALIZATION ---- 
+# 
+# ### |- plot aesthetics ---- 
+# bkg_col      <- colorspace::lighten('#fbf7f0', 0.35) 
+# title_col    <- "gray10"              
+# subtitle_col <- "gray20"   
+# caption_col  <- "gray20"  
+# text_col     <- "gray20" 
+# 
+# col_palette <- MetBrewer::met.brewer("Hokusai1", n = 32)
+# 
+# ### |-  titles and caption ----
+# tt <- str_glue("#TidyTuesday: { 2024 } Week { 09 } &bull; Source: Wikipedia: February 29<br>")  
+# X  <- str_glue("<span style='font-family:fa6-brands'>&#xe61b;</span>")   
+# gh <- str_glue("<span style='font-family:fa6-brands'>&#xf09b;</span>")
+# mn <- str_glue("<span style='font-family:fa6-brands'>&#xf4f6;</span>")
+# 
+# title_text    <- str_glue("Pairwise Correlations in Leap Day Events") 
+# 
+# subtitle_text <- str_glue("Which words are more likely to occur together with other words?\n",
+#                           "Showing correlations > 0.5") 
+# 
+# caption_text  <- str_glue("{tt} Visualization: {X} @sponce1 &bull; {mn} @sponce1(graphic.social) Code: {gh} poncest &bull; Tools: #rstats #ggplot2")
+# 
+# 
+# ### |-  fonts ----
+# # font_add('fa6-brands', 'fonts/6.4.2/Font Awesome 6 Brands-Regular-400.otf') 
+# font_add_google("Nanum Gothic Coding", regular.wt = 700, family = "title")                            
+# font_add_google("Abel", family = "subtitle")   
+# font_add_google("Barlow Condensed", family = "text")  
+# font_add_google("Roboto Condensed", family = "caption")
+# showtext_auto(enable = TRUE)  
+# 
+# 
+# ### |-  final plot ----  
+# set.seed(2024)
+# 
+# # graph object
+# graph <- word_cors  |> 
+#     filter(correlation > .5)  |> 
+#     igraph::graph_from_data_frame() 
+# 
+# # Lets visualize the correlations and clusters of words
+# ggraph(graph, layout = "fr") +
+#     
+#     # Geoms
+#     ggraph::geom_edge_link(aes(edge_alpha = correlation), show.legend = FALSE) +
+#     ggraph::geom_node_point(aes(color = as.factor(name)), size = 5, show.legend = FALSE) +
+#     ggraph::geom_node_text(aes(label = name), size = 3, color = "gray10", 
+#                            repel = TRUE, check_overlap = TRUE ) +
+#     
+#     # Scales
+#     scale_edge_width(range = c(0.5, 3)) +
+#     scale_color_manual(values = col_palette) +
+#     coord_cartesian(clip = "off", expand = TRUE) + 
+#     
+#     # Labs
+#     labs(x        = "",
+#          y        = "",       
+#          title    = title_text,
+#          subtitle = subtitle_text,
+#          caption  = caption_text
+#     ) +
+#     
+#     # Theme
+#     theme_void() +
+#     theme(
+#         
+#         plot.title.position   = "plot",
+#         plot.caption.position = "plot",
+#         legend.position       = 'plot',
+#         
+#         plot.margin           = margin(t = 10, r = 10, b = 10, l = 10),
+#         
+#         plot.background       = element_rect(fill = bkg_col, color = bkg_col),
+#         panel.background      = element_rect(fill = bkg_col, color = bkg_col),
+#         
+#         plot.title            = element_text(
+#             size              = rel(2.1), 
+#             family            = 'title',
+#             face              = 'bold',
+#             color             = title_col,
+#             margin            = margin(t = 5, b = 5)), 
+#            
+#         plot.subtitle         = element_text(
+#             size              = rel(1.3), 
+#             family            = 'subtitle',
+#             color             = title_col,
+#             lineheight        = 1.1, 
+#             margin            = margin(t = 5, b = 10)),  
+#            
+#         plot.caption          = element_markdown(
+#             size              = rel(.65), 
+#             family            = 'caption',
+#             color             = caption_col,
+#             lineheight        = 0.65,
+#             hjust             = 0.5,
+#             halign            = 0.5,
+#             margin            = margin(t = 10, b = 5)),
+#     )
+
+
+
+```
+
