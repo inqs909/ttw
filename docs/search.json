@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Tidy Tuesday on Wednesday",
     "section": "",
-    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Mr. Trash Wheel!\n\n\n\n\n\nMar 5, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the Leap Day Data.\n\n\n\n\n\nFeb 27, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nThird week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.\n\n\n\n\n\nFeb 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nSecond week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Valentines day sales.\n\n\n\n\n\nFeb 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
+    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFifth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Fiscal Sponsors!\n\n\n\n\n\nMar 12, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Mr. Trash Wheel!\n\n\n\n\n\nMar 5, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the Leap Day Data.\n\n\n\n\n\nFeb 27, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nThird week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.\n\n\n\n\n\nFeb 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nSecond week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Valentines day sales.\n\n\n\n\n\nFeb 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/week_1.html#r-programming",
@@ -558,5 +558,61 @@
     "title": "Tidy Tuesday on Wednesday",
     "section": "Visualization Resources",
     "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
+  },
+  {
+    "objectID": "posts/week_6.html#tidy-tuesday-1",
+    "href": "posts/week_6.html#tidy-tuesday-1",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Tidy Tuesday",
+    "text": "Tidy Tuesday\nTidy Tuesday is a weekly data visualization challenge from the R 4 Data Science Online Community."
+  },
+  {
+    "objectID": "posts/week_6.html#week-11",
+    "href": "posts/week_6.html#week-11",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Week 11",
+    "text": "Week 11\n\nMore information about the data can be found on GitHub.\n\n\nCSV files:\nDATA"
+  },
+  {
+    "objectID": "posts/week_6.html#loading-data",
+    "href": "posts/week_6.html#loading-data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Loading Data",
+    "text": "Loading Data\n\ntuesdata &lt;- tidytuesdayR::tt_load(2024, week = 11)\n\n#&gt; \n#&gt;  Downloading file 1 of 1: `fiscal_sponsor_directory.csv`\n\nfiscal &lt;-tuesdata$fiscal_sponsor_directory"
+  },
+  {
+    "objectID": "posts/week_6.html#data",
+    "href": "posts/week_6.html#data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Data",
+    "text": "Data"
+  },
+  {
+    "objectID": "posts/week_6.html#r-softare",
+    "href": "posts/week_6.html#r-softare",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "R Softare",
+    "text": "R Softare\nR: R is a statistical programming package that allows you to conduct different types of analysis.\nRStudio: A piece of software that organizes how you conduct statistical analysis in R.\nPosit Cloud: A web version of RStudio."
+  },
+  {
+    "objectID": "posts/week_6.html#recommended-r-packages",
+    "href": "posts/week_6.html#recommended-r-packages",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Recommended R Packages",
+    "text": "Recommended R Packages\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")"
+  },
+  {
+    "objectID": "posts/week_6.html#visualization-resources",
+    "href": "posts/week_6.html#visualization-resources",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Visualization Resources",
+    "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
+  },
+  {
+    "objectID": "posts/week_6.html#tidy-tuesday-community-examples",
+    "href": "posts/week_6.html#tidy-tuesday-community-examples",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Tidy Tuesday Community Examples",
+    "text": "Tidy Tuesday Community Examples\nponcest\nproject_presentations\nmvbloois"
   }
 ]
