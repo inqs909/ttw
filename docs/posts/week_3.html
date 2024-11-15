@@ -8,10 +8,10 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.506">
+  <meta name="generator" content="quarto-1.5.56">
 
   <meta name="dcterms.date" content="2024-02-21">
-  <title>TTW - Tidy Tuesday on Wednesday</title>
+  <title>TTW – Tidy Tuesday on Wednesday</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -42,7 +42,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -70,7 +70,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -84,7 +84,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -437,12 +437,12 @@
 <section id="loading-data" class="slide level2">
 <h2>Loading Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>tuesdata <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="dv">2024</span>, <span class="at">week =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>tuesdata <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="dv">2024</span>, <span class="at">week =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; 
 #&gt;  Downloading file 1 of 1: `isc_grants.csv`</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>isc <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>isc_grants</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>isc <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>isc_grants</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="isc-data" class="slide level2">
@@ -459,22 +459,22 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(ggwordcloud)</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a>isc_title <span class="ot">&lt;-</span> isc <span class="sc">|&gt;</span> </span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">unnest_tokens</span>(word, title) <span class="sc">|&gt;</span> </span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">anti_join</span>(stop_words)</span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a>isc_title_top <span class="ot">&lt;-</span> isc_title <span class="sc">|&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span> </span>
-<span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb4-11"><a href="#cb4-11"></a></span>
-<span id="cb4-12"><a href="#cb4-12"></a>isc_title_top <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">label =</span> word, <span class="at">size =</span> n)) <span class="sc">+</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>  <span class="fu">geom_text_wordcloud</span>() <span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>group, <span class="at">labeller =</span>  <span class="fu">labeller</span>(<span class="at">group=</span><span class="fu">c</span>(<span class="st">'1'</span> <span class="ot">=</span> <span class="st">"Fall"</span>, <span class="st">'2'</span> <span class="ot">=</span> <span class="st">"Spring"</span>))) <span class="sc">+</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a></a><span class="fu">library</span>(ggwordcloud)</span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a>isc_title <span class="ot">&lt;-</span> isc <span class="sc">|&gt;</span> </span>
+<span id="cb4-5"><a></a>  <span class="fu">unnest_tokens</span>(word, title) <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a></a>  <span class="fu">anti_join</span>(stop_words)</span>
+<span id="cb4-7"><a></a></span>
+<span id="cb4-8"><a></a>isc_title_top <span class="ot">&lt;-</span> isc_title <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span> </span>
+<span id="cb4-10"><a></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb4-11"><a></a></span>
+<span id="cb4-12"><a></a>isc_title_top <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">label =</span> word, <span class="at">size =</span> n)) <span class="sc">+</span></span>
+<span id="cb4-13"><a></a>  <span class="fu">geom_text_wordcloud</span>() <span class="sc">+</span></span>
+<span id="cb4-14"><a></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb4-15"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>group, <span class="at">labeller =</span>  <span class="fu">labeller</span>(<span class="at">group=</span><span class="fu">c</span>(<span class="st">'1'</span> <span class="ot">=</span> <span class="st">"Fall"</span>, <span class="st">'2'</span> <span class="ot">=</span> <span class="st">"Spring"</span>))) <span class="sc">+</span></span>
+<span id="cb4-16"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -484,13 +484,13 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>isc <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.factor</span>(year), <span class="at">y =</span> funded)) <span class="sc">+</span> </span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">geom_jitter</span>(<span class="at">shape=</span><span class="st">"\u0024"</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Funded Amount"</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">theme_wsj</span>() <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb5-2"><a></a>isc <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.factor</span>(year), <span class="at">y =</span> funded)) <span class="sc">+</span> </span>
+<span id="cb5-3"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a></a>  <span class="fu">geom_jitter</span>(<span class="at">shape=</span><span class="st">"\u0024"</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Funded Amount"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a></a>  <span class="fu">theme_wsj</span>() <span class="sc">+</span></span>
+<span id="cb5-7"><a></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -504,24 +504,24 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">library</span>(ggwordcloud)</span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a>isc_title <span class="ot">&lt;-</span> isc <span class="sc">|&gt;</span> </span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">unnest_tokens</span>(word, summary) <span class="sc">|&gt;</span> </span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">anti_join</span>(stop_words)</span>
-<span id="cb6-7"><a href="#cb6-7"></a></span>
-<span id="cb6-8"><a href="#cb6-8"></a>isc_title_top <span class="ot">&lt;-</span> isc_title <span class="sc">|&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">5</span>)</span>
-<span id="cb6-10"><a href="#cb6-10"></a></span>
-<span id="cb6-11"><a href="#cb6-11"></a>isc_title_top <span class="sc">|&gt;</span>  </span>
-<span id="cb6-12"><a href="#cb6-12"></a>  <span class="fu">mutate</span>(<span class="at">angle =</span> <span class="dv">45</span> <span class="sc">*</span> <span class="fu">sample</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">n</span>(), <span class="co"># 157:159 Creating Angles for data</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a>                             <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb6-14"><a href="#cb6-14"></a>                             <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>))) <span class="sc">|&gt;</span> </span>
-<span id="cb6-15"><a href="#cb6-15"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">label =</span> word, <span class="at">size =</span> n, <span class="at">angle =</span> angle)) <span class="sc">+</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">geom_text_wordcloud_area</span>(<span class="at">shape =</span> <span class="st">"star"</span>) <span class="sc">+</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a></a><span class="fu">library</span>(ggwordcloud)</span>
+<span id="cb6-3"><a></a></span>
+<span id="cb6-4"><a></a>isc_title <span class="ot">&lt;-</span> isc <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a></a>  <span class="fu">unnest_tokens</span>(word, summary) <span class="sc">|&gt;</span> </span>
+<span id="cb6-6"><a></a>  <span class="fu">anti_join</span>(stop_words)</span>
+<span id="cb6-7"><a></a></span>
+<span id="cb6-8"><a></a>isc_title_top <span class="ot">&lt;-</span> isc_title <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">5</span>)</span>
+<span id="cb6-10"><a></a></span>
+<span id="cb6-11"><a></a>isc_title_top <span class="sc">|&gt;</span>  </span>
+<span id="cb6-12"><a></a>  <span class="fu">mutate</span>(<span class="at">angle =</span> <span class="dv">45</span> <span class="sc">*</span> <span class="fu">sample</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">n</span>(), <span class="co"># 157:159 Creating Angles for data</span></span>
+<span id="cb6-13"><a></a>                             <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb6-14"><a></a>                             <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb6-15"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">label =</span> word, <span class="at">size =</span> n, <span class="at">angle =</span> angle)) <span class="sc">+</span></span>
+<span id="cb6-16"><a></a>  <span class="fu">geom_text_wordcloud_area</span>(<span class="at">shape =</span> <span class="st">"star"</span>) <span class="sc">+</span></span>
+<span id="cb6-17"><a></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb6-18"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -558,29 +558,29 @@
 <section id="r-packages" class="slide level2">
 <h2>R Packages</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">install.packages</span>(<span class="st">"plotly"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">install.packages</span>(<span class="st">"ggwordcloud"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">install.packages</span>(<span class="st">"ggthemes"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">install.packages</span>(<span class="st">"ggpie"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="fu">install.packages</span>(<span class="st">"ggbump"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="fu">install.packages</span>(<span class="st">"tidytext"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="fu">install.packages</span>(<span class="st">"esquisse"</span>)</span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="fu">install.packages</span>(<span class="st">"tidytuesdayR"</span>)</span>
-<span id="cb7-11"><a href="#cb7-11"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MatthewBJane/ThemePark"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb7-2"><a></a><span class="fu">install.packages</span>(<span class="st">"plotly"</span>)</span>
+<span id="cb7-3"><a></a><span class="fu">install.packages</span>(<span class="st">"ggwordcloud"</span>)</span>
+<span id="cb7-4"><a></a><span class="fu">install.packages</span>(<span class="st">"ggthemes"</span>)</span>
+<span id="cb7-5"><a></a><span class="fu">install.packages</span>(<span class="st">"ggpie"</span>)</span>
+<span id="cb7-6"><a></a><span class="fu">install.packages</span>(<span class="st">"ggbump"</span>)</span>
+<span id="cb7-7"><a></a><span class="fu">install.packages</span>(<span class="st">"tidytext"</span>)</span>
+<span id="cb7-8"><a></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb7-9"><a></a><span class="fu">install.packages</span>(<span class="st">"esquisse"</span>)</span>
+<span id="cb7-10"><a></a><span class="fu">install.packages</span>(<span class="st">"tidytuesdayR"</span>)</span>
+<span id="cb7-11"><a></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MatthewBJane/ThemePark"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="load-minimum-r-package" class="slide level2">
 <h2>Load Minimum R Package</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#| eval: true</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#| message: false</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#| warning: false</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="fu">library</span>(tidytuesdayR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co">#| echo: true</span></span>
+<span id="cb8-2"><a></a><span class="co">#| eval: true</span></span>
+<span id="cb8-3"><a></a><span class="co">#| message: false</span></span>
+<span id="cb8-4"><a></a><span class="co">#| warning: false</span></span>
+<span id="cb8-5"><a></a></span>
+<span id="cb8-6"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-7"><a></a><span class="fu">library</span>(tidytuesdayR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>You must load packages every new R Session</li>
@@ -593,8 +593,10 @@
 <p><a href="https://r-charts.com/">R Charts</a></p>
 <p><a href="https://ggplot2.tidyverse.org/">ggplot2</a></p>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
+</div>
 </div>
 </section></section>
     </div>
@@ -879,18 +881,7 @@
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -922,7 +913,47 @@
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("www\.inqs\.info\/ttw");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
@@ -959,7 +990,11 @@
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
