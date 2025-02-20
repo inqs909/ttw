@@ -1,5 +1,5 @@
 ---
-title: "Tidy Tuesday on Wednesday"
+title: "Tidy Tuesday at CI"
 listing:
   contents: posts
   sort: "date desc"
@@ -42,4 +42,33 @@ listing:
 
 :::
 
+::: {.callout-note collapse="true" icon="false"}
+### **R Packages**
+
+```{r}
+#| eval: false
+
+## Basic
+install.packages("tidyverse")
+install.packages("plotly")
+install.packages("remotes")
+install.packages("ggwordcloud")
+install.packages("ggthemes")
+install.packages("ggpie")
+install.packages("ggbump")
+install.packages("tidytext")
+install.packages("remotes")
+install.packages("esquisse")
+install.packages("tidytuesdayR")
+remotes::install_github("MatthewBJane/ThemePark")
+
+## GIS
+install.packages("sf")
+install.packages("maps")
+install.packages("terra")
+install.packages("spData")
+install.packages("spDataLarge", repos = "https://geocompr.r-universe.dev")
+
+```
+:::
 
