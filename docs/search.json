@@ -2,51 +2,58 @@
   {
     "objectID": "posts/wk_2_20_25.html#tidy-tuesday-1",
     "href": "posts/wk_2_20_25.html#tidy-tuesday-1",
-    "title": "Tidy Tuesday on Wednesday",
+    "title": "Tidy Tuesday on Thursday",
     "section": "Tidy Tuesday",
     "text": "Tidy Tuesday\nTidy Tuesday is a weekly data visualization challenge from the Data Science Learning Community."
   },
   {
     "objectID": "posts/wk_2_20_25.html#week-7-2025",
     "href": "posts/wk_2_20_25.html#week-7-2025",
-    "title": "Tidy Tuesday on Wednesday",
+    "title": "Tidy Tuesday on Thursday",
     "section": "Week 7, 2025",
     "text": "Week 7, 2025\n\nInfoCSVR CodeData\n\n\nMore information about the data can be found on GitHub.\n\n\nDATA\n\n\n\ntuesdata &lt;- tidytuesdayR::tt_load(2025, week = 7)\n\nagencies &lt;- tuesdata$agencies"
   },
   {
     "objectID": "posts/wk_2_20_25.html#r-softare",
     "href": "posts/wk_2_20_25.html#r-softare",
-    "title": "Tidy Tuesday on Wednesday",
+    "title": "Tidy Tuesday on Thursday",
     "section": "R Softare",
     "text": "R Softare\nR: R is a statistical programming package that allows you to conduct different types of analysis.\nRStudio: A piece of software that organizes how you conduct statistical analysis in R.\nPosit Cloud: A web version of RStudio."
   },
   {
     "objectID": "posts/wk_2_20_25.html#recommended-r-packages",
     "href": "posts/wk_2_20_25.html#recommended-r-packages",
-    "title": "Tidy Tuesday on Wednesday",
+    "title": "Tidy Tuesday on Thursday",
     "section": "Recommended R Packages",
-    "text": "Recommended R Packages\n\nGeneralSpatial\n\n\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")\n\n\n\n\ninstall.packages(\"sf\")\ninstall.packages(\"terra\")\ninstall.packages(\"spData\")\ninstall.packages(\"spDataLarge\", repos = \"https://geocompr.r-universe.dev\")"
+    "text": "Recommended R Packages\n\nGeneralSpatial\n\n\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")\n\n\n\n\ninstall.packages(\"sf\")\ninstall.packages(\"maps\")\ninstall.packages(\"terra\")\ninstall.packages(\"spData\")\ninstall.packages(\"spDataLarge\", repos = \"https://geocompr.r-universe.dev\")"
   },
   {
     "objectID": "posts/wk_2_20_25.html#visualization-resources",
     "href": "posts/wk_2_20_25.html#visualization-resources",
-    "title": "Tidy Tuesday on Wednesday",
+    "title": "Tidy Tuesday on Thursday",
     "section": "Visualization Resources",
     "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\nSpatial Data Science\nSpatial Data Analysis\nGeocomputation in R"
   },
   {
     "objectID": "posts/wk_2_20_25.html#tidy-tuesday-community-examples",
     "href": "posts/wk_2_20_25.html#tidy-tuesday-community-examples",
-    "title": "Tidy Tuesday on Wednesday",
+    "title": "Tidy Tuesday on Thursday",
     "section": "Tidy Tuesday Community Examples",
     "text": "Tidy Tuesday Community Examples\nponcest\nproject_presentations\nmvbloois"
   },
   {
     "objectID": "posts/wk_2_20_25.html#example-1-1",
     "href": "posts/wk_2_20_25.html#example-1-1",
-    "title": "Tidy Tuesday on Wednesday",
+    "title": "Tidy Tuesday on Thursday",
     "section": "Example 1",
-    "text": "Example 1\nCreate a density map of all the agencies located in"
+    "text": "Example 1\nCreate a density map of all the agencies located in the United States."
+  },
+  {
+    "objectID": "posts/wk_2_20_25.html#loading-r-packages",
+    "href": "posts/wk_2_20_25.html#loading-r-packages",
+    "title": "Tidy Tuesday on Thursday",
+    "section": "Loading R Packages",
+    "text": "Loading R Packages\n\nlibrary(sf)\nlibrary(tidyverse)\n\n# Getting Map of the US\nusa &lt;- st_as_sf(maps::map(\"state\", fill=TRUE, plot =FALSE))\n\n# Obtaining Coordinate System of usa sf object\nusa_crs &lt;- st_crs(usa)\n\n# Converting\nagencies_sf &lt;- agencies |&gt;\n  filter(!(state %in% c(\"Alaska\", \"Hawaii\"))) |&gt; \n  filter(latitude &gt; 0) |&gt; \n  select(latitude, longitude) |&gt;\n  drop_na() |&gt; \n  st_as_sf(coords = c(\"longitude\",\"latitude\"), remove = FALSE)\n\nst_crs(agencies_sf) &lt;- usa_crs\n\n\nggplot(usa) +\n  geom_sf(color = \"#2b2b2b\", fill = \"white\", size=0.125) +\n  geom_sf(data = agencies_sf) +\n  ggthemes::theme_map()"
   },
   {
     "objectID": "posts/week_5.html#special-thanks",
@@ -438,7 +445,7 @@
     "href": "index.html",
     "title": "Tidy Tuesday on Wednesday",
     "section": "",
-    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nTidy Tuesday on Thursday at CSUCI! Analyzing Agencies from the FBI Crime Data API!\n\n\n\n\n\nFeb 20, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFifth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Fiscal Sponsors!\n\n\n\n\n\nMar 12, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Mr. Trash Wheel!\n\n\n\n\n\nMar 5, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the Leap Day Data.\n\n\n\n\n\nFeb 27, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nThird week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.\n\n\n\n\n\nFeb 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nSecond week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Valentines day sales.\n\n\n\n\n\nFeb 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
+    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Thursday\n\n\nwww.inqs.info/ttw\n\n\nTidy Tuesday on Thursday at CSUCI! Analyzing Agencies from the FBI Crime Data API!\n\n\n\n\n\nFeb 20, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFifth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Fiscal Sponsors!\n\n\n\n\n\nMar 12, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Mr. Trash Wheel!\n\n\n\n\n\nMar 5, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the Leap Day Data.\n\n\n\n\n\nFeb 27, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nThird week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.\n\n\n\n\n\nFeb 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nSecond week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Valentines day sales.\n\n\n\n\n\nFeb 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/week_2.html#tidy-tuesday-1",

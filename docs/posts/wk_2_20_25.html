@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.40">
 
   <meta name="dcterms.date" content="2025-02-20">
-  <title>TTW – Tidy Tuesday on Wednesday</title>
+  <title>TTW – Tidy Tuesday on Thursday</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -203,7 +203,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Tidy Tuesday on Wednesday</h1>
+  <h1 class="title">Tidy Tuesday on Thursday</h1>
   <p class="subtitle">www.inqs.info/ttw</p>
 
 <div class="quarto-title-authors">
@@ -278,9 +278,10 @@
 <div id="tabset-2-2">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">install.packages</span>(<span class="st">"sf"</span>)</span>
-<span id="cb3-2"><a></a><span class="fu">install.packages</span>(<span class="st">"terra"</span>)</span>
-<span id="cb3-3"><a></a><span class="fu">install.packages</span>(<span class="st">"spData"</span>)</span>
-<span id="cb3-4"><a></a><span class="fu">install.packages</span>(<span class="st">"spDataLarge"</span>, <span class="at">repos =</span> <span class="st">"https://geocompr.r-universe.dev"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a></a><span class="fu">install.packages</span>(<span class="st">"maps"</span>)</span>
+<span id="cb3-3"><a></a><span class="fu">install.packages</span>(<span class="st">"terra"</span>)</span>
+<span id="cb3-4"><a></a><span class="fu">install.packages</span>(<span class="st">"spData"</span>)</span>
+<span id="cb3-5"><a></a><span class="fu">install.packages</span>(<span class="st">"spDataLarge"</span>, <span class="at">repos =</span> <span class="st">"https://geocompr.r-universe.dev"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -309,7 +310,36 @@
 </section>
 <section id="example-1-1" class="slide level2">
 <h2>Example 1</h2>
-<p>Create a density map of all the agencies located in</p>
+<p>Create a density map of all the agencies located in the United States.</p>
+</section>
+<section id="loading-r-packages" class="slide level2">
+<h2>Loading R Packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(sf)</span>
+<span id="cb4-2"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a><span class="co"># Getting Map of the US</span></span>
+<span id="cb4-5"><a></a>usa <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(maps<span class="sc">::</span><span class="fu">map</span>(<span class="st">"state"</span>, <span class="at">fill=</span><span class="cn">TRUE</span>, <span class="at">plot =</span><span class="cn">FALSE</span>))</span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a><span class="co"># Obtaining Coordinate System of usa sf object</span></span>
+<span id="cb4-8"><a></a>usa_crs <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(usa)</span>
+<span id="cb4-9"><a></a></span>
+<span id="cb4-10"><a></a><span class="co"># Converting</span></span>
+<span id="cb4-11"><a></a>agencies_sf <span class="ot">&lt;-</span> agencies <span class="sc">|&gt;</span></span>
+<span id="cb4-12"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span>(state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Alaska"</span>, <span class="st">"Hawaii"</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb4-13"><a></a>  <span class="fu">filter</span>(latitude <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-14"><a></a>  <span class="fu">select</span>(latitude, longitude) <span class="sc">|&gt;</span></span>
+<span id="cb4-15"><a></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-16"><a></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>,<span class="st">"latitude"</span>), <span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-17"><a></a></span>
+<span id="cb4-18"><a></a><span class="fu">st_crs</span>(agencies_sf) <span class="ot">&lt;-</span> usa_crs</span>
+<span id="cb4-19"><a></a></span>
+<span id="cb4-20"><a></a></span>
+<span id="cb4-21"><a></a><span class="fu">ggplot</span>(usa) <span class="sc">+</span></span>
+<span id="cb4-22"><a></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"#2b2b2b"</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size=</span><span class="fl">0.125</span>) <span class="sc">+</span></span>
+<span id="cb4-23"><a></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> agencies_sf) <span class="sc">+</span></span>
+<span id="cb4-24"><a></a>  ggthemes<span class="sc">::</span><span class="fu">theme_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section></section>

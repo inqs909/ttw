@@ -1,5 +1,5 @@
 ---
-title: "Tidy Tuesday on Wednesday"
+title: "Tidy Tuesday on Thursday"
 subtitle: "www.inqs.info/ttw"
 date: 02-20-25
 description: Tidy Tuesday on Thursday at CSUCI! Analyzing Agencies from the FBI Crime Data API!
@@ -106,6 +106,7 @@ remotes::install_github("MatthewBJane/ThemePark")
 #| eval: false
 
 install.packages("sf")
+install.packages("maps")
 install.packages("terra")
 install.packages("spData")
 install.packages("spDataLarge", repos = "https://geocompr.r-universe.dev")
@@ -142,4 +143,37 @@ install.packages("spDataLarge", repos = "https://geocompr.r-universe.dev")
 
 ## Example 1
 
-Create a density map of all the agencies located in 
+Create a density map of all the agencies located in the United States.
+
+## Loading R Packages
+
+```{r}
+#| eval: false
+
+
+library(sf)
+library(tidyverse)
+
+# Getting Map of the US
+usa <- st_as_sf(maps::map("state", fill=TRUE, plot =FALSE))
+
+# Obtaining Coordinate System of usa sf object
+usa_crs <- st_crs(usa)
+
+# Converting
+agencies_sf <- agencies |>
+  filter(!(state %in% c("Alaska", "Hawaii"))) |> 
+  filter(latitude > 0) |> 
+  select(latitude, longitude) |>
+  drop_na() |> 
+  st_as_sf(coords = c("longitude","latitude"), remove = FALSE)
+
+st_crs(agencies_sf) <- usa_crs
+
+
+ggplot(usa) +
+  geom_sf(color = "#2b2b2b", fill = "white", size=0.125) +
+  geom_sf(data = agencies_sf) +
+  ggthemes::theme_map()
+
+```
