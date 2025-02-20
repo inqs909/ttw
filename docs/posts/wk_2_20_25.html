@@ -387,10 +387,18 @@
 <span id="cb5-25"><a></a></span>
 <span id="cb5-26"><a></a></span>
 <span id="cb5-27"><a></a><span class="co"># Creating Plot</span></span>
-<span id="cb5-28"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-28"><a></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb5-29"><a></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> usa_data, <span class="fu">aes</span>(<span class="at">fill =</span> n)) <span class="sc">+</span></span>
 <span id="cb5-30"><a></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">'C'</span>) <span class="sc">+</span></span>
-<span id="cb5-31"><a></a>  ggthemes<span class="sc">::</span><span class="fu">theme_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-31"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Density of Reporting Agencies"</span>) <span class="sc">+</span></span>
+<span id="cb5-32"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-33"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
+<span id="cb5-34"><a></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb5-35"><a></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
+<span id="cb5-36"><a></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>),</span>
+<span id="cb5-37"><a></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb5-38"><a></a></span>
+<span id="cb5-39"><a></a><span class="fu">plot</span>(gg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>

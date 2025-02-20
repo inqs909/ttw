@@ -17,6 +17,7 @@ knitr:
     eval: false
     comment: "#>" 
 draft: false
+image: wk_2_20_25_files/figure-revealjs/unnamed-chunk-6-1.png
 categories:
   - sp2025
 execute: 
@@ -219,11 +220,18 @@ usa_data <- left_join(agencies_c, usa, by = "ID") |> st_as_sf()
 
 
 # Creating Plot
-ggplot() +
+gg <- ggplot() +
   geom_sf(data = usa_data, aes(fill = n)) +
   scale_fill_viridis_c(option = 'C') +
-  ggthemes::theme_map()
+  ggtitle("Density of Reporting Agencies") +
+  theme_bw() +
+  theme(plot.title = element_text(size = 24),
+        legend.position = "bottom",
+        legend.text = element_text(size = 18),
+        legend.key.size = unit(1, "cm"),
+        legend.title = element_blank())
 
+plot(gg)
 ```
 
 
