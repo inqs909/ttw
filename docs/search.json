@@ -1,10 +1,248 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
+    "objectID": "posts/wk_2_20_25.html#tidy-tuesday-1",
+    "href": "posts/wk_2_20_25.html#tidy-tuesday-1",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "",
-    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFifth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Fiscal Sponsors!\n\n\n\n\n\nMar 12, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Mr. Trash Wheel!\n\n\n\n\n\nMar 5, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the Leap Day Data.\n\n\n\n\n\nFeb 27, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nThird week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.\n\n\n\n\n\nFeb 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nSecond week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Valentines day sales.\n\n\n\n\n\nFeb 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
+    "section": "Tidy Tuesday",
+    "text": "Tidy Tuesday\nTidy Tuesday is a weekly data visualization challenge from the Data Science Learning Community."
+  },
+  {
+    "objectID": "posts/wk_2_20_25.html#week-7-2025",
+    "href": "posts/wk_2_20_25.html#week-7-2025",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Week 7, 2025",
+    "text": "Week 7, 2025\n\nInfoCSVR CodeData\n\n\nMore information about the data can be found on GitHub.\n\n\nDATA\n\n\n\ntuesdata &lt;- tidytuesdayR::tt_load(2025, week = 7)\n\nagencies &lt;- tuesdata$agencies"
+  },
+  {
+    "objectID": "posts/wk_2_20_25.html#r-softare",
+    "href": "posts/wk_2_20_25.html#r-softare",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "R Softare",
+    "text": "R Softare\nR: R is a statistical programming package that allows you to conduct different types of analysis.\nRStudio: A piece of software that organizes how you conduct statistical analysis in R.\nPosit Cloud: A web version of RStudio."
+  },
+  {
+    "objectID": "posts/wk_2_20_25.html#recommended-r-packages",
+    "href": "posts/wk_2_20_25.html#recommended-r-packages",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Recommended R Packages",
+    "text": "Recommended R Packages\n\nGeneralSpatial\n\n\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")\n\n\n\n\ninstall.packages(\"sf\")\ninstall.packages(\"terra\")\ninstall.packages(\"spData\")\ninstall.packages(\"spDataLarge\", repos = \"https://geocompr.r-universe.dev\")"
+  },
+  {
+    "objectID": "posts/wk_2_20_25.html#visualization-resources",
+    "href": "posts/wk_2_20_25.html#visualization-resources",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Visualization Resources",
+    "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\nSpatial Data Science\nSpatial Data Analysis\nGeocomputation in R"
+  },
+  {
+    "objectID": "posts/wk_2_20_25.html#tidy-tuesday-community-examples",
+    "href": "posts/wk_2_20_25.html#tidy-tuesday-community-examples",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Tidy Tuesday Community Examples",
+    "text": "Tidy Tuesday Community Examples\nponcest\nproject_presentations\nmvbloois"
+  },
+  {
+    "objectID": "posts/wk_2_20_25.html#example-1-1",
+    "href": "posts/wk_2_20_25.html#example-1-1",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Example 1",
+    "text": "Example 1\nCreate a density map of all the agencies located in"
+  },
+  {
+    "objectID": "posts/week_5.html#special-thanks",
+    "href": "posts/week_5.html#special-thanks",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Special Thanks!",
+    "text": "Special Thanks!\nA Special Thanks to the workers who counted the trash items by hand!"
+  },
+  {
+    "objectID": "posts/week_5.html#tidy-tuesday-1",
+    "href": "posts/week_5.html#tidy-tuesday-1",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Tidy Tuesday",
+    "text": "Tidy Tuesday\nTidy Tuesday is a weekly data visualization challenge from the R 4 Data Science Online Community."
+  },
+  {
+    "objectID": "posts/week_5.html#mr.-trash-wheel",
+    "href": "posts/week_5.html#mr.-trash-wheel",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Mr. Trash Wheel",
+    "text": "Mr. Trash Wheel"
+  },
+  {
+    "objectID": "posts/week_5.html#week-10",
+    "href": "posts/week_5.html#week-10",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Week 10",
+    "text": "Week 10\n\nMore information about the data can be found on GitHub and Website.\n\n\nCSV files:\nDATA"
+  },
+  {
+    "objectID": "posts/week_5.html#loading-data",
+    "href": "posts/week_5.html#loading-data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Loading Data",
+    "text": "Loading Data\n\ntuesdata &lt;- tidytuesdayR::tt_load(2024, week = 10)\n\n#&gt; \n#&gt;  Downloading file 1 of 1: `trashwheel.csv`\n\ntrash &lt;-tuesdata$trashwheel"
+  },
+  {
+    "objectID": "posts/week_5.html#data",
+    "href": "posts/week_5.html#data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Data",
+    "text": "Data"
+  },
+  {
+    "objectID": "posts/week_5.html#r-softare",
+    "href": "posts/week_5.html#r-softare",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "R Softare",
+    "text": "R Softare\nR: R is a statistical programming package that allows you to conduct different types of analysis.\nRStudio: A piece of software that organizes how you conduct statistical analysis in R.\nPosit Cloud: A web version of RStudio."
+  },
+  {
+    "objectID": "posts/week_5.html#recommended-r-packages",
+    "href": "posts/week_5.html#recommended-r-packages",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Recommended R Packages",
+    "text": "Recommended R Packages\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")"
+  },
+  {
+    "objectID": "posts/week_5.html#visualization-resources",
+    "href": "posts/week_5.html#visualization-resources",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Visualization Resources",
+    "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
+  },
+  {
+    "objectID": "posts/week_5.html#tidy-tuesday-community-examples",
+    "href": "posts/week_5.html#tidy-tuesday-community-examples",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Tidy Tuesday Community Examples",
+    "text": "Tidy Tuesday Community Examples\nponcest\nproject_presentations\nmvbloois"
+  },
+  {
+    "objectID": "posts/week_5.html#cleaning-data",
+    "href": "posts/week_5.html#cleaning-data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Cleaning Data",
+    "text": "Cleaning Data\n\n\n\n\n\n\n\n\n%0\n\n\n\n5:s-&gt;6\n\n\n\n\n\n4:s-&gt;5\n\n\n\n\n\n2:s-&gt;4\n\n\n\n\n\n2:e-&gt;3\n\n\n\n\n\n1:s-&gt;2\n\n\n\n\n\n6\n\nChange the Data from wide to long by the trash variable using pivot_longer()\nThere are now 3088 observations in the data set.\n\n\n\n5\n\nConvert the Date character variable to a POSIX with mdy()\n\n\n\n4\n\nRemove all miising data\nThere are currently 777 observations in the data set.\n\n\n\n2\n\nRemove Gwynnda Trash Wheel due to seveal missing values\n\n\n\n3\n\nexcluded 221 items\n\n\n\n1\n\nStart with the trash data set\nRemove Variable that have high missing values\n\n\n\n\n\n\n\ndf &lt;- trash |&gt; select(-SportsBalls, -GlassBottles, -Wrappers, -HomesPowered) |&gt; \n  filter(Name != \"Gwynnda Trash Wheel\") |&gt; drop_na() |&gt; \n  mutate(Date = mdy(Date)) |&gt; \n  pivot_longer(PlasticBottles:PlasticBags, names_to = \"Trash\", values_to = \"Value\")"
+  },
+  {
+    "objectID": "posts/week_5.html#cleaned-data",
+    "href": "posts/week_5.html#cleaned-data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Cleaned Data",
+    "text": "Cleaned Data"
+  },
+  {
+    "objectID": "posts/week_5.html#plot",
+    "href": "posts/week_5.html#plot",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Plot",
+    "text": "Plot\n\n\nCode\nlibrary(tidyverse)\n\n\ndf |&gt; ggplot(aes(x = Date, y = log(Value), color = Trash)) +\n  geom_line() +\n  facet_wrap(~Name, nrow = 3) +\n  theme_bw() +\n  ylab(\"Number of Items (log-scale)\") +\n  ggtitle(\"Trash Collection over the Years\") +\n  scale_color_discrete(labels = c(\"Cigarette Butts\", \"Plastic Bags\", \"Plastic Bottles\", \"Polystyrene\")) +\n  theme(legend.title = element_blank(),\n        legend.position = \"bottom\",\n        axis.title.x = element_blank())"
+  },
+  {
+    "objectID": "posts/week_3.html#tidy-tuesday-1",
+    "href": "posts/week_3.html#tidy-tuesday-1",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Tidy Tuesday",
+    "text": "Tidy Tuesday\nTidy Tuesday is a weekly data visualization challenge from the R 4 Data Science Online Community."
+  },
+  {
+    "objectID": "posts/week_3.html#week-8",
+    "href": "posts/week_3.html#week-8",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Week 8",
+    "text": "Week 8\nThe R Consortium ISC has been awarding grants since 2016. This week’s data is an exploration of past grant recipients.\nAre there any keywords that stand out in the titles or summaries of awarded grants? Have the funded amounts changed over time?\n\nMore information about the data can be found on GitHub and Blog Post.\n\n\nA csv file of the data is here.\n\n\nMore on text mining here."
+  },
+  {
+    "objectID": "posts/week_3.html#loading-data",
+    "href": "posts/week_3.html#loading-data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Loading Data",
+    "text": "Loading Data\n\ntuesdata &lt;- tidytuesdayR::tt_load(2024, week = 8)\n\n#&gt; \n#&gt;  Downloading file 1 of 1: `isc_grants.csv`\n\nisc &lt;- tuesdata$isc_grants"
+  },
+  {
+    "objectID": "posts/week_3.html#isc-data",
+    "href": "posts/week_3.html#isc-data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "ISC Data",
+    "text": "ISC Data"
+  },
+  {
+    "objectID": "posts/week_3.html#examples",
+    "href": "posts/week_3.html#examples",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Examples",
+    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, title) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  group_by(group) |&gt; \n  count(word, sort = TRUE) |&gt; filter(n &gt; 1)\n\nisc_title_top |&gt; ggplot(aes(label = word, size = n)) +\n  geom_text_wordcloud() +\n  scale_size_area(max_size = 10) +\n  facet_wrap(~group, labeller =  labeller(group=c('1' = \"Fall\", '2' = \"Spring\"))) +\n  theme_bw()"
+  },
+  {
+    "objectID": "posts/week_3.html#example",
+    "href": "posts/week_3.html#example",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nlibrary(ggthemes)\nisc |&gt; ggplot(aes(x=as.factor(year), y = funded)) + \n  geom_boxplot() +\n  geom_jitter(shape=\"\\u0024\", size = 6) +\n  xlab(\"Year\") + ylab(\"Funded Amount\") +\n  theme_wsj() +\n  theme(axis.text = element_text(size = 16))"
+  },
+  {
+    "objectID": "posts/week_3.html#worked-plot",
+    "href": "posts/week_3.html#worked-plot",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Worked Plot",
+    "text": "Worked Plot"
+  },
+  {
+    "objectID": "posts/week_3.html#example-1",
+    "href": "posts/week_3.html#example-1",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, summary) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  count(word, sort = TRUE) |&gt; filter(n &gt; 5)\n\nisc_title_top |&gt;  \n  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data\n                             replace = TRUE, \n                             prob = c(1, 1, 4, 1, 1))) |&gt; \n  ggplot(aes(label = word, size = n, angle = angle)) +\n  geom_text_wordcloud_area(shape = \"star\") +\n  scale_size_area(max_size = 20) +\n  theme_bw()"
+  },
+  {
+    "objectID": "posts/week_3.html#tidy-tuesday-r-community-examples",
+    "href": "posts/week_3.html#tidy-tuesday-r-community-examples",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Tidy Tuesday R Community Examples",
+    "text": "Tidy Tuesday R Community Examples\nnrennie\nmvbloois\nGabsPalomo\nponcest\nproject_presentations\ncamartinezbu"
+  },
+  {
+    "objectID": "posts/week_3.html#r-programming",
+    "href": "posts/week_3.html#r-programming",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "R Programming",
+    "text": "R Programming\nR is a statistical programming package that allows you to conduct different types of analysis.\nR"
+  },
+  {
+    "objectID": "posts/week_3.html#rstudio",
+    "href": "posts/week_3.html#rstudio",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "RStudio",
+    "text": "RStudio\nA piece of software that organizes how you conduct statistical analysis in R.\nRStudio"
+  },
+  {
+    "objectID": "posts/week_3.html#posit-cloud",
+    "href": "posts/week_3.html#posit-cloud",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Posit Cloud",
+    "text": "Posit Cloud\nA web version of RStudio.\nPosit Cloud"
+  },
+  {
+    "objectID": "posts/week_3.html#r-packages",
+    "href": "posts/week_3.html#r-packages",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "R Packages",
+    "text": "R Packages\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")"
+  },
+  {
+    "objectID": "posts/week_3.html#load-minimum-r-package",
+    "href": "posts/week_3.html#load-minimum-r-package",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Load Minimum R Package",
+    "text": "Load Minimum R Package\n\n#| echo: true\n#| eval: true\n#| message: false\n#| warning: false\n\nlibrary(tidyverse)\nlibrary(tidytuesdayR)\n\n\nYou must load packages every new R Session"
+  },
+  {
+    "objectID": "posts/week_3.html#visualization-resources",
+    "href": "posts/week_3.html#visualization-resources",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Visualization Resources",
+    "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
   },
   {
     "objectID": "posts/week_1.html#r-programming",
@@ -196,172 +434,11 @@
     "text": "Regression Lines by Group\n\nmtcars |&gt; ggplot(aes(x = wt, y = mpg,\n                  color = as.factor(cyl))) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = F)"
   },
   {
-    "objectID": "posts/week_5.html#special-thanks",
-    "href": "posts/week_5.html#special-thanks",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Special Thanks!",
-    "text": "Special Thanks!\nA Special Thanks to the workers who counted the trash items by hand!"
-  },
-  {
-    "objectID": "posts/week_5.html#tidy-tuesday-1",
-    "href": "posts/week_5.html#tidy-tuesday-1",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Tidy Tuesday",
-    "text": "Tidy Tuesday\nTidy Tuesday is a weekly data visualization challenge from the R 4 Data Science Online Community."
-  },
-  {
-    "objectID": "posts/week_5.html#mr.-trash-wheel",
-    "href": "posts/week_5.html#mr.-trash-wheel",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Mr. Trash Wheel",
-    "text": "Mr. Trash Wheel"
-  },
-  {
-    "objectID": "posts/week_5.html#week-10",
-    "href": "posts/week_5.html#week-10",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Week 10",
-    "text": "Week 10\n\nMore information about the data can be found on GitHub and Website.\n\n\nCSV files:\nDATA"
-  },
-  {
-    "objectID": "posts/week_5.html#loading-data",
-    "href": "posts/week_5.html#loading-data",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Loading Data",
-    "text": "Loading Data\n\ntuesdata &lt;- tidytuesdayR::tt_load(2024, week = 10)\n\n#&gt; \n#&gt;  Downloading file 1 of 1: `trashwheel.csv`\n\ntrash &lt;-tuesdata$trashwheel"
-  },
-  {
-    "objectID": "posts/week_5.html#data",
-    "href": "posts/week_5.html#data",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Data",
-    "text": "Data"
-  },
-  {
-    "objectID": "posts/week_5.html#r-softare",
-    "href": "posts/week_5.html#r-softare",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "R Softare",
-    "text": "R Softare\nR: R is a statistical programming package that allows you to conduct different types of analysis.\nRStudio: A piece of software that organizes how you conduct statistical analysis in R.\nPosit Cloud: A web version of RStudio."
-  },
-  {
-    "objectID": "posts/week_5.html#recommended-r-packages",
-    "href": "posts/week_5.html#recommended-r-packages",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Recommended R Packages",
-    "text": "Recommended R Packages\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")"
-  },
-  {
-    "objectID": "posts/week_5.html#visualization-resources",
-    "href": "posts/week_5.html#visualization-resources",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Visualization Resources",
-    "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
-  },
-  {
-    "objectID": "posts/week_5.html#tidy-tuesday-community-examples",
-    "href": "posts/week_5.html#tidy-tuesday-community-examples",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Tidy Tuesday Community Examples",
-    "text": "Tidy Tuesday Community Examples\nponcest\nproject_presentations\nmvbloois"
-  },
-  {
-    "objectID": "posts/week_5.html#cleaning-data",
-    "href": "posts/week_5.html#cleaning-data",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Cleaning Data",
-    "text": "Cleaning Data\n\n\n\n\n\n\n\n\n%0\n\n\n\n5:s-&gt;6\n\n\n\n\n\n4:s-&gt;5\n\n\n\n\n\n2:s-&gt;4\n\n\n\n\n\n2:e-&gt;3\n\n\n\n\n\n1:s-&gt;2\n\n\n\n\n\n6\n\nChange the Data from wide to long by the trash variable using pivot_longer()\nThere are now 3088 observations in the data set.\n\n\n\n5\n\nConvert the Date character variable to a POSIX with mdy()\n\n\n\n4\n\nRemove all miising data\nThere are currently 777 observations in the data set.\n\n\n\n2\n\nRemove Gwynnda Trash Wheel due to seveal missing values\n\n\n\n3\n\nexcluded 221 items\n\n\n\n1\n\nStart with the trash data set\nRemove Variable that have high missing values\n\n\n\n\n\n\n\ndf &lt;- trash |&gt; select(-SportsBalls, -GlassBottles, -Wrappers, -HomesPowered) |&gt; \n  filter(Name != \"Gwynnda Trash Wheel\") |&gt; drop_na() |&gt; \n  mutate(Date = mdy(Date)) |&gt; \n  pivot_longer(PlasticBottles:PlasticBags, names_to = \"Trash\", values_to = \"Value\")"
-  },
-  {
-    "objectID": "posts/week_5.html#cleaned-data",
-    "href": "posts/week_5.html#cleaned-data",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Cleaned Data",
-    "text": "Cleaned Data"
-  },
-  {
-    "objectID": "posts/week_5.html#plot",
-    "href": "posts/week_5.html#plot",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Plot",
-    "text": "Plot\n\n\nCode\nlibrary(tidyverse)\n\n\ndf |&gt; ggplot(aes(x = Date, y = log(Value), color = Trash)) +\n  geom_line() +\n  facet_wrap(~Name, nrow = 3) +\n  theme_bw() +\n  ylab(\"Number of Items (log-scale)\") +\n  ggtitle(\"Trash Collection over the Years\") +\n  scale_color_discrete(labels = c(\"Cigarette Butts\", \"Plastic Bags\", \"Plastic Bottles\", \"Polystyrene\")) +\n  theme(legend.title = element_blank(),\n        legend.position = \"bottom\",\n        axis.title.x = element_blank())"
-  },
-  {
-    "objectID": "posts/week_4.html#tidy-tuesday-1",
-    "href": "posts/week_4.html#tidy-tuesday-1",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Tidy Tuesday",
-    "text": "Tidy Tuesday\nTidy Tuesday is a weekly data visualization challenge from the R 4 Data Science Online Community."
-  },
-  {
-    "objectID": "posts/week_4.html#week-9",
-    "href": "posts/week_4.html#week-9",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Week 9",
-    "text": "Week 9\n\nMore information about the data can be found on GitHub and Blog Post.\n\n\nCsv files:\nEvents | Births | Deaths"
-  },
-  {
-    "objectID": "posts/week_4.html#loading-data",
-    "href": "posts/week_4.html#loading-data",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Loading Data",
-    "text": "Loading Data\n\ntuesdata &lt;- tidytuesdayR::tt_load(2024, week = 9)\n\n#&gt; \n#&gt;  Downloading file 1 of 3: `events.csv`\n#&gt;  Downloading file 2 of 3: `births.csv`\n#&gt;  Downloading file 3 of 3: `deaths.csv`\n\nbirths &lt;- tuesdata$births\ndeaths &lt;- tuesdata$deaths\nevents &lt;- tuesdata$events"
-  },
-  {
-    "objectID": "posts/week_4.html#data",
-    "href": "posts/week_4.html#data",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Data",
-    "text": "Data"
-  },
-  {
-    "objectID": "posts/week_4.html#r-softare",
-    "href": "posts/week_4.html#r-softare",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "R Softare",
-    "text": "R Softare\nR: R is a statistical programming package that allows you to conduct different types of analysis.\nRStudio: A piece of software that organizes how you conduct statistical analysis in R.\nPosit Cloud: A web version of RStudio."
-  },
-  {
-    "objectID": "posts/week_4.html#recommended-r-packages",
-    "href": "posts/week_4.html#recommended-r-packages",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Recommended R Packages",
-    "text": "Recommended R Packages\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")"
-  },
-  {
-    "objectID": "posts/week_4.html#visualization-resources",
-    "href": "posts/week_4.html#visualization-resources",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Visualization Resources",
-    "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
-  },
-  {
-    "objectID": "posts/week_4.html#tidy-tuesday-community-examples",
-    "href": "posts/week_4.html#tidy-tuesday-community-examples",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Tidy Tuesday Community Examples",
-    "text": "Tidy Tuesday Community Examples\nponcest\nproject_presentations\nmvbloois"
-  },
-  {
-    "objectID": "posts/week_4.html#cleaning-data",
-    "href": "posts/week_4.html#cleaning-data",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Cleaning Data",
-    "text": "Cleaning Data\n\n\n\n\n\n\n\n\n%0\n\n\n\n3:s-&gt;5\n\n\n\n\n\n3:e-&gt;4\n\n\n\n\n\n2:s-&gt;3\n\n\n\n\n\n1:s-&gt;2\n\n\n\n\n\n5\n\nRemoved any missing years in births or deaths.\nThere are currently 117 observations in the data set.\n\n\n\n3\n\nBirths and Deaths were aggregated to one table.\nThere are currently 183 observations in the data set.\n\n\n\n4\n\nexcluded 66 items\n\n\n\n2\n\nUnion\n183 in union\n\n\n\n1\n\nStart with Births and Deaths Data Set\nA new variable was added to both data sets indicating type.\n\n\n\n\n\n\n\nbirths &lt;- births |&gt; mutate(type = \"Births\")\ndeaths &lt;- deaths |&gt; mutate(type = \"Deaths\")\n\ndf &lt;- births |&gt; bind_rows(deaths) |&gt; \n    filter(!(is.na(year_birth) | is.na(year_death))) |&gt; \n    filter(year_birth &gt; 1700) |&gt;\n    slice_sample(prop = 1) |&gt;\n    mutate(id = row_number())"
-  },
-  {
-    "objectID": "posts/week_4.html#cleaned-data",
-    "href": "posts/week_4.html#cleaned-data",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Cleaned Data",
-    "text": "Cleaned Data\n\n\n\n\n\n\n\n\nCode\nlibrary(tidyverse)\n\n\ndf |&gt;  \n  ggplot(aes(x=year_birth, xend = year_death, \n             y = id, yend = id, color = type)) +\n    geom_segment() +\n    xlab(\"Year\") + ylab(\"\") + \n    theme_bw() +\n    scale_color_discrete(name = \"\")+\n    theme(axis.text.y = element_blank(),\n          axis.ticks.y = element_blank()) +\n    ggtitle(\"Life Span for Births and Deaths\") +\n    labs(subtitle = \"on Leap Day\")"
-  },
-  {
-    "objectID": "posts/week_4.html#plot",
-    "href": "posts/week_4.html#plot",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Plot",
-    "text": "Plot\n\n\nCode\nlibrary(tidyverse)\n\n\ndf |&gt;  \n  ggplot(aes(x=year_birth, xend = year_death, \n             y = id, yend = id, color = type)) +\n    geom_segment() +\n    xlab(\"Year\") + ylab(\"\") + \n    theme_bw() +\n    scale_color_discrete(name = \"\")+\n    theme(axis.text.y = element_blank(),\n          axis.ticks.y = element_blank()) +\n    ggtitle(\"Life Span for Births and Deaths\") +\n    labs(subtitle = \"on Leap Day\")"
+    "section": "",
+    "text": "Introduction to Statistics Books\n\n\n\n\n\nIntro to Modern Statistics\nModern Statistics with R\nBig Book of R\nGraphical Data Analysis in R\nModern Data Visualization\nPractical Data Science\nFundamentals of Data Visualization\nggplot2 Book\n\n\n\n\n\n\n\n\n\nR Graphics Resources\n\n\n\n\n\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nTidy Tuesday on Thursday at CSUCI! Analyzing Agencies from the FBI Crime Data API!\n\n\n\n\n\nFeb 20, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFifth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Fiscal Sponsors!\n\n\n\n\n\nMar 12, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Mr. Trash Wheel!\n\n\n\n\n\nMar 5, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFourth week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the Leap Day Data.\n\n\n\n\n\nFeb 27, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nThird week of Tidy Tuesday on Wednesday at CSUCI! Analyzing the R Consortium ISC Grants.\n\n\n\n\n\nFeb 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nSecond week of Tidy Tuesday on Wednesday at CSUCI! Analyzing Valentines day sales.\n\n\n\n\n\nFeb 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday on Wednesday\n\n\nwww.inqs.info/ttw\n\n\nFirst week of Tidy Tuesday on Wednesday at CSUCI! Visualizing data from Heritage Sites\n\n\n\n\n\nFeb 6, 2024\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/week_2.html#tidy-tuesday-1",
@@ -455,109 +532,81 @@
     "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
   },
   {
-    "objectID": "posts/week_3.html#tidy-tuesday-1",
-    "href": "posts/week_3.html#tidy-tuesday-1",
+    "objectID": "posts/week_4.html#tidy-tuesday-1",
+    "href": "posts/week_4.html#tidy-tuesday-1",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Tidy Tuesday",
     "text": "Tidy Tuesday\nTidy Tuesday is a weekly data visualization challenge from the R 4 Data Science Online Community."
   },
   {
-    "objectID": "posts/week_3.html#week-8",
-    "href": "posts/week_3.html#week-8",
+    "objectID": "posts/week_4.html#week-9",
+    "href": "posts/week_4.html#week-9",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Week 8",
-    "text": "Week 8\nThe R Consortium ISC has been awarding grants since 2016. This week’s data is an exploration of past grant recipients.\nAre there any keywords that stand out in the titles or summaries of awarded grants? Have the funded amounts changed over time?\n\nMore information about the data can be found on GitHub and Blog Post.\n\n\nA csv file of the data is here.\n\n\nMore on text mining here."
+    "section": "Week 9",
+    "text": "Week 9\n\nMore information about the data can be found on GitHub and Blog Post.\n\n\nCsv files:\nEvents | Births | Deaths"
   },
   {
-    "objectID": "posts/week_3.html#loading-data",
-    "href": "posts/week_3.html#loading-data",
+    "objectID": "posts/week_4.html#loading-data",
+    "href": "posts/week_4.html#loading-data",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Loading Data",
-    "text": "Loading Data\n\ntuesdata &lt;- tidytuesdayR::tt_load(2024, week = 8)\n\n#&gt; \n#&gt;  Downloading file 1 of 1: `isc_grants.csv`\n\nisc &lt;- tuesdata$isc_grants"
+    "text": "Loading Data\n\ntuesdata &lt;- tidytuesdayR::tt_load(2024, week = 9)\n\n#&gt; \n#&gt;  Downloading file 1 of 3: `events.csv`\n#&gt;  Downloading file 2 of 3: `births.csv`\n#&gt;  Downloading file 3 of 3: `deaths.csv`\n\nbirths &lt;- tuesdata$births\ndeaths &lt;- tuesdata$deaths\nevents &lt;- tuesdata$events"
   },
   {
-    "objectID": "posts/week_3.html#isc-data",
-    "href": "posts/week_3.html#isc-data",
+    "objectID": "posts/week_4.html#data",
+    "href": "posts/week_4.html#data",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "ISC Data",
-    "text": "ISC Data"
+    "section": "Data",
+    "text": "Data"
   },
   {
-    "objectID": "posts/week_3.html#examples",
-    "href": "posts/week_3.html#examples",
+    "objectID": "posts/week_4.html#r-softare",
+    "href": "posts/week_4.html#r-softare",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Examples",
-    "text": "Examples\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, title) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  group_by(group) |&gt; \n  count(word, sort = TRUE) |&gt; filter(n &gt; 1)\n\nisc_title_top |&gt; ggplot(aes(label = word, size = n)) +\n  geom_text_wordcloud() +\n  scale_size_area(max_size = 10) +\n  facet_wrap(~group, labeller =  labeller(group=c('1' = \"Fall\", '2' = \"Spring\"))) +\n  theme_bw()"
+    "section": "R Softare",
+    "text": "R Softare\nR: R is a statistical programming package that allows you to conduct different types of analysis.\nRStudio: A piece of software that organizes how you conduct statistical analysis in R.\nPosit Cloud: A web version of RStudio."
   },
   {
-    "objectID": "posts/week_3.html#example",
-    "href": "posts/week_3.html#example",
+    "objectID": "posts/week_4.html#recommended-r-packages",
+    "href": "posts/week_4.html#recommended-r-packages",
     "title": "Tidy Tuesday on Wednesday",
-    "section": "Example",
-    "text": "Example\n\n\nCode\nlibrary(ggthemes)\nisc |&gt; ggplot(aes(x=as.factor(year), y = funded)) + \n  geom_boxplot() +\n  geom_jitter(shape=\"\\u0024\", size = 6) +\n  xlab(\"Year\") + ylab(\"Funded Amount\") +\n  theme_wsj() +\n  theme(axis.text = element_text(size = 16))"
+    "section": "Recommended R Packages",
+    "text": "Recommended R Packages\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")"
   },
   {
-    "objectID": "posts/week_3.html#worked-plot",
-    "href": "posts/week_3.html#worked-plot",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Worked Plot",
-    "text": "Worked Plot"
-  },
-  {
-    "objectID": "posts/week_3.html#example-1",
-    "href": "posts/week_3.html#example-1",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Example",
-    "text": "Example\n\n\nCode\nlibrary(tidyverse)\nlibrary(ggwordcloud)\n\nisc_title &lt;- isc |&gt; \n  unnest_tokens(word, summary) |&gt; \n  anti_join(stop_words)\n\nisc_title_top &lt;- isc_title |&gt;\n  count(word, sort = TRUE) |&gt; filter(n &gt; 5)\n\nisc_title_top |&gt;  \n  mutate(angle = 45 * sample(-2:2, n(), # 157:159 Creating Angles for data\n                             replace = TRUE, \n                             prob = c(1, 1, 4, 1, 1))) |&gt; \n  ggplot(aes(label = word, size = n, angle = angle)) +\n  geom_text_wordcloud_area(shape = \"star\") +\n  scale_size_area(max_size = 20) +\n  theme_bw()"
-  },
-  {
-    "objectID": "posts/week_3.html#tidy-tuesday-r-community-examples",
-    "href": "posts/week_3.html#tidy-tuesday-r-community-examples",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Tidy Tuesday R Community Examples",
-    "text": "Tidy Tuesday R Community Examples\nnrennie\nmvbloois\nGabsPalomo\nponcest\nproject_presentations\ncamartinezbu"
-  },
-  {
-    "objectID": "posts/week_3.html#r-programming",
-    "href": "posts/week_3.html#r-programming",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "R Programming",
-    "text": "R Programming\nR is a statistical programming package that allows you to conduct different types of analysis.\nR"
-  },
-  {
-    "objectID": "posts/week_3.html#rstudio",
-    "href": "posts/week_3.html#rstudio",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "RStudio",
-    "text": "RStudio\nA piece of software that organizes how you conduct statistical analysis in R.\nRStudio"
-  },
-  {
-    "objectID": "posts/week_3.html#posit-cloud",
-    "href": "posts/week_3.html#posit-cloud",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Posit Cloud",
-    "text": "Posit Cloud\nA web version of RStudio.\nPosit Cloud"
-  },
-  {
-    "objectID": "posts/week_3.html#r-packages",
-    "href": "posts/week_3.html#r-packages",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "R Packages",
-    "text": "R Packages\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"plotly\")\ninstall.packages(\"ggwordcloud\")\ninstall.packages(\"ggthemes\")\ninstall.packages(\"ggpie\")\ninstall.packages(\"ggbump\")\ninstall.packages(\"tidytext\")\ninstall.packages(\"remotes\")\ninstall.packages(\"esquisse\")\ninstall.packages(\"tidytuesdayR\")\nremotes::install_github(\"MatthewBJane/ThemePark\")"
-  },
-  {
-    "objectID": "posts/week_3.html#load-minimum-r-package",
-    "href": "posts/week_3.html#load-minimum-r-package",
-    "title": "Tidy Tuesday on Wednesday",
-    "section": "Load Minimum R Package",
-    "text": "Load Minimum R Package\n\n#| echo: true\n#| eval: true\n#| message: false\n#| warning: false\n\nlibrary(tidyverse)\nlibrary(tidytuesdayR)\n\n\nYou must load packages every new R Session"
-  },
-  {
-    "objectID": "posts/week_3.html#visualization-resources",
-    "href": "posts/week_3.html#visualization-resources",
+    "objectID": "posts/week_4.html#visualization-resources",
+    "href": "posts/week_4.html#visualization-resources",
     "title": "Tidy Tuesday on Wednesday",
     "section": "Visualization Resources",
     "text": "Visualization Resources\nR Graphics Cookbook\nR Graph Gallery\nR Charts\nggplot2"
+  },
+  {
+    "objectID": "posts/week_4.html#tidy-tuesday-community-examples",
+    "href": "posts/week_4.html#tidy-tuesday-community-examples",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Tidy Tuesday Community Examples",
+    "text": "Tidy Tuesday Community Examples\nponcest\nproject_presentations\nmvbloois"
+  },
+  {
+    "objectID": "posts/week_4.html#cleaning-data",
+    "href": "posts/week_4.html#cleaning-data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Cleaning Data",
+    "text": "Cleaning Data\n\n\n\n\n\n\n\n\n%0\n\n\n\n3:s-&gt;5\n\n\n\n\n\n3:e-&gt;4\n\n\n\n\n\n2:s-&gt;3\n\n\n\n\n\n1:s-&gt;2\n\n\n\n\n\n5\n\nRemoved any missing years in births or deaths.\nThere are currently 117 observations in the data set.\n\n\n\n3\n\nBirths and Deaths were aggregated to one table.\nThere are currently 183 observations in the data set.\n\n\n\n4\n\nexcluded 66 items\n\n\n\n2\n\nUnion\n183 in union\n\n\n\n1\n\nStart with Births and Deaths Data Set\nA new variable was added to both data sets indicating type.\n\n\n\n\n\n\n\nbirths &lt;- births |&gt; mutate(type = \"Births\")\ndeaths &lt;- deaths |&gt; mutate(type = \"Deaths\")\n\ndf &lt;- births |&gt; bind_rows(deaths) |&gt; \n    filter(!(is.na(year_birth) | is.na(year_death))) |&gt; \n    filter(year_birth &gt; 1700) |&gt;\n    slice_sample(prop = 1) |&gt;\n    mutate(id = row_number())"
+  },
+  {
+    "objectID": "posts/week_4.html#cleaned-data",
+    "href": "posts/week_4.html#cleaned-data",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Cleaned Data",
+    "text": "Cleaned Data\n\n\n\n\n\n\n\n\nCode\nlibrary(tidyverse)\n\n\ndf |&gt;  \n  ggplot(aes(x=year_birth, xend = year_death, \n             y = id, yend = id, color = type)) +\n    geom_segment() +\n    xlab(\"Year\") + ylab(\"\") + \n    theme_bw() +\n    scale_color_discrete(name = \"\")+\n    theme(axis.text.y = element_blank(),\n          axis.ticks.y = element_blank()) +\n    ggtitle(\"Life Span for Births and Deaths\") +\n    labs(subtitle = \"on Leap Day\")"
+  },
+  {
+    "objectID": "posts/week_4.html#plot",
+    "href": "posts/week_4.html#plot",
+    "title": "Tidy Tuesday on Wednesday",
+    "section": "Plot",
+    "text": "Plot\n\n\nCode\nlibrary(tidyverse)\n\n\ndf |&gt;  \n  ggplot(aes(x=year_birth, xend = year_death, \n             y = id, yend = id, color = type)) +\n    geom_segment() +\n    xlab(\"Year\") + ylab(\"\") + \n    theme_bw() +\n    scale_color_discrete(name = \"\")+\n    theme(axis.text.y = element_blank(),\n          axis.ticks.y = element_blank()) +\n    ggtitle(\"Life Span for Births and Deaths\") +\n    labs(subtitle = \"on Leap Day\")"
   },
   {
     "objectID": "posts/week_6.html#tidy-tuesday-1",

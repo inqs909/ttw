@@ -1,0 +1,145 @@
+---
+title: "Tidy Tuesday on Wednesday"
+subtitle: "www.inqs.info/ttw"
+date: 02-20-25
+description: Tidy Tuesday on Thursday at CSUCI! Analyzing Agencies from the FBI Crime Data API!
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+engine: knitr
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    comment: "#>" 
+draft: false
+categories:
+  - sp2025
+execute: 
+  cache: true
+---
+
+# Tidy Tuesday
+
+## Tidy Tuesday
+
+[Tidy Tuesday](https://tidytues.day/) is a weekly data visualization challenge from the [Data Science Learning Community](https://dslc.io/).
+
+## Week 7, 2025
+
+::: panel-tabset
+
+### Info
+
+More information about the data can be found on [GitHub](https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-02-18/readme.md).
+
+### CSV
+
+[DATA](https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-02-18/agencies.csv)
+
+
+
+### R Code
+
+```{r}
+#| echo: true
+#| eval: true
+
+tuesdata <- tidytuesdayR::tt_load(2025, week = 7)
+
+agencies <- tuesdata$agencies
+
+```
+
+### Data
+
+```{r}
+#| eval: true
+#| echo: false
+agencies |> DT::datatable(options = list(pageLength = 1, dom = "tp"))
+
+```
+
+:::
+
+## R Softare
+
+[R](https://www.r-project.org/): R is a statistical programming package that allows you to conduct different types of analysis.
+
+[RStudio](https://posit.co/downloads/): A piece of software that organizes how you conduct statistical analysis in R.
+
+[Posit Cloud](https://posit.cloud/login): A web version of RStudio.
+
+## Recommended R Packages
+
+::: panel-tabset
+
+### General
+
+```{r}
+#| echo: true
+#| eval: false
+
+install.packages("tidyverse")
+install.packages("plotly")
+install.packages("ggwordcloud")
+install.packages("ggthemes")
+install.packages("ggpie")
+install.packages("ggbump")
+install.packages("tidytext")
+install.packages("remotes")
+install.packages("esquisse")
+install.packages("tidytuesdayR")
+remotes::install_github("MatthewBJane/ThemePark")
+
+```
+
+
+### Spatial
+
+```{r}
+#| echo: true
+#| eval: false
+
+install.packages("sf")
+install.packages("terra")
+install.packages("spData")
+install.packages("spDataLarge", repos = "https://geocompr.r-universe.dev")
+```
+
+:::
+
+
+## Visualization Resources
+
+[R Graphics Cookbook](https://r-graphics.org/)
+
+[R Graph Gallery](https://r-graph-gallery.com/)
+
+[R Charts](https://r-charts.com/)
+
+[ggplot2](https://ggplot2.tidyverse.org/)
+
+[Spatial Data Science](https://r-spatial.org/book/)
+
+[Spatial Data Analysis](https://paezha.github.io/spatial-analysis-r/)
+
+[Geocomputation in R](https://r.geocompx.org/)
+
+## Tidy Tuesday Community Examples
+
+[poncest](https://github.com/poncest/tidytuesday/tree/main/2024/Week_09)
+
+[project_presentations](https://github.com/Aditya-Dahiya/projects_presentations/blob/main/projects/tidy_leap_day.R)
+
+[mvbloois](https://github.com/mvbloois/tidytuesday/tree/main/2024/2024-02-27)
+
+# Example 1
+
+## Example 1
+
+Create a density map of all the agencies located in 
