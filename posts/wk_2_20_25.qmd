@@ -143,12 +143,13 @@ install.packages("spDataLarge", repos = "https://geocompr.r-universe.dev")
 
 ## Example 1
 
-Create a density map of all the agencies located in the United States.
+Create a density dot map of all the agencies located in the United States.
 
-## Loading R Packages
+## Plot
 
 ```{r}
-#| eval: false
+#| code-fold: true
+#| eval: true
 
 
 library(sf)
@@ -160,20 +161,69 @@ usa <- st_as_sf(maps::map("state", fill=TRUE, plot =FALSE))
 # Obtaining Coordinate System of usa sf object
 usa_crs <- st_crs(usa)
 
-# Converting
+# Converting agencies data set to sf object
 agencies_sf <- agencies |>
-  filter(!(state %in% c("Alaska", "Hawaii"))) |> 
-  filter(latitude > 0) |> 
-  select(latitude, longitude) |>
-  drop_na() |> 
-  st_as_sf(coords = c("longitude","latitude"), remove = FALSE)
+  filter(!(state %in% c("Alaska", "Hawaii"))) |> # Removing states not in contiguous map
+  filter(latitude > 0) |>  # Removing Extraneous Map Point
+  select(latitude, longitude) |> # Selecting lat and long
+  drop_na() |> # removing missing
+  st_as_sf(coords = c("longitude","latitude"), remove = FALSE) # converting to sf object
 
+# Converting coordinate system to usa object version
 st_crs(agencies_sf) <- usa_crs
 
-
-ggplot(usa) +
-  geom_sf(color = "#2b2b2b", fill = "white", size=0.125) +
+# Creating Plot
+ggplot() +
+  geom_sf(data = usa, color = "#2b2b2b", fill = "white", size=0.125) +
   geom_sf(data = agencies_sf) +
   ggthemes::theme_map()
 
 ```
+
+# Example 2
+
+## Example 2
+
+Creating a chloropeth map based on density count.
+
+## Plot
+
+```{r}
+#| code-fold: true
+#| eval: true
+
+# Loading Packages
+library(sf)
+library(tidyverse)
+
+# Loading Data (Uncomment)
+## tuesdata <- tidytuesdayR::tt_load(2025, week = 7)
+## agencies <- tuesdata$agencies
+
+# Getting Map of the US
+usa <- st_as_sf(maps::map("state", fill=TRUE, plot =FALSE))
+
+# Counting number of agencies in the data set
+agencies_c <- agencies |>
+  filter(!(state %in% c("Alaska", "Hawaii"))) |> # Removing states not in contiguous map
+  select(state) |> # selecting to only work with state variable
+  group_by(state) |> # grouping by state for counting
+  count() |> # counting how many elements in a group
+  mutate(ID = str_to_lower(state)) |> # creating a new variable for future merging
+  ungroup() |> # ungrouping state to add row
+  add_row(state = "District of Columbia", n = 0, ID = "district of columbia") # Adding row for DC
+
+# merging agencies_c and usa (sf object) by ID
+usa_data <- left_join(agencies_c, usa, by = "ID") |> st_as_sf()
+
+
+
+# Creating Plot
+ggplot() +
+  geom_sf(data = usa_data, aes(fill = n)) +
+  scale_fill_viridis_c(option = 'C') +
+  ggthemes::theme_map()
+
+```
+
+

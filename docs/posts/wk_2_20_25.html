@@ -310,11 +310,13 @@
 </section>
 <section id="example-1-1" class="slide level2">
 <h2>Example 1</h2>
-<p>Create a density map of all the agencies located in the United States.</p>
+<p>Create a density dot map of all the agencies located in the United States.</p>
 </section>
-<section id="loading-r-packages" class="slide level2">
-<h2>Loading R Packages</h2>
+<section id="plot" class="slide level2">
+<h2>Plot</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(sf)</span>
 <span id="cb4-2"><a></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb4-3"><a></a></span>
@@ -324,25 +326,77 @@
 <span id="cb4-7"><a></a><span class="co"># Obtaining Coordinate System of usa sf object</span></span>
 <span id="cb4-8"><a></a>usa_crs <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(usa)</span>
 <span id="cb4-9"><a></a></span>
-<span id="cb4-10"><a></a><span class="co"># Converting</span></span>
+<span id="cb4-10"><a></a><span class="co"># Converting agencies data set to sf object</span></span>
 <span id="cb4-11"><a></a>agencies_sf <span class="ot">&lt;-</span> agencies <span class="sc">|&gt;</span></span>
-<span id="cb4-12"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span>(state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Alaska"</span>, <span class="st">"Hawaii"</span>))) <span class="sc">|&gt;</span> </span>
-<span id="cb4-13"><a></a>  <span class="fu">filter</span>(latitude <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-14"><a></a>  <span class="fu">select</span>(latitude, longitude) <span class="sc">|&gt;</span></span>
-<span id="cb4-15"><a></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb4-16"><a></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>,<span class="st">"latitude"</span>), <span class="at">remove =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-12"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span>(state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Alaska"</span>, <span class="st">"Hawaii"</span>))) <span class="sc">|&gt;</span> <span class="co"># Removing states not in contiguous map</span></span>
+<span id="cb4-13"><a></a>  <span class="fu">filter</span>(latitude <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span>  <span class="co"># Removing Extraneous Map Point</span></span>
+<span id="cb4-14"><a></a>  <span class="fu">select</span>(latitude, longitude) <span class="sc">|&gt;</span> <span class="co"># Selecting lat and long</span></span>
+<span id="cb4-15"><a></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> <span class="co"># removing missing</span></span>
+<span id="cb4-16"><a></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>,<span class="st">"latitude"</span>), <span class="at">remove =</span> <span class="cn">FALSE</span>) <span class="co"># converting to sf object</span></span>
 <span id="cb4-17"><a></a></span>
-<span id="cb4-18"><a></a><span class="fu">st_crs</span>(agencies_sf) <span class="ot">&lt;-</span> usa_crs</span>
-<span id="cb4-19"><a></a></span>
+<span id="cb4-18"><a></a><span class="co"># Converting coordinate system to usa object version</span></span>
+<span id="cb4-19"><a></a><span class="fu">st_crs</span>(agencies_sf) <span class="ot">&lt;-</span> usa_crs</span>
 <span id="cb4-20"><a></a></span>
-<span id="cb4-21"><a></a><span class="fu">ggplot</span>(usa) <span class="sc">+</span></span>
-<span id="cb4-22"><a></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"#2b2b2b"</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size=</span><span class="fl">0.125</span>) <span class="sc">+</span></span>
-<span id="cb4-23"><a></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> agencies_sf) <span class="sc">+</span></span>
-<span id="cb4-24"><a></a>  ggthemes<span class="sc">::</span><span class="fu">theme_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-21"><a></a><span class="co"># Creating Plot</span></span>
+<span id="cb4-22"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-23"><a></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> usa, <span class="at">color =</span> <span class="st">"#2b2b2b"</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size=</span><span class="fl">0.125</span>) <span class="sc">+</span></span>
+<span id="cb4-24"><a></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> agencies_sf) <span class="sc">+</span></span>
+<span id="cb4-25"><a></a>  ggthemes<span class="sc">::</span><span class="fu">theme_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="wk_2_20_25_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section></section>
+<section>
+<section id="example-2" class="title-slide slide level1 center">
+<h1>Example 2</h1>
+
+</section>
+<section id="example-2-1" class="slide level2">
+<h2>Example 2</h2>
+<p>Creating a chloropeth map based on density count.</p>
+</section>
+<section id="plot-1" class="slide level2">
+<h2>Plot</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Loading Packages</span></span>
+<span id="cb5-2"><a></a><span class="fu">library</span>(sf)</span>
+<span id="cb5-3"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-4"><a></a></span>
+<span id="cb5-5"><a></a><span class="co"># Loading Data (Uncomment)</span></span>
+<span id="cb5-6"><a></a><span class="do">## tuesdata &lt;- tidytuesdayR::tt_load(2025, week = 7)</span></span>
+<span id="cb5-7"><a></a><span class="do">## agencies &lt;- tuesdata$agencies</span></span>
+<span id="cb5-8"><a></a></span>
+<span id="cb5-9"><a></a><span class="co"># Getting Map of the US</span></span>
+<span id="cb5-10"><a></a>usa <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(maps<span class="sc">::</span><span class="fu">map</span>(<span class="st">"state"</span>, <span class="at">fill=</span><span class="cn">TRUE</span>, <span class="at">plot =</span><span class="cn">FALSE</span>))</span>
+<span id="cb5-11"><a></a></span>
+<span id="cb5-12"><a></a><span class="co"># Counting number of agencies in the data set</span></span>
+<span id="cb5-13"><a></a>agencies_c <span class="ot">&lt;-</span> agencies <span class="sc">|&gt;</span></span>
+<span id="cb5-14"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span>(state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Alaska"</span>, <span class="st">"Hawaii"</span>))) <span class="sc">|&gt;</span> <span class="co"># Removing states not in contiguous map</span></span>
+<span id="cb5-15"><a></a>  <span class="fu">select</span>(state) <span class="sc">|&gt;</span> <span class="co"># selecting to only work with state variable</span></span>
+<span id="cb5-16"><a></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span> <span class="co"># grouping by state for counting</span></span>
+<span id="cb5-17"><a></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span> <span class="co"># counting how many elements in a group</span></span>
+<span id="cb5-18"><a></a>  <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">str_to_lower</span>(state)) <span class="sc">|&gt;</span> <span class="co"># creating a new variable for future merging</span></span>
+<span id="cb5-19"><a></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> <span class="co"># ungrouping state to add row</span></span>
+<span id="cb5-20"><a></a>  <span class="fu">add_row</span>(<span class="at">state =</span> <span class="st">"District of Columbia"</span>, <span class="at">n =</span> <span class="dv">0</span>, <span class="at">ID =</span> <span class="st">"district of columbia"</span>) <span class="co"># Adding row for DC</span></span>
+<span id="cb5-21"><a></a></span>
+<span id="cb5-22"><a></a><span class="co"># merging agencies_c and usa (sf object) by ID</span></span>
+<span id="cb5-23"><a></a>usa_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(agencies_c, usa, <span class="at">by =</span> <span class="st">"ID"</span>) <span class="sc">|&gt;</span> <span class="fu">st_as_sf</span>()</span>
+<span id="cb5-24"><a></a></span>
+<span id="cb5-25"><a></a></span>
+<span id="cb5-26"><a></a></span>
+<span id="cb5-27"><a></a><span class="co"># Creating Plot</span></span>
+<span id="cb5-28"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-29"><a></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> usa_data, <span class="fu">aes</span>(<span class="at">fill =</span> n)) <span class="sc">+</span></span>
+<span id="cb5-30"><a></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">'C'</span>) <span class="sc">+</span></span>
+<span id="cb5-31"><a></a>  ggthemes<span class="sc">::</span><span class="fu">theme_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
 </div>
 
 
-</section></section>
+<img data-src="wk_2_20_25_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

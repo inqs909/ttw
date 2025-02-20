@@ -46,14 +46,28 @@
     "href": "posts/wk_2_20_25.html#example-1-1",
     "title": "Tidy Tuesday on Thursday",
     "section": "Example 1",
-    "text": "Example 1\nCreate a density map of all the agencies located in the United States."
+    "text": "Example 1\nCreate a density dot map of all the agencies located in the United States."
   },
   {
-    "objectID": "posts/wk_2_20_25.html#loading-r-packages",
-    "href": "posts/wk_2_20_25.html#loading-r-packages",
+    "objectID": "posts/wk_2_20_25.html#plot",
+    "href": "posts/wk_2_20_25.html#plot",
     "title": "Tidy Tuesday on Thursday",
-    "section": "Loading R Packages",
-    "text": "Loading R Packages\n\nlibrary(sf)\nlibrary(tidyverse)\n\n# Getting Map of the US\nusa &lt;- st_as_sf(maps::map(\"state\", fill=TRUE, plot =FALSE))\n\n# Obtaining Coordinate System of usa sf object\nusa_crs &lt;- st_crs(usa)\n\n# Converting\nagencies_sf &lt;- agencies |&gt;\n  filter(!(state %in% c(\"Alaska\", \"Hawaii\"))) |&gt; \n  filter(latitude &gt; 0) |&gt; \n  select(latitude, longitude) |&gt;\n  drop_na() |&gt; \n  st_as_sf(coords = c(\"longitude\",\"latitude\"), remove = FALSE)\n\nst_crs(agencies_sf) &lt;- usa_crs\n\n\nggplot(usa) +\n  geom_sf(color = \"#2b2b2b\", fill = \"white\", size=0.125) +\n  geom_sf(data = agencies_sf) +\n  ggthemes::theme_map()"
+    "section": "Plot",
+    "text": "Plot\n\n\nCode\nlibrary(sf)\nlibrary(tidyverse)\n\n# Getting Map of the US\nusa &lt;- st_as_sf(maps::map(\"state\", fill=TRUE, plot =FALSE))\n\n# Obtaining Coordinate System of usa sf object\nusa_crs &lt;- st_crs(usa)\n\n# Converting agencies data set to sf object\nagencies_sf &lt;- agencies |&gt;\n  filter(!(state %in% c(\"Alaska\", \"Hawaii\"))) |&gt; # Removing states not in contiguous map\n  filter(latitude &gt; 0) |&gt;  # Removing Extraneous Map Point\n  select(latitude, longitude) |&gt; # Selecting lat and long\n  drop_na() |&gt; # removing missing\n  st_as_sf(coords = c(\"longitude\",\"latitude\"), remove = FALSE) # converting to sf object\n\n# Converting coordinate system to usa object version\nst_crs(agencies_sf) &lt;- usa_crs\n\n# Creating Plot\nggplot() +\n  geom_sf(data = usa, color = \"#2b2b2b\", fill = \"white\", size=0.125) +\n  geom_sf(data = agencies_sf) +\n  ggthemes::theme_map()"
+  },
+  {
+    "objectID": "posts/wk_2_20_25.html#example-2-1",
+    "href": "posts/wk_2_20_25.html#example-2-1",
+    "title": "Tidy Tuesday on Thursday",
+    "section": "Example 2",
+    "text": "Example 2\nCreating a chloropeth map based on density count."
+  },
+  {
+    "objectID": "posts/wk_2_20_25.html#plot-1",
+    "href": "posts/wk_2_20_25.html#plot-1",
+    "title": "Tidy Tuesday on Thursday",
+    "section": "Plot",
+    "text": "Plot\n\n\nCode\n# Loading Packages\nlibrary(sf)\nlibrary(tidyverse)\n\n# Loading Data (Uncomment)\n## tuesdata &lt;- tidytuesdayR::tt_load(2025, week = 7)\n## agencies &lt;- tuesdata$agencies\n\n# Getting Map of the US\nusa &lt;- st_as_sf(maps::map(\"state\", fill=TRUE, plot =FALSE))\n\n# Counting number of agencies in the data set\nagencies_c &lt;- agencies |&gt;\n  filter(!(state %in% c(\"Alaska\", \"Hawaii\"))) |&gt; # Removing states not in contiguous map\n  select(state) |&gt; # selecting to only work with state variable\n  group_by(state) |&gt; # grouping by state for counting\n  count() |&gt; # counting how many elements in a group\n  mutate(ID = str_to_lower(state)) |&gt; # creating a new variable for future merging\n  ungroup() |&gt; # ungrouping state to add row\n  add_row(state = \"District of Columbia\", n = 0, ID = \"district of columbia\") # Adding row for DC\n\n# merging agencies_c and usa (sf object) by ID\nusa_data &lt;- left_join(agencies_c, usa, by = \"ID\") |&gt; st_as_sf()\n\n\n\n# Creating Plot\nggplot() +\n  geom_sf(data = usa_data, aes(fill = n)) +\n  scale_fill_viridis_c(option = 'C') +\n  ggthemes::theme_map()"
   },
   {
     "objectID": "posts/week_5.html#special-thanks",
