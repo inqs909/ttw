@@ -24,6 +24,8 @@ editor: source
 ---
 
 
+
+
 :::{.cr-section}
 
 :::{focus-on="cr-fw"}
@@ -113,14 +115,22 @@ Below is the code use to construct the plot above. You can find the entire code 
 #| echo: true
 
 ## Loading Libraries
-library(tidyverse)
-library(csucistats)
-library(ggridges)
-library(camcorder)
+library(tidyverse)     # A collection of R packages for data manipulation 
+                       # and visualization
+
+library(csucistats)    # Custom/statistics tools used in CSU CI data 
+                       # science courses
+
+library(ggridges)      # For creating ridgeline plots (aka joyplots)
+
+library(camcorder)     # For recording and saving plots during the ggplot 
+                       # creation process
 
 
 ## Loading Data
 pokemon_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-01/pokemon_df.csv')
+# Loads Pokémon data from the TidyTuesday GitHub repo and stores it in 
+# a data frame
 
 
 ## Plotting 
@@ -129,11 +139,19 @@ ggplot(
     pokemon_df, 
     aes(x = base_experience, y = str_to_title(type_1), fill = factor(stat(quantile)))
   ) +
+  # Sets up ggplot with base_experience on the x-axis and Pokémon type 
+  # (capitalized) on the y-axis. Fill color based on ECDF quantiles.
+  
   stat_density_ridges(
     geom = "density_ridges_gradient", calc_ecdf = TRUE,
     quantiles = 4, quantile_lines = TRUE
   ) +
+  # Adds ridgeline plots for each type. ECDF is used to divide data into 
+  # quartiles with lines marking each quantile.
+  
   scale_x_continuous(limits = c(-50, 475), expand = c(0, 0)) +
+  # Sets x-axis limits and removes padding around the plot area
+  
   labs(
     y = NULL,
     x = "Base Experience",
@@ -141,6 +159,19 @@ ggplot(
     title = "Pokémon Density Ridgeline Plot",
     subtitle = "Distribution of Base Experience by Pokémon Type"
   ) +
+  # The labs() function is used to customize the plot's text elements:
+  # - x: label for the x-axis ("Base Experience")
+  # - y: set to NULL to omit the y-axis label
+  # - fill: set to NULL to hide the fill legend title (since quantiles 
+  #         are shown via color)
+  # - title: the main title of the plot
+  # - subtitle: a secondary title giving context about the visualization
+  
   scale_fill_viridis_d(name = "Quartiles", option = "C") +
+  # Applies a discrete viridis color scale for better accessibility and 
+  # visual clarity
+  
   theme_bw()
+  # Applies a clean, minimal black-and-white theme
+
 ```

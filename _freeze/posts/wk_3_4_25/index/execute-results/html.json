@@ -1,0 +1,15 @@
+{
+  "hash": "89cacad231e9a20a75287ff630b6164b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Tidy Tuesday Week 7\"\nauthor: \"Isaac Quintanilla Salinas\"\nnavbar: false\nimage: final.png\ndate: 03-04-25\ndescription: Tidy Tuesday on Thursday at CSUCI! Analyzing Long Beach Animal Shelter Data! \n\nformat:\n  closeread-html:\n    debug-mode: false\n    cr-style:\n      narrative-text-color-sidebar: white\n      narrative-font-family: 'Georgia, \"Times New Roman\", Times, serif'\n      narrative-font-size: 1.25rem\n      narrative-sidebar-width: minmax(400px, 1fr)\n      narrative-border-radius: 5px\n      narrative-background-color-overlay: \"#111111dd\"\n      narrative-background-color-sidebar: \"#111111\"\n      section-background-color: \"#033E3E\"\n      poem-font-family: 'Georgia, \"Times New Roman\", Times, serif'\n\neditor: source\n---\n\n\n\n\n\n\n:::{.cr-section}\n\n:::{focus-on=\"cr-fw\"}\n# Data\n:::\n\n\n\n\n:::{#cr-fw}\n\n\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n\n\n:::\n:::\n\n\n:::{.cr-section layout=\"sidebar-left\"}\n\n:::{focus-on=\"cr-walk\"}\n# Development\n:::\n\n\n\n:::{#cr-walk}\n![](final.gif)\n:::\n:::\n\n\n\n:::{.cr-section layout=\"sidebar-left\"}\n\n:::{focus-on=\"cr-twilight\"}\n# Final Plot\n:::\n\n\n\n:::{#cr-twilight}\n![](final.png)\n:::\n:::\n\n\n## CODE\n\nBelow is the code use to construct the plot above. You can find the entire code [here](https://github.com/inqs909/ttw/blob/main/posts/wk_3_4_25/plot_code.R).\n\n\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n## Loading Libraries\nlibrary(tidyverse)\nlibrary(csucistats)\nlibrary(ggridges)\nlibrary(camcorder)\n\n\n## Loading Data\nlongbeach <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-03-04/longbeach.csv')\n```\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

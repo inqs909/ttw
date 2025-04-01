@@ -3,6 +3,7 @@ title: "Tidy Tuesday Week 8"
 author: "Isaac Quintanilla Salinas"
 navbar: false
 date: 02-24-25
+draft: true
 description: Tidy Tuesday on Thursday at CSUCI! Analyzing Academic Literature on Racial and Ethnic Disparities in Reproductive Medicine!
 
 format:

@@ -1,0 +1,104 @@
+---
+title: "Tidy Tuesday Week 7"
+author: "Isaac Quintanilla Salinas"
+navbar: false
+image: final.png
+date: 03-04-25
+description: Tidy Tuesday on Thursday at CSUCI! Analyzing Long Beach Animal Shelter Data! 
+
+format:
+  closeread-html:
+    debug-mode: false
+    cr-style:
+      narrative-text-color-sidebar: white
+      narrative-font-family: 'Georgia, "Times New Roman", Times, serif'
+      narrative-font-size: 1.25rem
+      narrative-sidebar-width: minmax(400px, 1fr)
+      narrative-border-radius: 5px
+      narrative-background-color-overlay: "#111111dd"
+      narrative-background-color-sidebar: "#111111"
+      section-background-color: "#033E3E"
+      poem-font-family: 'Georgia, "Times New Roman", Times, serif'
+
+editor: source
+---
+
+
+:::{.cr-section}
+
+:::{focus-on="cr-fw"}
+# Data
+:::
+
+
+
+
+:::{#cr-fw}
+
+```{r}
+#| echo: false
+#| message: false
+
+longbeach <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-03-04/longbeach.csv')
+
+
+
+```
+
+
+:::
+:::
+
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{focus-on="cr-walk"}
+# Development
+:::
+
+
+
+:::{#cr-walk}
+![](final.gif)
+:::
+:::
+
+
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{focus-on="cr-twilight"}
+# Final Plot
+:::
+
+
+
+:::{#cr-twilight}
+![](final.png)
+:::
+:::
+
+
+## CODE
+
+Below is the code use to construct the plot above. You can find the entire code [here](https://github.com/inqs909/ttw/blob/main/posts/wk_3_4_25/plot_code.R).
+
+
+
+
+```{r}
+#| eval: false
+#| echo: true
+
+## Loading Libraries
+library(tidyverse)
+library(csucistats)
+library(ggridges)
+library(camcorder)
+
+
+## Loading Data
+longbeach <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-03-04/longbeach.csv')
+
+
+```
