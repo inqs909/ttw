@@ -7,6 +7,19 @@ listing:
   fields: [date, title, description, image]
 ---
 
+
+::: {.callout-note collapse="true" icon="false"}
+### **Getting Started**
+
+[Plotathon](https://www.inqs.info/p/plotathon/f24#/title-slide)
+
+[Tidy Tuesday](https://tidytues.day/)
+
+[DSLC](https://dslc.io/)
+
+:::
+
+
 ::: {.callout-note collapse="true" icon="false"}
 ### **Introduction to Statistics Books**
 

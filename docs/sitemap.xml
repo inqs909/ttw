@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>www.inqs.info/ttw/posts/wk_4_1_25/index.html</loc>
+    <lastmod>2025-04-01T05:22:13.913Z</lastmod>
+  </url>
+  <url>
     <loc>www.inqs.info/ttw/posts/wk_2_20_25.html</loc>
     <lastmod>2025-02-20T23:42:20.558Z</lastmod>
   </url>
@@ -22,7 +26,7 @@
   </url>
   <url>
     <loc>www.inqs.info/ttw/index.html</loc>
-    <lastmod>2025-02-20T23:42:50.253Z</lastmod>
+    <lastmod>2025-04-01T05:22:24.259Z</lastmod>
   </url>
   <url>
     <loc>www.inqs.info/ttw/posts/week_2.html</loc>
@@ -35,5 +39,9 @@
   <url>
     <loc>www.inqs.info/ttw/posts/week_6.html</loc>
     <lastmod>2025-02-20T19:36:58.903Z</lastmod>
+  </url>
+  <url>
+    <loc>www.inqs.info/ttw/posts/wk_2_24_25/index.html</loc>
+    <lastmod>2025-02-27T03:06:09.921Z</lastmod>
   </url>
 </urlset>

@@ -1,0 +1,23 @@
+---
+title: "Tidy Tuesday Week 8"
+author: "Isaac Quintanilla Salinas"
+navbar: false
+date: 02-24-25
+description: Tidy Tuesday on Thursday at CSUCI! Analyzing Academic Literature on Racial and Ethnic Disparities in Reproductive Medicine!
+
+format:
+  closeread-html:
+    debug-mode: false
+    cr-style:
+      narrative-text-color-sidebar: white
+      narrative-font-family: 'Georgia, "Times New Roman", Times, serif'
+      narrative-font-size: 1.25rem
+      narrative-sidebar-width: minmax(400px, 1fr)
+      narrative-border-radius: 5px
+      narrative-background-color-overlay: "#111111dd"
+      narrative-background-color-sidebar: "#111111"
+      section-background-color: "#033E3E"
+      poem-font-family: 'Georgia, "Times New Roman", Times, serif'
+
+editor: source
+---

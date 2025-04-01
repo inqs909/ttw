@@ -1,0 +1,146 @@
+---
+title: "Tidy Tuesday Week 10"
+author: "Isaac Quintanilla Salinas"
+navbar: false
+image: final.png
+date: 04-01-25
+description: Tidy Tuesday on Thursday at CSUCI! Analyzing Pokémon Data! 
+
+format:
+  closeread-html:
+    debug-mode: false
+    cr-style:
+      narrative-text-color-sidebar: white
+      narrative-font-family: 'Georgia, "Times New Roman", Times, serif'
+      narrative-font-size: 1.25rem
+      narrative-sidebar-width: minmax(400px, 1fr)
+      narrative-border-radius: 5px
+      narrative-background-color-overlay: "#111111dd"
+      narrative-background-color-sidebar: "#111111"
+      section-background-color: "#033E3E"
+      poem-font-family: 'Georgia, "Times New Roman", Times, serif'
+
+editor: source
+---
+
+
+:::{.cr-section}
+
+:::{focus-on="cr-fw"}
+# Data
+:::
+
+This week for Tidy Tuesday, we are analyzing the Pokémon data set provided by the [pokemon](https://github.com/williamorim/pokemon) R package.
+
+The data set provides some information about different characteristics of Pokémon such as height, weight, hp, attack, defense, speed, and so much more! 
+
+Each row in the data set represents a Pokémon, and the columns represent the characteristics of the Pokémon.
+
+For this week, I will primarily focusing on using `base_experience` and `type_1` which represents the base experience and Pokémon type, respectively. As represented on the right side of this section.
+
+The data set comes fairly clean, and for the most part ready for analysis. To begin, use the `glimpse()` to get a better idea of the data set.
+
+
+:::{#cr-fw}
+
+```{r}
+#| echo: false
+#| message: false
+
+pokemon_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-01/pokemon_df.csv')
+
+
+pokemon_df |> dplyr::select(id, pokemon, base_experience, type_1) |> 
+DT::datatable(rownames = FALSE, options = list(dom = 'tp', pageLength = 9))
+```
+
+
+:::
+:::
+
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{focus-on="cr-walk"}
+# Development
+:::
+
+Visualizing this data set, I was not really sure what I should. Should I do something eccentric? Educational? Basic? Looking around on the #TidyTuesday on [BlueSky](https://bsky.app/hashtag/TidyTuesday) or [Fosstodon](https://fosstodon.org/tags/TidyTuesday), I got the inspiration of doing a [Ridgline Plot](https://www.data-to-viz.com/graph/ridgeline.html).
+
+The idea of a ridgeline plot is display the distribution of a numerical variable by categorical variable. It easily allows one to compare distributions by identifying which ones overal and which ones do not.
+
+Using the [`ggridges`](https://wilkelab.org/ggridges/articles/introduction.html) R package, I first plotted a density plot of just `base_experience`. Afterwards, applied the   `geom_density_ridges()` function to my overall ggplot.
+
+After, that began things up in the function and choosing different colors. I used the `str_to_title()` to capitalize the types (from `type_1`) in the plot. I also added/changed/elimnated titles. For theming, I kept it simple with `theme_bw()`. Maybe [ThemePark](https://github.com/MatthewBJane/ThemePark) will create a Pokémon theme.
+
+Messing with the `scale_fill_viridis_c()` (which was later switched to `scale_fill_viridis_d()`), I noticed that we can shade in the [quartiles](https://en.wikipedia.org/wiki/Quartile) in the plot. Therefore, I implemented the quartiles instea, via the `stat_density_ridges()` function, to add that extrabit information to the plot. We can see where quarter lies with respect the types of Pokémon.
+
+
+:::{#cr-walk}
+![](final.gif)
+:::
+:::
+
+
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{focus-on="cr-twilight"}
+# Final Plot
+:::
+
+The final plot contains displays the ridgeline plot for the distribution of Base Experience by Pokémon type. We can see that overall, each distribution overlaps with each other, but the shape may vary. For example, Flying is bimodal distribution while, Electric is symmetrical. Psychic, Steel and Fire are trimodal distribution.
+
+Additionally, we can see that quartiles are at different locations, and they have different widths. This plot provides quite a bit of information.
+
+Using ridgeline plots provide a visual representation on how a distribution will look like for different categories. This especially useful for plots derived from a [Bayesian Analysis](http://en.wikipedia.org/wiki/Bayesian_inference), where the posterior distribution is heavily emphasized. When working in a Bayesian perspective, we report the distribution, and not just the statistics. A different way of thinking. An example of using Ridgeline Plots in a Bayesian Analysis can be found [here](https://academic.oup.com/icb/article/64/2/354/7688460).
+
+:::{#cr-twilight}
+![](final.png)
+:::
+:::
+
+
+## CODE
+
+Below is the code use to construct the plot above. You can find the entire code here.
+
+
+
+
+```{r}
+#| eval: false
+#| echo: true
+
+## Loading Libraries
+library(tidyverse)
+library(csucistats)
+library(ggridges)
+library(camcorder)
+
+
+## Loading Data
+pokemon_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-01/pokemon_df.csv')
+
+
+## Plotting 
+
+ggplot(
+    pokemon_df, 
+    aes(x = base_experience, y = str_to_title(type_1), fill = factor(stat(quantile)))
+  ) +
+  stat_density_ridges(
+    geom = "density_ridges_gradient", calc_ecdf = TRUE,
+    quantiles = 4, quantile_lines = TRUE
+  ) +
+  scale_x_continuous(limits = c(-50, 475), expand = c(0, 0)) +
+  labs(
+    y = NULL,
+    x = "Base Experience",
+    fill = NULL,
+    title = "Pokémon Density Ridgeline Plot",
+    subtitle = "Distribution of Base Experience by Pokémon Type"
+  ) +
+  scale_fill_viridis_d(name = "Quartiles", option = "C") +
+  theme_bw()
+```
