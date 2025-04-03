@@ -3,6 +3,8 @@ library(tidyverse)
 library(csucistats)
 library(ggridges)
 library(camcorder)
+library(ggimage)
+
 
 
 ## Loading Data
@@ -23,6 +25,14 @@ num_stats(pokemon_df$base_experience)
 ggplot(pokemon_df, aes(base_experience)) + 
   geom_density()
 
+## Select Pokémon
+
+## Eevee
+images <- pokemon_df |> 
+  filter(pokemon %in% c("jigglypuff", "eevee")) |> 
+  mutate(type_1 = str_to_title(type_1))
+images$base_experience <- 600
+images$type_1 <- c("Fairy", "Normal")
 ## Recording Progress
 
 gg_record(
@@ -44,7 +54,12 @@ ggplot(
     geom = "density_ridges_gradient", calc_ecdf = TRUE,
     quantiles = 4, quantile_lines = TRUE
   ) +
-  scale_x_continuous(limits = c(-50, 475), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(-50, 725), expand = c(0, 0)) +
+  geom_image(
+    data = images,
+    aes(x = base_experience, y = str_to_title(type_1), image = url_image),
+    size = 0.25, inherit.aes = FALSE
+  ) + 
   labs(
     y = NULL,
     x = "Base Experience",
@@ -52,6 +67,7 @@ ggplot(
     title = "Pokémon Density Ridgeline Plot",
     subtitle = "Distribution of Base Experience by Pokémon Type"
   ) +
+  
   scale_fill_viridis_d(name = "Quartiles", option = "C") +
   theme_bw()
 
@@ -73,3 +89,4 @@ gg_playback(
   last_image_duration = 20,
   frame_duration = .25
 )
+

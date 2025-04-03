@@ -24,7 +24,7 @@ editor: source
 ---
 
 
-
+![](final.png){align="center"}
 
 :::{.cr-section}
 
@@ -117,22 +117,79 @@ Below is the code use to construct the plot above. You can find the entire code 
 #| echo: true
 
 ## Loading Libraries
-library(tidyverse)     # A collection of R packages for data manipulation 
-                       # and visualization
+library(tidyverse)     # For data manipulation and visualization (includes 
+                       # ggplot2, dplyr, readr, etc.)
 
-library(csucistats)    # Custom/statistics tools used in CSU CI data 
-                       # science courses
+library(csucistats)    # CSU Channel Islands package with convenience 
+                       # functions for categorical and numerical summaries
 
-library(ggridges)      # For creating ridgeline plots (aka joyplots)
+library(ggridges)      # For creating ridgeline (joy) plots
 
-library(camcorder)     # For recording and saving plots during the ggplot 
-                       # creation process
+library(camcorder)     # For recording and saving frames of ggplots, used 
+                       # to create GIF animations of plotting steps
+
+library(ggimage)       # Allows images (from files or URLs) to be added 
+                       # to ggplots
 
 
 ## Loading Data
 pokemon_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-01/pokemon_df.csv')
-# Loads Pokémon data from the TidyTuesday GitHub repo and stores it in 
-# a data frame
+# Loads the Pokémon dataset from the TidyTuesday GitHub repository
+
+
+## Viewing Data
+glimpse(pokemon_df)
+# Displays a compact summary of the dataset: column names, types, and sample data
+
+## Names of variables
+names(pokemon_df)
+# Lists the column names of the dataset
+
+
+## Categorical Data
+cat_stats(pokemon_df$egg_group_1)
+cat_stats(pokemon_df$type_1)
+# Uses csucistats::cat_stats to summarize the frequency and distribution 
+# of categorical variables (egg groups and types)
+
+
+## Numerical Data
+num_stats(pokemon_df$base_experience)
+# Uses csucistats::num_stats to show summary statistics for base_experience 
+# (mean, median, min, max, etc.)
+
+ggplot(pokemon_df, aes(base_experience)) + 
+  geom_density()
+# Plots a density curve showing the distribution of base experience 
+# across all Pokémon
+
+
+## Select Pokémon
+
+## Eevee
+images <- pokemon_df |> 
+  filter(pokemon %in% c("jigglypuff", "eevee")) |> 
+  mutate(type_1 = str_to_title(type_1))
+# Filters the dataset to include only Eevee and Jigglypuff, then 
+# capitalizes the type for consistency with the plot
+
+images$base_experience <- 600
+images$type_1 <- c("Fairy", "Normal")
+# Manually adjusts the base experience and type for custom placement 
+# of images in the plot
+
+
+## Recording Progress
+gg_record(
+  dir = file.path("posts", "wk_4_1_25"),
+  device = "png",
+  width = 6,
+  height = 6,
+  units = "in",
+  dpi = 300
+)
+# Initializes recording of plot creation using camcorder; saves each 
+# frame as a PNG in the specified directory with given dimensions and resolution
 
 
 ## Plotting 
@@ -141,19 +198,27 @@ ggplot(
     pokemon_df, 
     aes(x = base_experience, y = str_to_title(type_1), fill = factor(stat(quantile)))
   ) +
-  # Sets up ggplot with base_experience on the x-axis and Pokémon type 
-  # (capitalized) on the y-axis. Fill color based on ECDF quantiles.
-  
+  # Sets up the base plot with base_experience on x-axis and capitalized 
+  # type_1 on y-axis. Fill color represents ECDF quantiles.
+
   stat_density_ridges(
     geom = "density_ridges_gradient", calc_ecdf = TRUE,
     quantiles = 4, quantile_lines = TRUE
   ) +
-  # Adds ridgeline plots for each type. ECDF is used to divide data into 
-  # quartiles with lines marking each quantile.
-  
-  scale_x_continuous(limits = c(-50, 475), expand = c(0, 0)) +
-  # Sets x-axis limits and removes padding around the plot area
-  
+  # Adds ridgeline plots per type using ECDF to calculate quartiles; 
+  # gradient fill and lines mark quartile boundaries
+
+  scale_x_continuous(limits = c(-50, 725), expand = c(0, 0)) +
+  # Sets the x-axis limits and removes outer padding
+
+  geom_image(
+    data = images,
+    aes(x = base_experience, y = str_to_title(type_1), image = url_image),
+    size = 0.25, inherit.aes = FALSE
+  ) + 
+  # Adds Pokémon images (e.g., Eevee and Jigglypuff) to the plot at 
+  # specified base_experience and type locations
+
   labs(
     y = NULL,
     x = "Base Experience",
@@ -161,19 +226,36 @@ ggplot(
     title = "Pokémon Density Ridgeline Plot",
     subtitle = "Distribution of Base Experience by Pokémon Type"
   ) +
-  # The labs() function is used to customize the plot's text elements:
-  # - x: label for the x-axis ("Base Experience")
-  # - y: set to NULL to omit the y-axis label
-  # - fill: set to NULL to hide the fill legend title (since quantiles 
-  #         are shown via color)
-  # - title: the main title of the plot
-  # - subtitle: a secondary title giving context about the visualization
-  
+  # Adds axis and legend labels, as well as a title and subtitle to 
+  # describe the plot
+
   scale_fill_viridis_d(name = "Quartiles", option = "C") +
-  # Applies a discrete viridis color scale for better accessibility and 
-  # visual clarity
-  
+  # Uses a discrete viridis color palette (option C) for quartile shading
+
   theme_bw()
-  # Applies a clean, minimal black-and-white theme
+  # Applies a minimal black-and-white theme for a clean look
+
+
+## Saving Plot
+ggsave(
+  filename = file.path("posts", "wk_4_1_25", paste0("final", ".png")),
+  height = 6,
+  width = 6,
+  units = "in",
+  dpi = 300
+)
+# Saves the final plot as a PNG image with specified size and resolution
+
+
+## Saving GIF
+gg_playback(
+  name = file.path("posts", "wk_4_1_25", paste0("final", ".gif")),
+  first_image_duration = 4,
+  last_image_duration = 20,
+  frame_duration = .25
+)
+# Uses camcorder to compile the recorded PNG frames into a GIF animation; 
+# controls the timing of the first, last, and in-between frames
+
 
 ```
