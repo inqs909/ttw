@@ -179,19 +179,6 @@ images$type_1 <- c("Fairy", "Normal")
 # of images in the plot
 
 
-## Recording Progress
-gg_record(
-  dir = file.path("posts", "wk_4_1_25"),
-  device = "png",
-  width = 6,
-  height = 6,
-  units = "in",
-  dpi = 300
-)
-# Initializes recording of plot creation using camcorder; saves each 
-# frame as a PNG in the specified directory with given dimensions and resolution
-
-
 ## Plotting 
 
 ggplot(
@@ -239,23 +226,13 @@ ggplot(
 ## Saving Plot
 ggsave(
   filename = file.path("posts", "wk_4_1_25", paste0("final", ".png")),
-  height = 6,
-  width = 6,
+  height = 4,
+  width = 4,
   units = "in",
   dpi = 300
 )
 # Saves the final plot as a PNG image with specified size and resolution
 
-
-## Saving GIF
-gg_playback(
-  name = file.path("posts", "wk_4_1_25", paste0("final", ".gif")),
-  first_image_duration = 4,
-  last_image_duration = 20,
-  frame_duration = .25
-)
-# Uses camcorder to compile the recorded PNG frames into a GIF animation; 
-# controls the timing of the first, last, and in-between frames
 
 
 ```

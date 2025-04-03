@@ -75,8 +75,8 @@ ggplot(
 ## Saving Plot
 ggsave(
   filename = file.path("posts", "wk_4_1_25", paste0("final", ".png")),
-  height = 6,
-  width = 6,
+  height = 4,
+  width = 4,
   units = "in",
   dpi = 300
 )

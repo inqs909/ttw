@@ -1,5 +1,5 @@
 ---
-title: "Tidy Tuesday Week 8"
+title: "Tidy Tuesday Week 6"
 author: "Isaac Quintanilla Salinas"
 navbar: false
 date: 02-24-25

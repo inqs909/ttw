@@ -1,5 +1,5 @@
 ---
-title: "Tidy Tuesday on Thursday"
+title: "Tidy Tuesday Week 5"
 subtitle: "www.inqs.info/ttw"
 date: 02-20-25
 description: Tidy Tuesday on Thursday at CSUCI! Analyzing Agencies from the FBI Crime Data API!
