@@ -24,7 +24,9 @@ editor: source
 ---
 
 
-![](final.png){align="center"}
+```{r}
+knitr::include_graphics("final.png")
+```
 
 :::{.cr-section}
 
@@ -100,7 +102,12 @@ Additionally, we can see that quartiles are at different locations, and they hav
 Using ridgeline plots provide a visual representation on how a distribution will look like for different categories. This especially useful for plots derived from a [Bayesian Analysis](http://en.wikipedia.org/wiki/Bayesian_inference), where the posterior distribution is heavily emphasized. When working in a Bayesian perspective, we report the distribution, and not just the statistics. A different way of thinking. An example of using Ridgeline Plots in a Bayesian Analysis can be found [here](https://academic.oup.com/icb/article/64/2/354/7688460).
 
 :::{#cr-twilight}
-![](final.png)
+
+```{r}
+knitr::include_graphics("final.png")
+```
+
+
 :::
 :::
 

@@ -24,7 +24,9 @@ editor: source
 ---
 
 
-![](final.png){align="center"}
+```{r}
+knitr::include_graphics("final.png")
+```
 
 :::{.cr-section}
 
@@ -100,7 +102,11 @@ The final plot shows the distributions of the type of animals in each district. 
 You can also see that I had some fun with the plot. Additionally, there is small easter egg for all the Swifties I know in Long Beach!
 
 :::{#cr-twilight}
-![](final.png)
+
+```{r}
+knitr::include_graphics("final.png")
+```
+
 :::
 :::
 
