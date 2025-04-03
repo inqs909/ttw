@@ -52,8 +52,10 @@ The data set comes fairly clean, and for the most part ready for analysis. To be
 pokemon_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-01/pokemon_df.csv')
 
 
-pokemon_df |> dplyr::select(id, pokemon, base_experience, type_1) |> 
-DT::datatable(rownames = FALSE, options = list(dom = 'tp', pageLength = 9))
+pokemon_df |> 
+  dplyr::select(id, pokemon, base_experience, type_1) |> 
+  gt::gt() |>
+  gt::opt_interactive() 
 ```
 
 
