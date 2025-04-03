@@ -1,127 +1,3 @@
----
-title: "Tidy Tuesday Week 7"
-author: "Isaac Quintanilla Salinas"
-navbar: false
-image: final.png
-date: 03-04-25
-description: Tidy Tuesday on Thursday at CSUCI! Analyzing Long Beach Animal Shelter Data! 
-
-format:
-  closeread-html:
-    debug-mode: false
-    cr-style:
-      narrative-text-color-sidebar: white
-      narrative-font-family: 'Georgia, "Times New Roman", Times, serif'
-      narrative-font-size: 1.25rem
-      narrative-sidebar-width: minmax(400px, 1fr)
-      narrative-border-radius: 5px
-      narrative-background-color-overlay: "#111111dd"
-      narrative-background-color-sidebar: "#111111"
-      section-background-color: "#033E3E"
-      poem-font-family: 'Georgia, "Times New Roman", Times, serif'
-
-editor: source
----
-
-
-```{r}
-knitr::include_graphics("final.png")
-```
-
-:::{.cr-section}
-
-:::{focus-on="cr-fw"}
-# Data
-:::
-
-This week for Tidy Tuesday, we are analyzing the Long Beach Animal Shelter Data provided by the [City of Long Beach Animal Care Services](https://www.longbeach.gov/acs/) and the [animalshelter](https://emilhvitfeldt.github.io/animalshelter/) R package.
-
-The data set provides different characteristics of the animals located in the shelter such as type of animal, date of birth, latitude, longitude, and so much more! 
-
-Each row in the data set represents an animal, and the columns represent the characteristics of the animal in the shelter.
-
-For this week, I was inspired by Aditya Dahiya's Tidy Tuesday post [A City of Strays](https://aditya-dahiya.github.io/projects_presentations/data_vizs/tidy_animal_shelter.html). I am taking this a learning opportunity to improve my GIS skills as well as try some new things.
-
-The data set comes fairly clean, and for the most part ready for analysis. However, further analysis will be needed to create to the plot. To begin, use the `glimpse()` to get a better idea of the data set.
-
-
-
-:::{#cr-fw}
-
-```{r}
-#| echo: false
-#| message: false
-
-longbeach <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-03-04/longbeach.csv')
-
-longbeach |> 
-  dplyr::select(animal_id, animal_type, latitude, longitude) |> 
-  gt::gt() |> 
-  gt::opt_interactive()
-
-```
-
-
-:::
-:::
-
-
-:::{.cr-section layout="sidebar-left"}
-
-:::{focus-on="cr-walk"}
-# Development
-:::
-
-To say that creating this map was easy would be a huge understatement. I spent more time than I would like to admit in creating this plot. But do not regret it on bit. **Note: You may need at least 16 GB RAM to run this!** 
-
-The first part that I focused on was getting the roads on the map, and while the gif does not show it, there was much more trial and error that I would. At one moment, I had all the roads of southern california mapped out. Talk about putting my Framework to work!
-
-Once I learned how to subset the roads to only the "main" ones, and geographically subset them for Long Beach, the map started to take place. I further subset the data to the city council districts polygons, using the shapefile found [here](https://data.longbeach.gov/explore/dataset/colb-council-districts/export/).
-
-Afterwards, I decided to add parks, CSULB and LBCC to the map. The parks were easy, but the schools required some work. I decided to punish myself by adding the graduation cap emojis.
-
-Lastly, I needed to add the donuts of the different pets available in animal shelters in each district. First, I needed to count how many of each pet was in the district, create a wide format, add the centroid locations for the districts, and plot the donuts. Then it was time to clean up the map.
-
-
-
-:::{#cr-walk}
-![](final.gif)
-:::
-:::
-
-
-
-:::{.cr-section layout="sidebar-left"}
-
-:::{focus-on="cr-twilight"}
-# Final Plot
-:::
-
-The final plot shows the distributions of the type of animals in each district. As you can see, cats seems to be primary animal in shelters. 
-
-You can also see that I had some fun with the plot. Additionally, there is small easter egg for all the Swifties I know in Long Beach!
-
-:::{#cr-twilight}
-
-```{r}
-knitr::include_graphics("final.png")
-```
-
-:::
-:::
-
-
-## CODE
-
-Below is the code used to construct the plot above. You can find the raw, and completely ugly, code [here](https://github.com/inqs909/ttw/blob/main/posts/wk_3_4_25/plot_code_raw.R).
-
-
-
-
-```{r}
-#| eval: false
-#| echo: true
-
 
 ## Loading Libraries
 
@@ -131,6 +7,7 @@ library(csucistats)   # Custom utilities (e.g., for CSU Channel Islands)
 library(scales)       # Tools for formatting scales (e.g., percent, commas)
 library(utf8)         # Unicode support for emoji/text labels
 library(paletteer)    # Access to many custom palettes (e.g., tayloRswift)
+library(scatterpie)   # Adds the pie charts at different coordinates
 
 ### Geocomputation
 library(sf)           # Simple Features for vector data (points, lines, polygons)
@@ -170,7 +47,6 @@ long_beach_lines <- oe_read(
 
 ## Load Council District Shapefile
 # Download this manually from the city's open data portal and unzip
-# https://data.longbeach.gov/explore/dataset/colb-council-districts/export/
 council_districts <- st_read("~/Downloads/colb-council-districts/colb-council-districts.shp")
 
 # Simplify and rename key attributes
@@ -352,8 +228,12 @@ ggplot(data = long_beach_roads_districts) +
     legend.title = element_blank()
   )
 
+## Saving Plot
+ggsave(
+  filename = paste0("final", ".png"),
+  height = 6,
+  width = 6,
+  units = "in",
+  dpi = 300
+)
 
-
-
-
-```

@@ -230,16 +230,6 @@ ggplot(
   # Applies a minimal black-and-white theme for a clean look
 
 
-## Saving Plot
-ggsave(
-  filename = file.path("posts", "wk_4_1_25", paste0("final", ".png")),
-  height = 5,
-  width = 5,
-  units = "in",
-  dpi = 300
-)
-# Saves the final plot as a PNG image with specified size and resolution
-
 
 
 ```

@@ -1,0 +1,115 @@
+---
+title: "Tidy Tuesday Week 8"
+author: "Isaac Quintanilla Salinas"
+navbar: false
+image: final.png
+date: 04-01-25
+description: Tidy Tuesday on Thursday at CSUCI! Analyzing Pixar Data! 
+
+format:
+  closeread-html:
+    debug-mode: false
+    cr-style:
+      narrative-text-color-sidebar: white
+      narrative-font-family: 'Georgia, "Times New Roman", Times, serif'
+      narrative-font-size: 1.25rem
+      narrative-sidebar-width: minmax(400px, 1fr)
+      narrative-border-radius: 5px
+      narrative-background-color-overlay: "#111111dd"
+      narrative-background-color-sidebar: "#111111"
+      section-background-color: "#033E3E"
+      poem-font-family: 'Georgia, "Times New Roman", Times, serif'
+
+editor: source
+---
+
+
+```{r}
+# knitr::include_graphics("final.png")
+```
+
+:::{.cr-section}
+
+:::{focus-on="cr-fw"}
+# Data
+:::
+
+
+
+:::{#cr-fw}
+
+```{r}
+#| echo: false
+#| message: false
+
+pixar_films <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-03-11/pixar_films.csv')
+
+public_response <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-03-11/public_response.csv')
+
+pixar_films |> 
+  gt::gt() |>
+  gt::opt_interactive()
+
+
+```
+
+
+:::
+:::
+
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{focus-on="cr-walk"}
+# Development
+:::
+
+
+
+:::{#cr-walk}
+![](final.gif)
+:::
+:::
+
+
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{focus-on="cr-twilight"}
+# Final Plot
+:::
+
+
+
+:::{#cr-twilight}
+
+```{r}
+# knitr::include_graphics("final.png")
+```
+
+
+:::
+:::
+
+
+## CODE
+
+Below is the code use to construct the plot above. You can find the entire code [here](https://github.com/inqs909/ttw/blob/main/posts/wk_4_1_25/plot_code.R).
+
+
+
+
+```{r}
+#| eval: false
+#| echo: true
+
+## Loading Libraries
+library(tidyverse)     # For data manipulation and visualization (includes 
+                       # ggplot2, dplyr, readr, etc.)
+
+library(csucistats)    # CSU Channel Islands package with convenience 
+                       # functions for categorical and numerical summaries
+
+
+
+```
