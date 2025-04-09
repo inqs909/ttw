@@ -34,7 +34,9 @@ knitr::include_graphics("final.png")
 # Data
 :::
 
-For this weeks Tidy Tuesday 
+For this weeks Tidy Tuesday, I decided to use the data to create a [Cartogram](https://en.wikipedia.org/wiki/Cartogram), a form of a map where the shapes are proportional to a certain numerical characteristics. Overall, this map was **WAY Easier** than my [Long Beach Map](https://www.inqs.info/ttw/posts/wk_3_4_25/) .
+
+The idea is to create a chloropeth map to demonstrate the scores from the Medicare and Medicaid Data. Then alter the shapes of the states, to reflect the population of each state. The Medicare and Medicaid Data was obtain [here](https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-04-08/readme.md). The population data was obtained from the [US Census Bureau](https://data.census.gov/)
 
 :::{#cr-fw}
 
@@ -63,6 +65,18 @@ df |>
 :::
 
 
+The data set was not as clean as other data sets.
+
+The each state in Tidy Tuesday data had multiple information, multiple health agencies per state, and multiple years. In order to visualize, I needed to condense everything into one value. I chose to group everything by state, and calculate the mean for each state. Therefore, each state only contains one piece of information that can be visualized.
+
+The Census data required more work, first I needed to clean the variable names. Then, the data needed to be "pivoted" from wide to long. Afterwards, I needed to eliminate underscores and capitalize letters withing the state information. This allowed me to join several data sets together to create one mapping data set.
+
+Creating the cartogram data was relatively easy. Using the `cartogram_cont` function, all you need to do is provide the mapping data, the variable that will proportionalize the data. It seemed to work well. It did provide a warning removing missing values, which makes sense.
+
+Afterwards, you can plot this as you would with any map (`sf` object.)
+
+
+
 :::{#cr-walk}
 ![](final.gif)
 :::
@@ -76,6 +90,10 @@ df |>
 # Final Plot
 :::
 
+
+The map is a map. There are stuff that I do not like about it. And it is really difficult to see what kind of message is being displayed here. Part of it is because the outline of the states are important and it is difficult to see mentally which state is which. I would not make any conclusions out of the map, and I want to get rid of the axis because they may be misleading.
+
+However, this map is a great educational tool, and cartograms have their place. It ensures that the size of a shape will not mislead the story. Difficult to understand, but very important. I highly recommend learning how to create one!
 
 :::{#cr-twilight}
 
@@ -128,8 +146,9 @@ care_state <- df |>
   # Remove the grouping structure so the resulting dataframe is no longer grouped
   ungroup()
 
-# Load population data (in wide format) from a local CSV
-pop_df <- readr::read_csv("posts/wk_4_8_25/pop.csv") |> 
+# Load population data (in wide format) from Website
+# Download Data If Necessary: https://github.com/inqs909/ttw/blob/main/data/pop_ttw_4_8_25.csv
+pop_df <- readr::read_csv("https://www.inqs.info/ttw/data/pop_ttw_4_8_25.csv") |> 
   clean_names() |>  # Clean column names to snake_case
   pivot_longer(alabama:puerto_rico, names_to = "State", values_to = "Pop")  # Reshape from wide to long
 
@@ -167,7 +186,7 @@ usa_df <- left_join(usa, df2, by = "State") |>
 
 
 # Create a continuous cartogram, resizing states by population
-states_carto <- cartogram_cont(usa_df, "Pop", itermax = 10)
+states_carto <- cartogram_cont(usa_df, "Pop")
 
 
 ## Plot Using ggplot ----

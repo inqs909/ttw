@@ -14,7 +14,7 @@ care_state <- df |> group_by(state) |>
   summarise(mean = mean(score, na.rm = TRUE)) |> 
   ungroup()
 
-pop_df <- readr::read_csv("posts/wk_4_8_25/pop.csv") |> 
+pop_df <- readr::read_csv("https://www.inqs.info/ttw/data/pop_ttw_4_8_25.csv") |> 
   clean_names() |> 
   pivot_longer(alabama:puerto_rico, names_to = "State", values_to = "Pop") 
 
@@ -34,7 +34,7 @@ usa_df <- left_join(usa, df2, by = "State") |>
   st_as_sf() |>
   st_transform(crs = 5070) 
 
-states_carto <- cartogram_cont(usa_df, "Pop", itermax = 10)
+states_carto <- cartogram_cont(usa_df, "Pop")
 
 gg_record(
   dir = file.path("posts", "wk_4_8_25"),
