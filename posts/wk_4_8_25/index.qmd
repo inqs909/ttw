@@ -1,0 +1,190 @@
+---
+title: "Tidy Tuesday Week 11"
+author: "Isaac Quintanilla Salinas"
+navbar: false
+image: final.png
+date: 04-08-25
+description: Tidy Tuesday on Thursday at CSUCI! Analyzing Pokémon Data! 
+
+format:
+  closeread-html:
+    debug-mode: false
+    cr-style:
+      narrative-text-color-sidebar: white
+      narrative-font-family: 'Georgia, "Times New Roman", Times, serif'
+      narrative-font-size: 1.25rem
+      narrative-sidebar-width: minmax(400px, 1fr)
+      narrative-border-radius: 5px
+      narrative-background-color-overlay: "#111111dd"
+      narrative-background-color-sidebar: "#111111"
+      section-background-color: "#033E3E"
+      poem-font-family: 'Georgia, "Times New Roman", Times, serif'
+
+editor: source
+---
+
+
+```{r}
+knitr::include_graphics("final.png")
+```
+
+:::{.cr-section}
+
+:::{focus-on="cr-fw"}
+# Data
+:::
+
+For this weeks Tidy Tuesday 
+
+:::{#cr-fw}
+
+```{r}
+#| echo: false
+#| message: false
+
+df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-08/care_state.csv') 
+
+
+df |> 
+  dplyr::select(state, score) |> 
+  gt::gt() |>
+  gt::opt_interactive() 
+```
+
+
+:::
+:::
+
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{focus-on="cr-walk"}
+# Development
+:::
+
+
+:::{#cr-walk}
+![](final.gif)
+:::
+:::
+
+
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{focus-on="cr-twilight"}
+# Final Plot
+:::
+
+
+:::{#cr-twilight}
+
+```{r}
+knitr::include_graphics("final.png")
+```
+
+
+:::
+:::
+
+
+## CODE
+
+Below is the code use to construct the plot above. You can find the entire code [here](https://github.com/inqs909/ttw/blob/main/posts/wk_4_1_25/plot_code.R).
+
+
+
+
+```{r}
+#| eval: false
+#| echo: true
+
+# ── Data Manipulation & Visualization ─────────────
+library(tidyverse)   # Core packages: dplyr, ggplot2, tidyr, readr, etc.
+library(janitor)     # Clean column names, tabulation helpers
+
+# ── Spatial Data & Mapping ─────────────────────────
+library(sf)          # Handle spatial (simple features) data
+library(cartogram)   # Create population-weighted cartograms
+library(maps)        # Base map outlines for states and regions
+
+# ── Project-Specific Tools ─────────────────────────
+library(csucistats)  # CSUCI custom tools (local or GitHub)
+library(camcorder)   # Record or annotate plot creation (optional)
+
+
+## Loading and Cleaning Data ----
+
+# Load state-level care score data from TidyTuesday GitHub repo
+df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-08/care_state.csv') 
+
+# Group the original dataset by the 'state' column
+care_state <- df |> 
+  group_by(state) |> 
+
+  # For each state, calculate the mean 'score', removing any missing values (NA)
+  summarise(mean = mean(score, na.rm = TRUE)) |> 
+
+  # Remove the grouping structure so the resulting dataframe is no longer grouped
+  ungroup()
+
+# Load population data (in wide format) from a local CSV
+pop_df <- readr::read_csv("posts/wk_4_8_25/pop.csv") |> 
+  clean_names() |>  # Clean column names to snake_case
+  pivot_longer(alabama:puerto_rico, names_to = "State", values_to = "Pop")  # Reshape from wide to long
+
+
+# Format population data to match state names/abbreviations
+pop_us <- pop_df |> 
+  mutate(
+    state_1 = str_replace(State, "_", " "),  # Replace underscores with spaces
+    State = str_to_title(state_1),           # Capitalize each word
+    state = state.abb[match(State, state.name)]  # Match full names to 2-letter abbreviations
+  )
+
+
+# Join care score and population data by state abbreviation
+df2 <- left_join(care_state, pop_us, by = "state")
+
+
+## Viewing Data ----
+
+# Peek at the combined data structure
+glimpse(df2)
+
+
+## Creating Spatial Data ----
+
+# Get US states geometry as a simple features (sf) object
+usa <- st_as_sf(map("state", fill = TRUE, plot = FALSE)) |> 
+  mutate(State = str_to_title(ID))  # Title-case state names to match other data
+
+
+# Merge map data with care score and population data
+usa_df <- left_join(usa, df2, by = "State") |> 
+  st_as_sf() |>  # Ensure it's still a spatial object after join
+  st_transform(crs = 5070)  # Project to Albers Equal Area for better distortion handling
+
+
+# Create a continuous cartogram, resizing states by population
+states_carto <- cartogram_cont(usa_df, "Pop", itermax = 10)
+
+
+## Plot Using ggplot ----
+
+ggplot() +
+  geom_sf(data = states_carto, aes(fill = mean)) +  # Fill by mean care score
+  scale_fill_viridis_c(option = 'D') +  # Use a colorblind-friendly color scale
+  labs(
+    title = "Medicare and Medicaid Services Average Scoring",
+    subtitle = "Adjusted by State Population Size"
+  ) +
+  theme_bw() +  # Base black-and-white theme
+  theme(
+    legend.title = element_blank(),     # Remove legend title
+    legend.position = "bottom"          # Move legend to the bottom
+  )
+
+
+
+```

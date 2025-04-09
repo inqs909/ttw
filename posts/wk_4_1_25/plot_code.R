@@ -8,7 +8,9 @@ library(ggimage)
 
 
 ## Loading Data
-pokemon_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-01/pokemon_df.csv')
+pokemon_df <- readr::read_csv(
+  'https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-01/pokemon_df.csv'
+)
 
 ## Viewing Data
 glimpse(pokemon_df)
@@ -21,8 +23,8 @@ cat_stats(pokemon_df$egg_group_1)
 cat_stats(pokemon_df$type_1)
 
 ## Numerical Data
-num_stats(pokemon_df$base_experience)
-ggplot(pokemon_df, aes(base_experience)) + 
+num_stats(pokemon_df$height)
+ggplot(pokemon_df, aes(height)) + 
   geom_density()
 
 ## Select Pokémon
