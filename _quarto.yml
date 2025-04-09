@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - "data"
 
 website:
   repo-url: https://github.com/inqs909/ttw
