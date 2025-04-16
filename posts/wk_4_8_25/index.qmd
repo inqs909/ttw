@@ -108,7 +108,7 @@ knitr::include_graphics("final.png")
 
 ## CODE
 
-Below is the code use to construct the plot above. You can find the entire code [here](https://github.com/inqs909/ttw/blob/main/posts/wk_4_1_25/plot_code.R).
+Below is the code use to construct the plot above. You can find the entire code [here](https://github.com/inqs909/ttw/blob/main/posts/wk_4_8_25/plot_code.R).
 
 
 

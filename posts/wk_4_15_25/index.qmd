@@ -1,0 +1,129 @@
+---
+title: "Tidy Tuesday Week 12"
+author: "Isaac Quintanilla Salinas"
+navbar: false
+image: final.png
+date: 04-08-25
+description: Tidy Tuesday on Thursday at CSUCI! Analyzing Palmer Penguins!!!!!!!!!!!! 
+
+format:
+  closeread-html:
+    debug-mode: false
+    cr-style:
+      narrative-text-color-sidebar: white
+      narrative-font-family: 'Georgia, "Times New Roman", Times, serif'
+      narrative-font-size: 1.25rem
+      narrative-sidebar-width: minmax(400px, 1fr)
+      narrative-border-radius: 5px
+      narrative-background-color-overlay: "#111111dd"
+      narrative-background-color-sidebar: "#111111"
+      section-background-color: "#033E3E"
+      poem-font-family: 'Georgia, "Times New Roman", Times, serif'
+
+editor: source
+---
+
+
+```{r}
+knitr::include_graphics("final.png")
+```
+
+:::{.cr-section}
+
+:::{focus-on="cr-fw"}
+# Data
+:::
+
+
+:::{#cr-fw}
+
+```{r}
+#| echo: false
+#| message: false
+
+library(palmerpenguins)
+df <- penguins |> tidyr::drop_na()
+
+df |> 
+  gt::gt() |>
+  gt::opt_interactive() 
+```
+
+
+:::
+:::
+
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{focus-on="cr-walk"}
+# Development
+:::
+
+
+
+
+:::{#cr-walk}
+![](final.gif)
+:::
+:::
+
+
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{focus-on="cr-twilight"}
+# Final Plot
+:::
+
+
+:::{#cr-twilight}
+
+```{r}
+knitr::include_graphics("final.png")
+```
+
+
+:::
+:::
+
+
+## CODE
+
+Below is the code use to construct the plot above. You can find the entire code [here](https://github.com/inqs909/ttw/blob/main/posts/wk_4_15_25/plot_code.R).
+
+
+
+
+```{r}
+#| eval: false
+#| echo: true
+
+## Loading Libraries
+library(tidyverse)          # Loads core data manipulation and visualization packages
+library(palmerpenguins)     # Loads the penguins dataset
+
+## Loading and Cleaning Data 
+df <- penguins |> drop_na()  # Removes rows with missing values (NAs) from the dataset
+
+# Plot using ggplot
+ggplot(df, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +      # Sets up the plot with flipper length on x-axis, body mass on y-axis, and color by species
+  geom_point() +                         # Adds scatter plot points
+  stat_smooth(se = F) +                  # Adds trend lines without confidence intervals (se = FALSE)
+  facet_wrap(~island) +                  # Creates separate panels for each island
+  scale_x_continuous(
+    breaks = round(seq(min(df$flipper_length_mm), 
+                       max(df$flipper_length_mm), 
+                       length.out = 4))  # Sets 4 evenly spaced tick marks on the x-axis
+  ) +
+  labs(x = "Flipper Length (mm)",        # Label for x-axis
+       y = "Body Mass (g)",              # Label for y-axis
+       title = "Flipper Length versus Body Mass",      # Main title
+       subtitle = "by Species and Island") +           # Subtitle
+  theme_bw() +                           # Applies a clean black-and-white theme
+  theme(legend.title = element_blank(),  # Removes the legend title
+        legend.position = "bottom")      # Moves the legend to the bottom
+
+
+
+```
