@@ -3,7 +3,7 @@ title: "Tidy Tuesday Week 12"
 author: "Isaac Quintanilla Salinas"
 navbar: false
 image: final.png
-date: 04-08-25
+date: 04-15-25
 description: Tidy Tuesday on Thursday at CSUCI! Analyzing Palmer Penguins!!!!!!!!!!!! 
 
 format:
