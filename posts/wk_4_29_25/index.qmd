@@ -101,7 +101,6 @@ Below is the code use to construct the plot above. You can find the entire code 
 
 ## --- Loading Required Libraries ---
 library(tidyverse)     # For data wrangling and visualization (includes ggplot2, dplyr, tidyr, etc.)
-library(csucistats)    # Custom or specialized functions from CSUCI (likely used elsewhere or for consistency)
 library(igraph)        # For creating and manipulating graph/network objects
 library(ggraph)        # For visualizing graphs using ggplot2
 library(tidygraph)     # For tidy manipulation of graph/network data
@@ -178,17 +177,6 @@ ggraph(tg, layout = "fr") +                       # 'fr' = Fruchterman-Reingold 
     labels = c("Keyword", "Speaker")              # Legend labels: FALSE = Keyword, TRUE = Speaker
   ) +
   ggtitle("Network of Speakers by Keywords")      # Add plot title
-
-
-## --- Saving the Plot ---
-
-ggsave(
-  filename = file.path("posts", "wk_4_29_25", paste0("final", ".png")),  # Save location and file name
-  height = 6,     # Height in inches
-  width = 6,      # Width in inches
-  units = "in",   # Units for size
-  dpi = 300       # Resolution for high-quality image
-)
 
 
 
